@@ -27,7 +27,7 @@ public class KitchenStub implements IKitchen_Chef, IKitchen_Waiter {
         state_fields[1] = chef.getChefState();
 
         /* operation number to be defined */
-        Message m_toServer = new Message(15, params, 0, state_fields, 2, null);
+        Message m_toServer = new Message(3, params, 0, state_fields, 2, null);
         Message m_fromServer;
 
         while (!com.open ())
@@ -58,7 +58,7 @@ public class KitchenStub implements IKitchen_Chef, IKitchen_Waiter {
         state_fields[1] = chef.getChefState();
 
         /* operation number to be defined */
-        Message m_toServer = new Message(15, params, 0, state_fields, 2, null);
+        Message m_toServer = new Message(4, params, 0, state_fields, 2, null);
         Message m_fromServer;
 
         while (!com.open ())
@@ -88,7 +88,7 @@ public class KitchenStub implements IKitchen_Chef, IKitchen_Waiter {
         state_fields[1] = chef.getChefState();
 
         /* operation number to be defined */
-        Message m_toServer = new Message(15, params, 0, state_fields, 2, null);
+        Message m_toServer = new Message(5, params, 0, state_fields, 2, null);
         Message m_fromServer;
 
         while (!com.open ())
@@ -119,7 +119,7 @@ public class KitchenStub implements IKitchen_Chef, IKitchen_Waiter {
         state_fields[1] = chef.getChefState();
 
         /* operation number to be defined */
-        Message m_toServer = new Message(15, params, 0, state_fields, 2, null);
+        Message m_toServer = new Message(6, params, 0, state_fields, 2, null);
         Message m_fromServer;
 
         while (!com.open ())
@@ -150,7 +150,7 @@ public class KitchenStub implements IKitchen_Chef, IKitchen_Waiter {
         state_fields[1] = chef.getChefState();
 
         /* operation number to be defined */
-        Message m_toServer = new Message(15, params, 0, state_fields, 2, null);
+        Message m_toServer = new Message(7, params, 0, state_fields, 2, null);
         Message m_fromServer;
 
         while (!com.open ())
@@ -181,7 +181,7 @@ public class KitchenStub implements IKitchen_Chef, IKitchen_Waiter {
         state_fields[1] = chef.getChefState();
 
         /* operation number to be defined */
-        Message m_toServer = new Message(15, params, 0, state_fields, 2, null);
+        Message m_toServer = new Message(8, params, 0, state_fields, 2, null);
         Message m_fromServer;
 
         while (!com.open ())
@@ -211,7 +211,7 @@ public class KitchenStub implements IKitchen_Chef, IKitchen_Waiter {
         state_fields[1] = chef.getChefState();
 
         /* operation number to be defined */
-        Message m_toServer = new Message(15, params, 0, state_fields, 2, null);
+        Message m_toServer = new Message(9, params, 0, state_fields, 2, null);
         Message m_fromServer;
 
         while (!com.open ())
@@ -244,7 +244,7 @@ public class KitchenStub implements IKitchen_Chef, IKitchen_Waiter {
         state_fields[1] = chef.getChefState();
 
         /* operation number to be defined */
-        Message m_toServer = new Message(15, params, 0, state_fields, 2, null);
+        Message m_toServer = new Message(10, params, 0, state_fields, 2, null);
         Message m_fromServer;
 
         while (!com.open ())
@@ -275,7 +275,7 @@ public class KitchenStub implements IKitchen_Chef, IKitchen_Waiter {
         state_fields[1] = chef.getChefState();
 
         /* operation number to be defined */
-        Message m_toServer = new Message(15, params, 0, state_fields, 2, null);
+        Message m_toServer = new Message(11, params, 0, state_fields, 2, null);
         Message m_fromServer;
 
         while (!com.open ())
@@ -306,7 +306,7 @@ public class KitchenStub implements IKitchen_Chef, IKitchen_Waiter {
         state_fields[1] = waiter.getWaiterState();
 
         /* operation number to be defined */
-        Message m_toServer = new Message(15, params, 0, state_fields, 2, null);
+        Message m_toServer = new Message(12, params, 0, state_fields, 2, null);
         Message m_fromServer;
 
         while (!com.open ())
@@ -338,7 +338,7 @@ public class KitchenStub implements IKitchen_Chef, IKitchen_Waiter {
         state_fields[1] = waiter.getWaiterState();
 
         /* operation number to be defined */
-        Message m_toServer = new Message(15, params, 0, state_fields, 2, null);
+        Message m_toServer = new Message(13, params, 0, state_fields, 2, null);
         Message m_fromServer;
 
         while (!com.open ())
@@ -369,7 +369,7 @@ public class KitchenStub implements IKitchen_Chef, IKitchen_Waiter {
         state_fields[1] = waiter.getWaiterState();
 
         /* operation number to be defined */
-        Message m_toServer = new Message(15, params, 0, state_fields, 2, null);
+        Message m_toServer = new Message(14, params, 0, state_fields, 2, null);
         Message m_fromServer;
 
         while (!com.open ())

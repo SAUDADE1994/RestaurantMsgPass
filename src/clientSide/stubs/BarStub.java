@@ -26,7 +26,7 @@ public class BarStub implements IBar_Waiter {
         state_fields[1] = waiter.getWaiterState();
 
         /* operation number to be defined */
-        Message m_toServer = new Message(15, params, 0, state_fields, 2, null);
+        Message m_toServer = new Message(1, params, 0, state_fields, 2, null);
         Message m_fromServer;
 
         while (!com.open ())
@@ -56,7 +56,7 @@ public class BarStub implements IBar_Waiter {
         state_fields[1] = waiter.getWaiterState();
 
         /* operation number to be defined */
-        Message m_toServer = new Message(15, params, 0, state_fields, 2, null);
+        Message m_toServer = new Message(2, params, 0, state_fields, 2, null);
         Message m_fromServer;
 
         while (!com.open ())

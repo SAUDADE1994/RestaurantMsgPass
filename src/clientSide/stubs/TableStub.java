@@ -28,7 +28,7 @@ public class TableStub implements ITable_Student, ITable_Waiter {
         state_fields[1] = s.getStudentState();
 
         /* operation number to be defined */
-        Message m_toServer = new Message(15, params, 0, state_fields, 2, null);
+        Message m_toServer = new Message(16, params, 0, state_fields, 2, null);
         Message m_fromServer;
 
         while (!com.open ())
@@ -59,7 +59,7 @@ public class TableStub implements ITable_Student, ITable_Waiter {
         state_fields[1] = s.getStudentState();
 
         /* operation number to be defined */
-        Message m_toServer = new Message(15, params, 0, state_fields, 2, null);
+        Message m_toServer = new Message(17, params, 0, state_fields, 2, null);
         Message m_fromServer;
 
         while (!com.open ())
@@ -90,7 +90,7 @@ public class TableStub implements ITable_Student, ITable_Waiter {
         state_fields[1] = s.getStudentState();
 
         /* operation number to be defined */
-        Message m_toServer = new Message(15, params, 0, state_fields, 2, null);
+        Message m_toServer = new Message(18, params, 0, state_fields, 2, null);
         Message m_fromServer;
 
         while (!com.open ())
@@ -121,7 +121,7 @@ public class TableStub implements ITable_Student, ITable_Waiter {
         state_fields[1] = s.getStudentState();
 
         /* operation number to be defined */
-        Message m_toServer = new Message(15, params, 0, state_fields, 2, null);
+        Message m_toServer = new Message(19, params, 0, state_fields, 2, null);
         Message m_fromServer;
 
         while (!com.open ())
@@ -153,7 +153,7 @@ public class TableStub implements ITable_Student, ITable_Waiter {
         state_fields[1] = s.getStudentState();
 
         /* operation number to be defined */
-        Message m_toServer = new Message(15, params, 0, state_fields, 2, null);
+        Message m_toServer = new Message(20, params, 0, state_fields, 2, null);
         Message m_fromServer;
 
         while (!com.open ())
@@ -184,7 +184,7 @@ public class TableStub implements ITable_Student, ITable_Waiter {
         state_fields[1] = s.getStudentState();
 
         /* operation number to be defined */
-        Message m_toServer = new Message(15, params, 0, state_fields, 2, null);
+        Message m_toServer = new Message(21, params, 0, state_fields, 2, null);
         Message m_fromServer;
 
         while (!com.open ())
@@ -215,7 +215,7 @@ public class TableStub implements ITable_Student, ITable_Waiter {
         state_fields[1] = s.getStudentState();
 
         /* operation number to be defined */
-        Message m_toServer = new Message(15, params, 0, state_fields, 2, null);
+        Message m_toServer = new Message(22, params, 0, state_fields, 2, null);
         Message m_fromServer;
 
         while (!com.open ())
@@ -245,7 +245,7 @@ public class TableStub implements ITable_Student, ITable_Waiter {
         state_fields[1] = s.getStudentState();
 
         /* operation number to be defined */
-        Message m_toServer = new Message(15, params, 0, state_fields, 2, null);
+        Message m_toServer = new Message(23, params, 0, state_fields, 2, null);
         Message m_fromServer;
 
         while (!com.open ())
@@ -276,7 +276,7 @@ public class TableStub implements ITable_Student, ITable_Waiter {
         state_fields[1] = s.getStudentState();
 
         /* operation number to be defined */
-        Message m_toServer = new Message(15, params, 0, state_fields, 2, null);
+        Message m_toServer = new Message(24, params, 0, state_fields, 2, null);
         Message m_fromServer;
 
         while (!com.open ())
@@ -308,7 +308,7 @@ public class TableStub implements ITable_Student, ITable_Waiter {
         state_fields[1] = s.getStudentState();
 
         /* operation number to be defined */
-        Message m_toServer = new Message(15, params, 0, state_fields, 2, null);
+        Message m_toServer = new Message(25, params, 0, state_fields, 2, null);
         Message m_fromServer;
 
         while (!com.open ())
@@ -339,7 +339,7 @@ public class TableStub implements ITable_Student, ITable_Waiter {
         state_fields[1] = s.getStudentState();
 
         /* operation number to be defined */
-        Message m_toServer = new Message(15, params, 0, state_fields, 2, null);
+        Message m_toServer = new Message(26, params, 0, state_fields, 2, null);
         Message m_fromServer;
 
         while (!com.open ())
@@ -369,7 +369,7 @@ public class TableStub implements ITable_Student, ITable_Waiter {
         state_fields[1] = s.getStudentState();
 
         /* operation number to be defined */
-        Message m_toServer = new Message(15, params, 0, state_fields, 2, null);
+        Message m_toServer = new Message(27, params, 0, state_fields, 2, null);
         Message m_fromServer;
 
         while (!com.open ())
@@ -400,7 +400,7 @@ public class TableStub implements ITable_Student, ITable_Waiter {
         state_fields[1] = s.getStudentState();
 
         /* operation number to be defined */
-        Message m_toServer = new Message(15, params, 0, state_fields, 2, null);
+        Message m_toServer = new Message(28, params, 0, state_fields, 2, null);
         Message m_fromServer;
 
         while (!com.open ())
@@ -430,7 +430,7 @@ public class TableStub implements ITable_Student, ITable_Waiter {
         state_fields[1] = s.getStudentState();
 
         /* operation number to be defined */
-        Message m_toServer = new Message(15, params, 0, state_fields, 2, null);
+        Message m_toServer = new Message(29, params, 0, state_fields, 2, null);
         Message m_fromServer;
 
         while (!com.open ())
@@ -461,7 +461,7 @@ public class TableStub implements ITable_Student, ITable_Waiter {
         state_fields[1] = s.getStudentState();
 
         /* operation number to be defined */
-        Message m_toServer = new Message(15, params, 0, state_fields, 2, null);
+        Message m_toServer = new Message(30, params, 0, state_fields, 2, null);
         Message m_fromServer;
 
         while (!com.open ())
@@ -492,7 +492,7 @@ public class TableStub implements ITable_Student, ITable_Waiter {
         state_fields[1] = s.getStudentState();
 
         /* operation number to be defined */
-        Message m_toServer = new Message(15, params, 0, state_fields, 2, null);
+        Message m_toServer = new Message(31, params, 0, state_fields, 2, null);
         Message m_fromServer;
 
         while (!com.open ())
@@ -523,7 +523,7 @@ public class TableStub implements ITable_Student, ITable_Waiter {
         state_fields[1] = waiter.getWaiterState();
 
         /* operation number to be defined */
-        Message m_toServer = new Message(15, params, 0, state_fields, 2, null);
+        Message m_toServer = new Message(32, params, 0, state_fields, 2, null);
         Message m_fromServer;
 
         while (!com.open ())
@@ -554,7 +554,7 @@ public class TableStub implements ITable_Student, ITable_Waiter {
         state_fields[1] = waiter.getWaiterState();
 
         /* operation number to be defined */
-        Message m_toServer = new Message(15, params, 0, state_fields, 2, null);
+        Message m_toServer = new Message(33, params, 0, state_fields, 2, null);
         Message m_fromServer;
 
         while (!com.open ())
@@ -585,7 +585,7 @@ public class TableStub implements ITable_Student, ITable_Waiter {
         state_fields[1] = waiter.getWaiterState();
 
         /* operation number to be defined */
-        Message m_toServer = new Message(15, params, 0, state_fields, 2, null);
+        Message m_toServer = new Message(34, params, 0, state_fields, 2, null);
         Message m_fromServer;
 
         while (!com.open ())
@@ -616,7 +616,7 @@ public class TableStub implements ITable_Student, ITable_Waiter {
         state_fields[1] = waiter.getWaiterState();
 
         /* operation number to be defined */
-        Message m_toServer = new Message(15, params, 0, state_fields, 2, null);
+        Message m_toServer = new Message(35, params, 0, state_fields, 2, null);
         Message m_fromServer;
 
         while (!com.open ())
@@ -647,7 +647,7 @@ public class TableStub implements ITable_Student, ITable_Waiter {
         state_fields[1] = waiter.getWaiterState();
 
         /* operation number to be defined */
-        Message m_toServer = new Message(15, params, 0, state_fields, 2, null);
+        Message m_toServer = new Message(36, params, 0, state_fields, 2, null);
         Message m_fromServer;
 
         while (!com.open ())
@@ -677,7 +677,7 @@ public class TableStub implements ITable_Student, ITable_Waiter {
         state_fields[1] = s.getStudentState();
 
         /* operation number to be defined */
-        Message m_toServer = new Message(15, params, 0, state_fields, 2, null);
+        Message m_toServer = new Message(37, params, 0, state_fields, 2, null);
         Message m_fromServer;
 
         while (!com.open ())
