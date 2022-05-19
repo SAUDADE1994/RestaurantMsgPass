@@ -7,6 +7,7 @@ import serverSide.entities.StudentStates;
 import serverSide.entities.Waiter;
 import serverSide.entities.WaiterStates;
 import serverSide.main.SimulPar;
+import serverSide.stubs.GeneralReposStub;
 
 import java.util.ArrayList;
 
@@ -118,23 +119,15 @@ public class Table implements ITable_Student, ITable_Waiter {
     /**
      * Reference to the General Repository
      */
-    private final GeneralRepos repos;
+    private final GeneralReposStub repos;
 
-    /**
-     * @param repos
-     * @return Get singleton instance of this class
-     */
-    public static Table getInstance(GeneralRepos repos) {
-        if (instance == null) {
-            instance = new Table(repos);
-        }
-        return instance;
-    }
+
 
     /**
      * Table initialization: Singleton -> private
      */
-    private Table(GeneralRepos repos) {
+    public Table(GeneralReposStub repos) {
+        this.repos = repos;
         students = new Student[SimulPar.TOTAL_STUDENTS];
 
         try {
@@ -145,8 +138,6 @@ public class Table implements ITable_Student, ITable_Waiter {
             orders = null;
             System.exit(1);
         }
-
-        this.repos = repos;
 
         // Some flags to control de execution of the threads
         salute = false;

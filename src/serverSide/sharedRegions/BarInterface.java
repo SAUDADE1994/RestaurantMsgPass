@@ -14,7 +14,7 @@ public class BarInterface implements SharedRegionInterface {
 
     private boolean shutdown;
 
-    private BarInterface(Bar bar) {
+    public BarInterface(Bar bar) {
         this.bar = bar;
         this.shutdown = false;
 

@@ -3,6 +3,7 @@ package serverSide.sharedRegions;
 
 import serverSide.entities.Waiter;
 import serverSide.entities.WaiterStates;
+import serverSide.stubs.GeneralReposStub;
 
 /**
 * Bar
@@ -13,20 +14,14 @@ import serverSide.entities.WaiterStates;
 public class Bar implements IBar_Waiter {
 
     /**
-     * Singleton instance of this class
+     *   Reference to the General Repository.
      */
-    private static Bar instance;
 
-    /**
-     * @return the singleton instance of this class
-     */
-    public static Bar getInstance() {
-        if (instance == null) {
-            instance = new Bar();
-        }
-        return instance;
+    private final GeneralReposStub repos;
+
+    public Bar(GeneralReposStub generalReposStub) {
+        this.repos = generalReposStub;
     }
-
 
     @Override
     public void sayGoodbye() {
@@ -37,6 +32,7 @@ public class Bar implements IBar_Waiter {
     public void prepareTheBill() {
 
         ((Waiter) Thread.currentThread()).setWaiterState(WaiterStates.PROCESSING_THE_BILL);
+        repos.setWaiterState(WaiterStates.PROCESSING_THE_BILL);
 
         // Sleep
         try {

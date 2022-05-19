@@ -5,6 +5,7 @@ import serverSide.entities.Waiter;
 import serverSide.entities.WaiterStates;
 import serverSide.main.SimulPar;
 import serverSide.entities.Chef;
+import serverSide.stubs.GeneralReposStub;
 
 import static java.lang.Thread.sleep;
 
@@ -15,11 +16,10 @@ import static java.lang.Thread.sleep;
  * Is implemented using as an implicit monitor
  */
 public class Kitchen implements IKitchen_Chef, IKitchen_Waiter {
-
     /**
-     * Singleton instance of this class
+     *   Reference to the General Repository.
      */
-    private static Kitchen instance;
+    private final GeneralReposStub repos;
 
     /**
      * Reference to the chef of the kitchen
@@ -55,7 +55,8 @@ public class Kitchen implements IKitchen_Chef, IKitchen_Waiter {
     /**
      * Private constructor of Kitchen
      */
-    private Kitchen() {
+    public Kitchen(GeneralReposStub generalReposStub) {
+        this.repos = generalReposStub;
         chef = null;
         chefStartWorking = false;
         oneMorePortionReady = false;
@@ -64,15 +65,6 @@ public class Kitchen implements IKitchen_Chef, IKitchen_Waiter {
         arePortionsCollected = new boolean[SimulPar.TOTAL_STUDENTS];
     }
 
-    /**
-     * @return singleton instance of this class
-     */
-    public static Kitchen getInstance() {
-        if (instance == null) {
-            instance = new Kitchen();
-        }
-        return instance;
-    }
 
     @Override
     public synchronized void watchTheNews() {

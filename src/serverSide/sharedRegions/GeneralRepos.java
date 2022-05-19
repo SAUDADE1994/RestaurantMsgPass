@@ -86,7 +86,7 @@ public class GeneralRepos {
      *
      * @param logFileName name of the log file
      */
-    private GeneralRepos(String logFileName) {
+    public GeneralRepos(String logFileName) {
 
         if (logFileName == null || Objects.equals(logFileName, ""))
             this.logFileName = "logger";

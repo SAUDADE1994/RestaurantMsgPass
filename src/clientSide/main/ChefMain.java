@@ -11,8 +11,8 @@ public class ChefMain {
 
         KitchenStub kitchen;
         TableStub table;
-        kitchen = new KitchenStub("name_to_be_defined", 22000);
-        table = new TableStub("name to be defined", 22000);
+        kitchen = new KitchenStub("sd209@l04010-ws03.ua.pt", 22380);
+        table = new TableStub("sd209@l04010-ws01.ua.pt", 22381);
 
         chef = new Chef(0, kitchen, table);
 
