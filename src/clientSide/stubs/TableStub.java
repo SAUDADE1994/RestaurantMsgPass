@@ -697,4 +697,31 @@ public class TableStub implements ITable_Student, ITable_Waiter {
         com.close ();
         return result;
     }
+
+
+    /**
+     *
+     *Method called to shutdown the table server
+     *
+     */
+
+    public void shutdown() {
+        CommunicationChannel com = new CommunicationChannel (serverHostName, serverPortNumb);
+        Object[] params = new Object[0];
+        Object[] state_fields = new Object[0];
+
+        Message m_toServer = new Message(44, params, 0, state_fields, 0, null);
+        Message m_fromServer;
+
+        while (!com.open ())
+        { try
+        { Thread.currentThread ().sleep ((long) (10));
+        }
+        catch (InterruptedException e) {}
+        }
+
+        com.writeObject (m_toServer);
+
+        com.close ();
+    }
 }

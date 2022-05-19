@@ -213,7 +213,7 @@ public class GeneralReposStub {
         Object[] params = new Object[0];
         Object[] state_fields = new Object[0];
 
-        Message m_toServer = new Message(24, params, 0, state_fields, 0, null);
+        Message m_toServer = new Message(44, params, 0, state_fields, 0, null);
         Message m_fromServer;
 
         while (!com.open ())
