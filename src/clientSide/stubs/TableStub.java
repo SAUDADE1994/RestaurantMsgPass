@@ -667,7 +667,7 @@ public class TableStub implements ITable_Student, ITable_Waiter {
         com.close ();
     }
 
-    public int askForReadyOrders() {
+    public Integer[] askForReadyOrders() {
 
         Student s = (Student) Thread.currentThread();
         CommunicationChannel com = new CommunicationChannel(serverHostName, serverPortNumb);
@@ -692,7 +692,7 @@ public class TableStub implements ITable_Student, ITable_Waiter {
         m_fromServer = (Message) com.readObject();
 
         s.setStudentState((Integer) m_fromServer.getStateFields()[1]);
-        int result = (int) m_fromServer.getReturnValue();
+        Integer[] result = (Integer[]) m_fromServer.getReturnValue();
 
         com.close ();
         return result;

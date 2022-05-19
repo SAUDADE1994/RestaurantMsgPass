@@ -62,7 +62,6 @@ public class Student extends Thread {
      * @param studentId student id
      * @param table reference to the table
      * @param bar reference to the bar
-     * @param repos reference to the repository
      */
     public Student(int studentId, TableStub table, BarStub bar) {
         super(String.format("Student %d", studentId));
@@ -89,22 +88,24 @@ public class Student extends Thread {
         table.enter();
         table.readTheMenu();
 
-        // if its the first student to arrive
+        // if it's the first student to arrive
         if(firstStudentToArrive) {
             table.prepareTheOrder();                    // prepares all the orders and signals waiter
             while (!table.hasEverybodyChosen()) {
                 // Get the id
-                int ready_student = table.askForReadyOrders();
-                if (ready_student != -1) {
-                    table.addUpOnesChoices(ready_student);
+                Integer[] readyStudents = table.askForReadyOrders();
+                if (readyStudents[0] != 0) {
+                    for (int i = 1; i < readyStudents.length; i++) {
+                        table.addUpOnesChoices(readyStudents[i]);
+                    }
                 }
             }
             table.callTheWaiter();
             table.describeTheOrder();
             table.joinTheTalk();
         } else
-            table.informCompanion();                // if it is not, informs the first student to arrive of what order
-                                                    // he wants
+            table.informCompanion();                // if it is not, informs the first student
+                                                    // to arrive of which order he wants
 
 
         // starts eating de 0 upto M courses

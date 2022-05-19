@@ -8,6 +8,8 @@ import serverSide.entities.Waiter;
 import serverSide.entities.WaiterStates;
 import serverSide.main.SimulPar;
 
+import java.util.ArrayList;
+
 import static java.lang.Thread.sleep;
 
 /**
@@ -635,20 +637,30 @@ public class Table implements ITable_Student, ITable_Waiter {
     }
 
     /**
-     * Operation ask for ready orders if every orders as been chosen (internal function of the shared region Table)
+     * Operation ask if any student has chosen (internal function of the shared region Table)
      *
-     * @return The id of a student who has chosen his order
-     * but is waiting for the first student to account for it,
-     * -1 if students who are still choosing have not chosen yet
+     * @return An array with N+1 elements, N being the number of students waiting for an order
+     *  The first element contains always the number N
+     *  The following elements contain the student ID of the students who are ready
      */
-    public int askForReadyOrders() {
+    public synchronized Integer[] askForReadyOrders() {
+
+        ArrayList<Integer> pendingOrders = new ArrayList<>();
+
+        // Initialize the first element (special)
+        pendingOrders.add(0);
+
         // Search for first true elem in array
         for (int i = 0; i < peerWantsToOrder.length; i++) {
-            if (peerWantsToOrder[i])
-                return i;
+            if (peerWantsToOrder[i]) {
+                pendingOrders.add(i);
+            }
         }
 
+        // Set the first element to the number of students
+        pendingOrders.set(0, pendingOrders.size() - 1);
+
         // No one wants to order (yet)
-        return -1;
+        return pendingOrders.toArray(new Integer[0]);
     }
 }
