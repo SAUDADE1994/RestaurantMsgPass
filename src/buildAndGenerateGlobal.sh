@@ -1,5 +1,6 @@
+#!/usr/bin/env bash
 echo "Compiling source code."
-javac */*.java */*/*.java
+javac -- */*.java -- */*/*.java
 echo "Distributing intermediate code to the different execution environments."
 echo "  General Repository of Information"
 rm -rf dirGeneralRepos
