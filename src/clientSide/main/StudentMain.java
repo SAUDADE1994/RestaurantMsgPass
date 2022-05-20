@@ -1,7 +1,6 @@
 package clientSide.main;
 
 import clientSide.entities.Student;
-import clientSide.stubs.BarStub;
 import clientSide.stubs.TableStub;
 
 public class StudentMain {

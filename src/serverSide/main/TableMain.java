@@ -3,7 +3,6 @@ package serverSide.main;
 import commInfra.ServerCom;
 import genclass.GenericIO;
 import serverSide.entities.ServiceProviderAgent;
-import serverSide.sharedRegions.KitchenInterface;
 import serverSide.sharedRegions.SharedRegionInterface;
 import serverSide.sharedRegions.Table;
 import serverSide.sharedRegions.TableInterface;
