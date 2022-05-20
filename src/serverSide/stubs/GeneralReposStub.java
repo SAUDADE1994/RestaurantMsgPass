@@ -2,6 +2,7 @@ package serverSide.stubs;
 
 import commInfra.CommunicationChannel;
 import commInfra.Message;
+import serverSide.main.FunctionsIds;
 
 public class GeneralReposStub {
 
@@ -229,5 +230,26 @@ public class GeneralReposStub {
     }
 
 
+    public void setNextCourse() {
 
+        CommunicationChannel com = new CommunicationChannel (serverHostName, serverPortNumb);
+        Object[] params = new Object[0];
+        Object[] state_fields = new Object[0];
+
+        Message m_toServer = new Message(FunctionsIds.SETNCOURSE, params, 1, state_fields, 0, null);
+        Message m_fromServer;
+
+        while (!com.open ())
+        { try
+        { Thread.currentThread ().sleep ((long) (10));
+        }
+        catch (InterruptedException e) {}
+        }
+
+        com.writeObject (m_toServer);
+
+        m_fromServer = (Message) com.readObject();
+
+        com.close ();
+    }
 }

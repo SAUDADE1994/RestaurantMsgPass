@@ -43,7 +43,6 @@ public class Chef extends Thread {
      * @param chefId chef ID
      * @param kitchen reference to the kitchen
      * @param table reference to the table
-     * @param repos reference to the repos
      */
     public Chef(int chefId, KitchenStub kitchen, TableStub table) {
         super(String.format("Chef %d", chefId));

@@ -47,7 +47,7 @@ public class Waiter extends Thread {
     /**
      * Variable counting the number of portions served
      */
-    private int portionsServerd;
+    private int portionsServed;
 
     /**
      * Flag controlling if all orders are chosen
@@ -69,7 +69,7 @@ public class Waiter extends Thread {
         this.kitchen = kitchen;
         this.table = table;
 
-        portionsServerd = 0;
+        portionsServed = 0;
         numberOfStudentsArrived = 0;
         allOrdersChosen = false;
     }
@@ -110,13 +110,11 @@ public class Waiter extends Thread {
         for (int i = 0; i < SimulPar.TOTAL_COURSES; i++) {
             // Look around in the kitchen for next course
             returnToTheBar("Kitchen");
-            //repos.setnCourse(i+1);
 
-            portionsServerd = 0;
+            portionsServed = 0;
             while (!kitchen.haveAllPortionsBeenCollected()){
                 kitchen.collectPortion();
-                table.deliverPortion();
-                //repos.setnPortion(++portionsServerd);
+                table.deliverPortion(++portionsServed);
             }
 
             // Look around in the table region for when the students are finished

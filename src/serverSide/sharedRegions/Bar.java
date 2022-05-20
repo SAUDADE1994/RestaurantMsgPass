@@ -19,9 +19,10 @@ public class Bar implements IBar_Waiter {
 
     private final GeneralReposStub repos;
 
-    public Bar(GeneralReposStub generalReposStub) {
-        this.repos = generalReposStub;
+    public Bar(GeneralReposStub repos) {
+        this.repos = repos;
     }
+
 
     @Override
     public void sayGoodbye() {

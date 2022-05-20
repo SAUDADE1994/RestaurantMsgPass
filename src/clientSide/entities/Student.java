@@ -50,23 +50,16 @@ public class Student extends Thread {
      */
     private final TableStub table;
 
-    /**
-     * Reference to the Bar
-     */
-    private final BarStub bar;
-
 
     /**
      * Instantiation of Student Thread
      *
      * @param studentId student id
      * @param table reference to the table
-     * @param bar reference to the bar
      */
-    public Student(int studentId, TableStub table, BarStub bar) {
+    public Student(int studentId, TableStub table) {
         super(String.format("Student %d", studentId));
         this.studentId = studentId;
-        this.bar = bar;
         this.studentState = StudentStates.GOING_TO_THE_RESTAURANT;
         this.table = table;
         selected = false;
@@ -157,7 +150,6 @@ public class Student extends Thread {
      * @param studentState student state
      */
     public void setStudentState(int studentState) {
-        //repos.setStudentState(studentId, studentState);
         this.studentState = studentState;
     }
 

@@ -251,6 +251,13 @@ public class GeneralRepos {
     public synchronized void setnCourse(int nCourse) {
         this.nCourse = nCourse;
     }
+    
+    /**
+     * Set the number of the Course
+     */
+    public synchronized void setNextCourse() {
+        this.nCourse++;
+    }
 
     /**
      * Set the number of portion delivered

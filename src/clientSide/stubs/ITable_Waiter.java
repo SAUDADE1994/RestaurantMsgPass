@@ -25,7 +25,7 @@ public interface ITable_Waiter {
      *
      * It is called by waiter when the portions are ready to deliver
      */
-    void deliverPortion();
+    void deliverPortion(int portionsServed);
 
     /**
      * Operation present billing

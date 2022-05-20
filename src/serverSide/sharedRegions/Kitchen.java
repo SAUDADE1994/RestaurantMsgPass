@@ -19,12 +19,14 @@ public class Kitchen implements IKitchen_Chef, IKitchen_Waiter {
     /**
      *   Reference to the General Repository.
      */
-    private final GeneralReposStub repos;
+    private static Kitchen instance;
 
     /**
      * Reference to the chef of the kitchen
      */
     private Chef chef;
+
+    private final GeneralReposStub repos;
 
     /**
      * Flag is true only after the chef has started working
@@ -55,8 +57,8 @@ public class Kitchen implements IKitchen_Chef, IKitchen_Waiter {
     /**
      * Private constructor of Kitchen
      */
-    public Kitchen(GeneralReposStub generalReposStub) {
-        this.repos = generalReposStub;
+    public Kitchen(GeneralReposStub repos) {
+        this.repos = repos;
         chef = null;
         chefStartWorking = false;
         oneMorePortionReady = false;
@@ -77,13 +79,14 @@ public class Kitchen implements IKitchen_Chef, IKitchen_Waiter {
             }
         }
 
-
     }
 
     @Override
     public synchronized void proceedToPresentation() {
 
         ((Chef) Thread.currentThread()).setChefState(ChefStates.DISHING_THE_PORTIONS);
+        repos.setChefState(ChefStates.DISHING_THE_PORTIONS);
+
         try
         {
             sleep ((long) (1 + 30 * Math.random ()));
@@ -103,6 +106,7 @@ public class Kitchen implements IKitchen_Chef, IKitchen_Waiter {
 
         // Set next state to dishing the portions
         ((Chef) Thread.currentThread()).setChefState(ChefStates.DISHING_THE_PORTIONS);
+        repos.setChefState(ChefStates.DISHING_THE_PORTIONS);
     }
 
 
@@ -114,6 +118,7 @@ public class Kitchen implements IKitchen_Chef, IKitchen_Waiter {
 
         // Set state to delivering the portions
         ((Chef) Thread.currentThread()).setChefState(ChefStates.DELIVERING_THE_PORTIONS);
+        repos.setChefState(ChefStates.DELIVERING_THE_PORTIONS);
 
         // Set flag in order to alert the waiter next portion is ready
         oneMorePortionReady = true;
@@ -136,6 +141,7 @@ public class Kitchen implements IKitchen_Chef, IKitchen_Waiter {
     @Override
     public synchronized void continuePreparation() {
         ((Chef) Thread.currentThread()).setChefState(ChefStates.PREPARING_THE_COURSE);
+        repos.setChefState(ChefStates.PREPARING_THE_COURSE);
     }
 
     @Override
@@ -172,6 +178,7 @@ public class Kitchen implements IKitchen_Chef, IKitchen_Waiter {
     public synchronized void collectPortion() {
         // Set state to waiting for portion
         ((Waiter) Thread.currentThread()).setWaiterState(WaiterStates.WAITING_FOR_PORTION);
+        repos.setWaiterState(WaiterStates.WAITING_FOR_PORTION);
 
         // Wait for portion
         while (!oneMorePortionReady) {
@@ -200,12 +207,14 @@ public class Kitchen implements IKitchen_Chef, IKitchen_Waiter {
     public void cleanUp() {
         // Set the state to closing service
         ((Chef) Thread.currentThread()).setChefState(ChefStates.CLOSING_SERVICE);
+        repos.setChefState(ChefStates.CLOSING_SERVICE);
 
     }
 
     @Override
     public synchronized void handTheNoteToTheChef() {
         ((Waiter) Thread.currentThread()).setWaiterState(WaiterStates.PLACING_THE_ORDER);
+        repos.setWaiterState(WaiterStates.PLACING_THE_ORDER);
 
         chef.setWaitingForOrders(false);
         notifyAll();
@@ -217,6 +226,9 @@ public class Kitchen implements IKitchen_Chef, IKitchen_Waiter {
                 e.printStackTrace();
             }
         }
+
+        ((Waiter) Thread.currentThread()).setWaiterState((WaiterStates.APPRAISING_SITUATION));
+        repos.setWaiterState(WaiterStates.APPRAISING_SITUATION);
     }
 
     @Override

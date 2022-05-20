@@ -12,13 +12,11 @@ public class StudentMain {
 
 
         TableStub table;
-        BarStub bar;
 
-        bar = new BarStub("sd209@l04010-ws02.ua.pt", 22381);
         table = new TableStub("sd209@l04010-ws01.ua.pt", 22380);
 
         for(int i = 0; i < SimulPar.TOTAL_STUDENTS; i++) {
-            students[i] = new Student(i, table, bar);
+            students[i] = new Student(i, table);
         }
 
         /* start threads */

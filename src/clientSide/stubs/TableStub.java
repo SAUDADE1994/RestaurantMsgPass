@@ -6,6 +6,7 @@ import clientSide.entities.Student;
 import clientSide.entities.Waiter;
 import commInfra.CommunicationChannel;
 import commInfra.Message;
+import serverSide.main.FunctionsIds;
 
 public class TableStub implements ITable_Student, ITable_Waiter {
 
@@ -576,16 +577,18 @@ public class TableStub implements ITable_Student, ITable_Waiter {
     }
 
     @Override
-    public void deliverPortion() {
+    public void deliverPortion(int portionsServed) {
         Waiter waiter = (Waiter) Thread.currentThread();
         CommunicationChannel com = new CommunicationChannel(serverHostName, serverPortNumb);
-        Object[] params = new Object[0];
-        Object[] state_fields = new Object[1];
-        state_fields[0] =waiter.getWaiterId();
+        Object[] params = new Object[1];
+        params[0] = portionsServed;
+        Object[] state_fields = new Object[2];
+        state_fields[0] = waiter.getWaiterId();
         state_fields[1] = waiter.getWaiterState();
 
         /* operation number to be defined */
-        Message m_toServer = new Message(34, params, 0, state_fields, 2, null);
+        Message m_toServer = new Message(FunctionsIds.DELIVERPORTION, params,
+                0, state_fields, 2, null);
         Message m_fromServer;
 
         while (!com.open ())

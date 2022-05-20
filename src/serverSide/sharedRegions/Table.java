@@ -165,6 +165,7 @@ public class Table implements ITable_Student, ITable_Waiter {
         students[studentId] = (Student) Thread.currentThread();
         repos.setStudentIds(studentId);
         students[studentId].setStudentState(StudentStates.TAKING_A_SEAT_AT_THE_TABLE);
+        repos.setStudentState(studentId, StudentStates.TAKING_A_SEAT_AT_THE_TABLE);
 
         System.out.printf("Student[%d]: Taking a seat at the table\n", studentId);
 
@@ -202,6 +203,7 @@ public class Table implements ITable_Student, ITable_Waiter {
 
         System.out.printf("Student[%d]: Selecting the Course\n", studentId);
         students[studentId].setStudentState(StudentStates.SELECTING_THE_COURSES);
+        repos.setStudentState(studentId, StudentStates.SELECTING_THE_COURSES);
     }
 
     @Override
@@ -209,6 +211,7 @@ public class Table implements ITable_Student, ITable_Waiter {
         // Set state to organizing the order
         int studentID = ((Student) Thread.currentThread()).getStudentId();
         students[studentID].setStudentState(StudentStates.ORGANIZING_THE_ORDER);
+        repos.setStudentState(studentID, StudentStates.ORGANIZING_THE_ORDER);
 
         System.out.printf("Student[%d] will be preparing the order\n", studentID);
 
@@ -272,6 +275,7 @@ public class Table implements ITable_Student, ITable_Waiter {
         int studentID = ((Student) Thread.currentThread()).getStudentId();
 
         students[studentID].setStudentState(StudentStates.CHATTING_WITH_COMPANIONS);
+        repos.setStudentState(studentID, StudentStates.CHATTING_WITH_COMPANIONS);
 
         // Flag true until first student adds up this one's choice
         peerWantsToOrder[studentID] = true;
@@ -321,6 +325,7 @@ public class Table implements ITable_Student, ITable_Waiter {
         Student currentStudent = ((Student) Thread.currentThread());
         // Set state to chatting with companions
         currentStudent.setStudentState(StudentStates.CHATTING_WITH_COMPANIONS);
+        repos.setStudentState(currentStudent.getStudentId(), StudentStates.CHATTING_WITH_COMPANIONS);
 
         System.out.printf("Student[%d] has joined the talk\n", currentStudent.getStudentId());
 
@@ -354,13 +359,13 @@ public class Table implements ITable_Student, ITable_Waiter {
         }
 
         // Reset the flag
-        if (areStudentsReadyForNextCourse)
-            areStudentsReadyForNextCourse = false;
+        areStudentsReadyForNextCourse = false;
 
         String suffix = getSuffix(courseNo);
 
         // Set state to enjoying meal
         currentStudent.setStudentState(StudentStates.ENJOYING_THE_MEAL);
+        repos.setStudentState(currentStudent.getStudentId(), StudentStates.ENJOYING_THE_MEAL);
 
 
         System.out.printf("Student[%d] has started eating the %d%s course\n",
@@ -392,6 +397,7 @@ public class Table implements ITable_Student, ITable_Waiter {
 
         // Set state to paying the bill
         lastStudent.setStudentState(StudentStates.PAYING_THE_BILL);
+        repos.setStudentState(lastStudent.getStudentId(), StudentStates.PAYING_THE_BILL);
 
         // Set flag to signal the waiter
         readyForPayment = true;
@@ -438,6 +444,7 @@ public class Table implements ITable_Student, ITable_Waiter {
 
         // Set state to going home
         currentStudent.setStudentState(StudentStates.GOING_HOME);
+        repos.setStudentState(currentStudent.getStudentId(), StudentStates.GOING_HOME);
 
         System.out.printf("Student[%d] is going home with his colleagues to finish the due work assignment\n",
                 currentStudent.getStudentId());
@@ -452,9 +459,12 @@ public class Table implements ITable_Student, ITable_Waiter {
         }
 
 
-        // Set state to chatting with companions
         Student student = ((Student) Thread.currentThread());
+
+        // Set state to chatting with companions
         student.setStudentState(StudentStates.CHATTING_WITH_COMPANIONS);
+        repos.setStudentState(student.getStudentId(), StudentStates.CHATTING_WITH_COMPANIONS);
+
         // Mark his portion as eaten
         currentCoursePortionsEaten[student.getStudentId()] = true;
 
@@ -522,14 +532,19 @@ public class Table implements ITable_Student, ITable_Waiter {
 
             System.out.printf("Waiter: presenting the menu to student[%d]\n", studentId);
             ((Waiter) Thread.currentThread()).setWaiterState(WaiterStates.PRESENTING_THE_MENU);
+            repos.setWaiterState(WaiterStates.PRESENTING_THE_MENU);
             notifyAll();
         }
+
+        ((Waiter) Thread.currentThread()).setWaiterState(WaiterStates.APPRAISING_SITUATION);
+        repos.setWaiterState(WaiterStates.APPRAISING_SITUATION);
     }
 
     @Override
     public synchronized void getThePad() {
 
         ((Waiter) Thread.currentThread()).setWaiterState(WaiterStates.TAKING_THE_ORDER);
+        repos.setWaiterState(WaiterStates.TAKING_THE_ORDER);
 
         System.out.println("Waiter is taking the student's orders...");
 
@@ -548,8 +563,11 @@ public class Table implements ITable_Student, ITable_Waiter {
 
     @Override
     public synchronized void presentTheBill() {
+
         // Set state to receiving payment
         ((Waiter) Thread.currentThread()).setWaiterState(WaiterStates.RECEIVING_PAYMENT);
+        repos.setWaiterState(WaiterStates.RECEIVING_PAYMENT);
+
         // Set bill_presented flag
         billPresented = true;
 
@@ -582,13 +600,14 @@ public class Table implements ITable_Student, ITable_Waiter {
         }
 
         // Reset flag
-        if (waiterWrapUpCourse)
-            waiterWrapUpCourse = false;
+        waiterWrapUpCourse = false;
 
     }
 
     @Override
-    public synchronized void deliverPortion() {
+    public synchronized void deliverPortion(int portionsServed) {
+
+        repos.setnPortion(portionsServed);
 
         // Wait for all students being ready for next course
         while (!areStudentsReadyForNextCourse) {
@@ -609,6 +628,11 @@ public class Table implements ITable_Student, ITable_Waiter {
                 return;
             }
         }
+
+        repos.setWaiterState(WaiterStates.APPRAISING_SITUATION);
+
+        if (portionsServed == SimulPar.TOTAL_STUDENTS)
+            repos.setNextCourse();
 
         // If all students have been served
         throw new IllegalStateException("Waiter is trying to deliver a portion but everyone seems to have been served");
