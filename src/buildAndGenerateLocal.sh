@@ -8,8 +8,9 @@ cp dirGeneralRepos.zip "$PROJ"
 cp dirKitchen.zip "$PROJ"
 cp dirBar.zip "$PROJ"
 cp dirTable.zip "$PROJ"
-cp dirStudent.zip "$PROJ"
+cp dirStudents.zip "$PROJ"
 cp dirWaiter.zip "$PROJ"
 cp dirChef.zip "$PROJ"
 cd "$PROJ" || (echo "cd failed" && exit)
-unzip -q {dirGeneralRepos,dirKitchen,dirBar,dirTable,dirStudent,dirWaiter,dirChef}.zip
+#unzip -q "{dirGeneralRepos,dirKitchen,dirBar,dirTable,dirStudents,dirWaiter,dirChef}.zip"
+unzip -q "*.zip" && echo "Expected: 7"
