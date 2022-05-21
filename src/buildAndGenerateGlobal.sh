@@ -7,54 +7,60 @@ rm -rf dirGeneralRepos
 mkdir -p dirGeneralRepos/serverSide/{main,entities,sharedRegions} dirGeneralRepos/commInfra dirGeneralRepos/clientSide/entities
 cp serverSide/main/{SimulPar,GeneralReposMain}.class dirGeneralRepos/serverSide/main
 cp serverSide/entities/ServiceProviderAgent.class dirGeneralRepos/serverSide/entities
-cp serverSide/sharedRegions/{GeneralRepos,SharedRegionInterface}.class dirGeneralRepos/serverSide/sharedRegions
+cp serverSide/sharedRegions/{GeneralRepos,SharedRegionInterface,GeneralReposInterface}.class dirGeneralRepos/serverSide/sharedRegions
 cp commInfra/ServerCom.class dirGeneralRepos/commInfra
 cp genclass.jar dirGeneralRepos/
 echo "  Table"
 rm -rf dirTable
-mkdir -p dirTable/serverSide/{main,entities,sharedRegions,stubs}
+mkdir -p dirTable/serverSide/{main,entities,sharedRegions,stubs} dirTable/commInfra
 cp serverSide/main/{TableMain,SimulPar,FunctionsIds}.class dirTable/serverSide/main
-cp serverSide/entities/ServiceProviderAgent.class dirTable/serverSide/entities
-cp serverSide/sharedRegions/{Table,TableInterface,SharedRegionInterface}.class dirTable/serverSide/sharedRegions
+cp serverSide/entities/{ServiceProviderAgent,Student}.class dirTable/serverSide/entities
+cp serverSide/sharedRegions/{Table,TableInterface,SharedRegionInterface,ITable_Student,ITable_Waiter}.class dirTable/serverSide/sharedRegions
 cp serverSide/stubs/GeneralReposStub.class dirTable/serverSide/stubs
+cp commInfra/{ServerCom,MemException,MemFIFO,MemObject}.class dirTable/commInfra
 cp genclass.jar dirTable/
 echo "  Bar"
 rm -rf dirBar
-mkdir -p dirBar/serverSide/{main,sharedRegions,entities,stubs}
+mkdir -p dirBar/serverSide/{main,sharedRegions,entities,stubs} dirBar/commInfra
 cp serverSide/main/{BarMain,SimulPar,FunctionsIds}.class dirBar/serverSide/main
-cp serverSide/sharedRegions/{Bar,BarInterface,SharedRegionInterface}.class dirBar/serverSide/sharedRegions
+cp serverSide/sharedRegions/{Bar,BarInterface,SharedRegionInterface,IBar_Waiter}.class dirBar/serverSide/sharedRegions
 cp serverSide/entities/ServiceProviderAgent.class dirBar/serverSide/entities
 cp serverSide/stubs/GeneralReposStub.class dirBar/serverSide/stubs
-cp genclass.jar dirChef/
+cp commInfra/ServerCom.class dirBar/commInfra
+cp genclass.jar dirBar/
 echo "  Kitchen"
 rm -rf dirKitchen
 mkdir -p dirKitchen/serverSide/{sharedRegions,stubs,entities,main} dirKitchen/commInfra
 cp serverSide/main/{KitchenMain,SimulPar,FunctionsIds}.class dirKitchen/serverSide/main
-cp serverSide/sharedRegions/{Kitchen,KitchenInterface,SharedRegionInterface}.class dirKitchen/serverSide/sharedRegions
+cp serverSide/sharedRegions/{Kitchen,KitchenInterface,SharedRegionInterface,IKitchen_Chef,IKitchen_Waiter}.class dirKitchen/serverSide/sharedRegions
 cp serverSide/stubs/GeneralReposStub.class dirKitchen/serverSide/stubs
 cp serverSide/entities/ServiceProviderAgent.class dirKitchen/serverSide/entities
 cp commInfra/ServerCom.class dirKitchen/commInfra
 cp genclass.jar dirKitchen/
 echo "  Students"
 rm -rf dirStudents
-mkdir -p dirStudents/clientSide/{main,entities,stubs}
+mkdir -p dirStudents/clientSide/{main,entities,stubs} dirStudents/commInfra
 cp clientSide/main/{SimulPar,StudentMain}.class dirStudents/clientSide/main
 cp clientSide/entities/Student.class dirStudents/clientSide/entities
-cp clientSide/stubs/TableStub.class dirStudents/clientSide/stubs
-cp genclass.jar dirTable/
+cp clientSide/stubs/{TableStub,ITable_Student,ITable_Waiter}.class dirStudents/clientSide/stubs
+cp commInfra/CommunicationChannel.class dirStudents/commInfra
+cp genclass.jar dirStudents/
 echo "  Waiter"
 rm -rf dirWaiter
-mkdir -p dirWaiter/clientSide/{main,entities,stubs}
+mkdir -p dirWaiter/clientSide/{main,entities,stubs} dirWaiter/commInfra
 cp clientSide/main/{SimulPar,WaiterMain}.class dirWaiter/clientSide/main
 cp clientSide/entities/Waiter.class dirWaiter/clientSide/entities
 cp clientSide/stubs/{Bar,Kitchen,Table}Stub.class dirWaiter/clientSide/stubs
+cp clientSide/stubs/{ITable_{Waiter,Student},IKitchen_{Waiter,Chef},IBar_Waiter}.class dirWaiter/clientSide/stubs
+cp commInfra/CommunicationChannel.class dirWaiter/commInfra
 cp genclass.jar dirWaiter/
 echo "  Chef"
 rm -rf dirChef
-mkdir -p dirChef/clientSide/{main,entities,stubs}
+mkdir -p dirChef/clientSide/{main,entities,stubs} dirChef/commInfra
 cp clientSide/main/{SimulPar,ChefMain}.class dirChef/clientSide/main
 cp clientSide/entities/Chef.class dirChef/clientSide/entities
-cp clientSide/stubs/{Kitchen,Table}Stub.class dirChef/clientSide/stubs
+cp clientSide/stubs/{{{Kitchen,Table}Stub,IKitchen_{Waiter,Chef}},ITable_{Waiter,Student}}.class dirChef/clientSide/stubs
+cp commInfra/CommunicationChannel.class dirChef/commInfra
 cp genclass.jar dirChef/
 echo "Compressing execution environments"
 echo "  General Repository of Information"
