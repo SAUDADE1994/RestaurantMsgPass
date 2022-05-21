@@ -2,8 +2,7 @@
 # Parameters
 DIRNAME='dirChef'
 DESCRIBE='chef'
-MAIN='ChefMain'
-PORT='22386'
+MAIN='clientSide.main.ChefMain'
 USER="sd209@l040101-ws07.ua.pt"
 
-source NodeDeployAndRun.sh "$DIRNAME" "$DESCRIBE" "$MAIN" "$PORT" "$USER"
+source NodeDeployAndRun.sh "$DIRNAME" "$DESCRIBE" "$MAIN" "$USER"
