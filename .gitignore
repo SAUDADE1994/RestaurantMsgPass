@@ -1,3 +1,9 @@
+# Generic class library
+genclass.jar
+
+# SSH password file
+src/password
+
 # Template from https://gist.github.com/alifa98/afecac889d14fff0ade363cc5e079fd7
 
 # Compiled class file
