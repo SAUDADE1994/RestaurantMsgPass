@@ -29,7 +29,7 @@ public class BarInterface implements SharedRegionInterface {
         Object[] state;
 
         switch (message.getOperation()) {
-        case FunctionsIds.SAYGOODBY:
+        case FunctionsIds.SAY_GOODBYE:
             waiter = (Waiter) Thread.currentThread();
             waiter.setWaiterId((int) message.getStateFields()[0]);
             waiter.setWaiterState((int) message.getStateFields()[1]);
@@ -37,7 +37,7 @@ public class BarInterface implements SharedRegionInterface {
             state = new Object[]{waiter.getWaiterId(), waiter.getWaiterState()};
             break;
 
-        case FunctionsIds.PREPARETHEBILL:
+        case FunctionsIds.PREPARE_THE_BILL:
             waiter = (Waiter) Thread.currentThread();
             waiter.setWaiterId((int) message.getStateFields()[0]);
             waiter.setWaiterState((int) message.getStateFields()[1]);

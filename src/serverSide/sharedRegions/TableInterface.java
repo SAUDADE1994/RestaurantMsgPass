@@ -35,7 +35,7 @@ public class TableInterface implements SharedRegionInterface {
                 state = new Object[]{student.getStudentId(), student.getStudentState()};
                 break;
 
-            case FunctionsIds.READTHEMENY:
+            case FunctionsIds.READ_THE_MENU:
                 student = (Student) Thread.currentThread();
                 student.setStudentId((int) message.getStateFields()[0]);
                 student.setStudentState((int) message.getStateFields()[1]);
@@ -43,7 +43,7 @@ public class TableInterface implements SharedRegionInterface {
                 state = new Object[]{student.getStudentId(), student.getStudentState()};
                 break;
 
-            case FunctionsIds.PREPARETHEORDER:
+            case FunctionsIds.PREPARE_THE_ORDER:
                 student = (Student) Thread.currentThread();
                 student.setStudentId((int) message.getStateFields()[0]);
                 student.setStudentState((int) message.getStateFields()[1]);
@@ -51,7 +51,7 @@ public class TableInterface implements SharedRegionInterface {
                 state = new Object[]{student.getStudentId(), student.getStudentState()};
                 break;
 
-            case FunctionsIds.ADDONEUPSCHOICES:
+            case FunctionsIds.ADD_UP_ONES_CHOICES:
                 student = (Student) Thread.currentThread();
                 student.setStudentId((int) message.getStateFields()[0]);
                 student.setStudentState((int) message.getStateFields()[1]);
@@ -59,7 +59,7 @@ public class TableInterface implements SharedRegionInterface {
                 state = new Object[]{student.getStudentId(), student.getStudentState()};
                 break;
 
-            case FunctionsIds.HASEVERYBODYCHOSEN:
+            case FunctionsIds.HAS_EVERYBODY_CHOSEN:
                 student = (Student) Thread.currentThread();
                 student.setStudentId((int) message.getStateFields()[0]);
                 student.setStudentState((int) message.getStateFields()[1]);
@@ -67,7 +67,7 @@ public class TableInterface implements SharedRegionInterface {
                 state = new Object[]{student.getStudentId(), student.getStudentState()};
                 break;
 
-            case FunctionsIds.CALLTHEWAITER:
+            case FunctionsIds.CALL_THE_WAITER:
                 student = (Student) Thread.currentThread();
                 student.setStudentId((int) message.getStateFields()[0]);
                 student.setStudentState((int) message.getStateFields()[1]);
@@ -75,7 +75,7 @@ public class TableInterface implements SharedRegionInterface {
                 state = new Object[]{student.getStudentId(), student.getStudentState()};
                 break;
 
-            case FunctionsIds.DESCRIBETHEORDER:
+            case FunctionsIds.DESCRIBE_THE_ORDER:
                 student = (Student) Thread.currentThread();
                 student.setStudentId((int) message.getStateFields()[0]);
                 student.setStudentState((int) message.getStateFields()[1]);
@@ -83,7 +83,7 @@ public class TableInterface implements SharedRegionInterface {
                 state = new Object[]{student.getStudentId(), student.getStudentState()};
                 break;
 
-            case FunctionsIds.JOINTHETALK:
+            case FunctionsIds.JOIN_THE_TALK:
                 student = (Student) Thread.currentThread();
                 student.setStudentId((int) message.getStateFields()[0]);
                 student.setStudentState((int) message.getStateFields()[1]);
@@ -91,7 +91,7 @@ public class TableInterface implements SharedRegionInterface {
                 state = new Object[]{student.getStudentId(), student.getStudentState()};
                 break;
 
-            case FunctionsIds.INFORMCOMPANION:
+            case FunctionsIds.INFORM_COMPANION:
                 student = (Student) Thread.currentThread();
                 student.setStudentId((int) message.getStateFields()[0]);
                 student.setStudentState((int) message.getStateFields()[1]);
@@ -99,7 +99,7 @@ public class TableInterface implements SharedRegionInterface {
                 state = new Object[]{student.getStudentId(), student.getStudentState()};
                 break;
 
-            case FunctionsIds.HASEVERYBODYFINISHED:
+            case FunctionsIds.HAS_EVERYBODY_FINISHED:
                 student = (Student) Thread.currentThread();
                 student.setStudentId((int) message.getStateFields()[0]);
                 student.setStudentState((int) message.getStateFields()[1]);
@@ -107,7 +107,7 @@ public class TableInterface implements SharedRegionInterface {
                 state = new Object[]{student.getStudentId(), student.getStudentState()};
                 break;
 
-            case FunctionsIds.STARTEATING:
+            case FunctionsIds.START_EATING:
                 student = (Student) Thread.currentThread();
                 student.setStudentId((int) message.getStateFields()[0]);
                 student.setStudentState((int) message.getStateFields()[1]);
@@ -115,7 +115,7 @@ public class TableInterface implements SharedRegionInterface {
                 state = new Object[]{student.getStudentId(), student.getStudentState()};
                 break;
 
-            case FunctionsIds.SHOUDLHAVEARRIVEDEARLIER:
+            case FunctionsIds.SHOULD_HAVE_ARRIVED_EARLIER:
                 student = (Student) Thread.currentThread();
                 student.setStudentId((int) message.getStateFields()[0]);
                 student.setStudentState((int) message.getStateFields()[1]);
@@ -123,7 +123,7 @@ public class TableInterface implements SharedRegionInterface {
                 state = new Object[]{student.getStudentId(), student.getStudentState()};
                 break;
 
-            case FunctionsIds.HONORTHEBILL:
+            case FunctionsIds.HONOR_THE_BILL:
                 student = (Student) Thread.currentThread();
                 student.setStudentId((int) message.getStateFields()[0]);
                 student.setStudentState((int) message.getStateFields()[1]);
@@ -139,7 +139,7 @@ public class TableInterface implements SharedRegionInterface {
                 state = new Object[]{student.getStudentId(), student.getStudentState()};
                 break;
 
-            case FunctionsIds.ENDEATING:
+            case FunctionsIds.END_EATING:
                 student = (Student) Thread.currentThread();
                 student.setStudentId((int) message.getStateFields()[0]);
                 student.setStudentState((int) message.getStateFields()[1]);
@@ -147,7 +147,7 @@ public class TableInterface implements SharedRegionInterface {
                 state = new Object[]{student.getStudentId(), student.getStudentState()};
                 break;
 
-            case FunctionsIds.SIGNALTHEWAITER:
+            case FunctionsIds.SIGNAL_THE_WAITER:
                 student = (Student) Thread.currentThread();
                 student.setStudentId((int) message.getStateFields()[0]);
                 student.setStudentState((int) message.getStateFields()[1]);
@@ -155,7 +155,7 @@ public class TableInterface implements SharedRegionInterface {
                 state = new Object[]{student.getStudentId(), student.getStudentState()};
                 break;
 
-            case FunctionsIds.SALUTETHECLIENT:
+            case FunctionsIds.SALUTE_THE_CLIENT:
                 waiter = (Waiter) Thread.currentThread();
                 waiter.setWaiterId((int) message.getStateFields()[0]);
                 waiter.setWaiterState((int) message.getStateFields()[1]);
@@ -163,7 +163,7 @@ public class TableInterface implements SharedRegionInterface {
                 state = new Object[]{waiter.getWaiterId(), waiter.getWaiterState()};
                 break;
 
-            case FunctionsIds.GETTHEPAD:
+            case FunctionsIds.GET_THE_PAD:
                 waiter = (Waiter) Thread.currentThread();
                 waiter.setWaiterId((int) message.getStateFields()[0]);
                 waiter.setWaiterState((int) message.getStateFields()[1]);
@@ -171,7 +171,7 @@ public class TableInterface implements SharedRegionInterface {
                 state = new Object[]{waiter.getWaiterId(), waiter.getWaiterState()};
                 break;
 
-            case FunctionsIds.DELIVERPORTION:
+            case FunctionsIds.DELIVER_PORTION:
                 waiter = (Waiter) Thread.currentThread();
                 waiter.setWaiterId((int) message.getStateFields()[0]);
                 waiter.setWaiterState((int) message.getStateFields()[1]);
@@ -179,7 +179,7 @@ public class TableInterface implements SharedRegionInterface {
                 state = new Object[]{waiter.getWaiterId(), waiter.getWaiterState()};
                 break;
 
-            case FunctionsIds.PREPARETHEBILL:
+            case FunctionsIds.PREPARE_THE_BILL:
                 waiter = (Waiter) Thread.currentThread();
                 waiter.setWaiterId((int) message.getStateFields()[0]);
                 waiter.setWaiterState((int) message.getStateFields()[1]);
@@ -187,7 +187,7 @@ public class TableInterface implements SharedRegionInterface {
                 state = new Object[]{waiter.getWaiterId(), waiter.getWaiterState()};
                 break;
 
-            case FunctionsIds.LOOKAROUND_TABLE:
+            case FunctionsIds.LOOK_AROUND_TABLE:
                 waiter = (Waiter) Thread.currentThread();
                 waiter.setWaiterId((int) message.getStateFields()[0]);
                 waiter.setWaiterState((int) message.getStateFields()[1]);
@@ -195,7 +195,7 @@ public class TableInterface implements SharedRegionInterface {
                 state = new Object[]{waiter.getWaiterId(), waiter.getWaiterState()};
                 break;
 
-            case FunctionsIds.ASKFORREADYORDERS:
+            case FunctionsIds.ASK_FOR_READY_ORDERS:
                 student = (Student) Thread.currentThread();
                 student.setStudentId((int) message.getStateFields()[0]);
                 student.setStudentState((int) message.getStateFields()[1]);

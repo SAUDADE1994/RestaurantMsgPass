@@ -6,97 +6,97 @@ public class FunctionsIds {
 
     /* Bar Function Ids */
 
-    public static final int SAYGOODBY = 1;
+    public static final int SAY_GOODBYE = 1;
 
-    public static final int PREPARETHEBILL = 2;
+    public static final int PREPARE_THE_BILL = 2;
 
     /* Kitchen Function Ids */
 
-    public static final int WATCHTHENEWS = 3;
+    public static final int WATCH_THE_NEWS = 3;
 
-    public static final int STARTPREPARING = 4;
+    public static final int START_PREPARING = 4;
 
-    public static final int ALERTWAITER = 5;
+    public static final int ALERT_WAITER = 5;
 
-    public static final int PROCEEDTOPRESENTATION = 6;
+    public static final int PROCEED_TO_PRESENTATION = 6;
 
-    public static final int HAVENEXTPORTIONREADY = 7;
+    public static final int HAVE_NEXT_PORTION_READY = 7;
 
-    public static final int CONTINUEPREPARATION = 8;
+    public static final int CONTINUE_PREPARATION = 8;
 
-    public static final int HAVEALLPORTIONSBEENDELIVERED = 9;
+    public static final int HAVE_ALL_PORTIONS_BEEN_DELIVERED = 9;
 
-    public static final int HASTHEORDERBEENCOMPLETED = 10;
+    public static final int HAS_THE_ORDER_BEEN_COMPLETED = 10;
 
-    public static final int CLEANUP = 11;
+    public static final int CLEAN_UP = 11;
 
-    public static final int HANDTHENOTETOTHECHEF = 12;
+    public static final int HAND_THE_NOTE_TO_THE_CHEF = 12;
 
-    public static final int HAVEALLPORTIONSBEENCOLECTED = 13;
+    public static final int HAVE_ALL_PORTIONS_BEEN_COLLECTED = 13;
 
-    public static final int COLLECTPORTIONS = 14;
+    public static final int COLLECT_PORTION = 14;
 
-    public static final int LOOKAROUND_KITCHEN = 15;
+    public static final int LOOK_AROUND_KITCHEN = 15;
 
     /* Table Id Functions */
 
     public static final int ENTER = 16;
 
-    public static final int READTHEMENY = 17;
+    public static final int READ_THE_MENU = 17;
 
-    public static final int PREPARETHEORDER = 18;
+    public static final int PREPARE_THE_ORDER = 18;
 
-    public static final int ADDONEUPSCHOICES = 19;
+    public static final int ADD_UP_ONES_CHOICES = 19;
 
-    public static final int HASEVERYBODYCHOSEN = 20;
+    public static final int HAS_EVERYBODY_CHOSEN = 20;
 
-    public static final int CALLTHEWAITER = 21;
+    public static final int CALL_THE_WAITER = 21;
 
-    public static final int DESCRIBETHEORDER = 22;
+    public static final int DESCRIBE_THE_ORDER = 22;
 
-    public static final int JOINTHETALK = 23;
+    public static final int JOIN_THE_TALK = 23;
 
-    public static final int INFORMCOMPANION = 24;
+    public static final int INFORM_COMPANION = 24;
 
-    public static final int HASEVERYBODYFINISHED = 25;
+    public static final int HAS_EVERYBODY_FINISHED = 25;
 
-    public static final int STARTEATING = 26;
+    public static final int START_EATING = 26;
 
-    public static final int SHOUDLHAVEARRIVEDEARLIER = 27;
+    public static final int SHOULD_HAVE_ARRIVED_EARLIER = 27;
 
-    public static final int HONORTHEBILL = 28;
+    public static final int HONOR_THE_BILL = 28;
 
     public static final int EXIT = 29;
 
-    public static final int ENDEATING = 30;
+    public static final int END_EATING = 30;
 
-    public static final int SIGNALTHEWAITER = 31;
+    public static final int SIGNAL_THE_WAITER = 31;
 
-    public static final int SALUTETHECLIENT = 32;
+    public static final int SALUTE_THE_CLIENT = 32;
 
-    public static final int GETTHEPAD = 33;
+    public static final int GET_THE_PAD = 33;
 
-    public static final int DELIVERPORTION = 34;
+    public static final int DELIVER_PORTION = 34;
 
-    public static final int PRESENTTHEBILL = 35;
+    public static final int PRESENT_THE_BILL = 35;
 
-    public static final int LOOKAROUND_TABLE = 36;
+    public static final int LOOK_AROUND_TABLE = 36;
 
-    public static final int ASKFORREADYORDERS = 37;
+    public static final int ASK_FOR_READY_ORDERS = 37;
 
     /* General Repos Ids */
 
-    public static final int SETCHEFSTATE = 38;
+    public static final int SET_CHEF_STATE = 38;
 
-    public static final int SETWAITERSTATE = 39;
+    public static final int SET_WAITER_STATE = 39;
 
-    public static final int SETSTUDENTSTATE = 40;
+    public static final int SET_STUDENT_STATE = 40;
 
-    public static final int SETSTUDENTIDS = 41;
+    public static final int SET_STUDENT_IDS = 41;
 
-    public static final int SETNCOURSE = 42;
+    public static final int SET_N_COURSE = 42;
 
-    public static final int SETNPORTION = 43;
+    public static final int SET_N_PORTION = 43;
 
     public static final int SHUTDOWN = 44;
 }
