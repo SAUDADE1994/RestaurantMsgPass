@@ -15,9 +15,9 @@ public class WaiterMain {
         TableStub table;
         BarStub bar;
 
-        kitchen = new KitchenStub("sd209@l04010-ws03.ua.pt", 22382);
-        table = new TableStub("sd209@l04010-ws01.ua.pt", 22380);
-        bar = new BarStub("sd209@l04010-ws02.ua.pt", 22381);
+        kitchen = new KitchenStub(SimulPar.kitchen_ssh, SimulPar.kitchen_port);
+        table = new TableStub(SimulPar.table_ssh, SimulPar.table_port);
+        bar = new BarStub(SimulPar.bar_ssh, SimulPar.bar_port);
 
         waiter = new Waiter(0, bar, kitchen, table);
 

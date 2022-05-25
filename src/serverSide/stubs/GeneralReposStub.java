@@ -39,7 +39,7 @@ public class GeneralReposStub {
     public void setChefState(int state) {
         CommunicationChannel com = new CommunicationChannel (serverHostName, serverPortNumb);
         Object[] params = new Object[1];
-        Object[] state_fields = new Object[0];
+        Object[] state_fields = new Object[2];
         params[0] = state;
 
         Message m_toServer = new Message(38, params, 1, state_fields, 0, null);
@@ -67,7 +67,7 @@ public class GeneralReposStub {
     public void setWaiterState(int state) {
         CommunicationChannel com = new CommunicationChannel (serverHostName, serverPortNumb);
         Object[] params = new Object[1];
-        Object[] state_fields = new Object[0];
+        Object[] state_fields = new Object[2];
         params[1] = state;
 
         Message m_toServer = new Message(39, params, 1, state_fields, 0, null);
@@ -96,7 +96,7 @@ public class GeneralReposStub {
     public void setStudentState(int id, int state) {
         CommunicationChannel com = new CommunicationChannel (serverHostName, serverPortNumb);
         Object[] params = new Object[1];
-        Object[] state_fields = new Object[0];
+        Object[] state_fields = new Object[2];
         params[0] = id;
         params[1] = state;
 
@@ -126,7 +126,7 @@ public class GeneralReposStub {
 
         CommunicationChannel com = new CommunicationChannel (serverHostName, serverPortNumb);
         Object[] params = new Object[1];
-        Object[] state_fields = new Object[0];
+        Object[] state_fields = new Object[2];
         params[0] = id;
 
         Message m_toServer = new Message(41, params, 1, state_fields, 0, null);
@@ -155,7 +155,7 @@ public class GeneralReposStub {
 
         CommunicationChannel com = new CommunicationChannel (serverHostName, serverPortNumb);
         Object[] params = new Object[1];
-        Object[] state_fields = new Object[0];
+        Object[] state_fields = new Object[2];
         params[0] = nCourse;
 
         Message m_toServer = new Message(42, params, 1, state_fields, 0, null);
@@ -184,7 +184,7 @@ public class GeneralReposStub {
 
         CommunicationChannel com = new CommunicationChannel (serverHostName, serverPortNumb);
         Object[] params = new Object[1];
-        Object[] state_fields = new Object[0];
+        Object[] state_fields = new Object[2];
         params[0] = nPortion;
 
         Message m_toServer = new Message(43, params, 1, state_fields, 0, null);
@@ -211,8 +211,8 @@ public class GeneralReposStub {
 
     public void shutdown() {
         CommunicationChannel com = new CommunicationChannel (serverHostName, serverPortNumb);
-        Object[] params = new Object[0];
-        Object[] state_fields = new Object[0];
+        Object[] params = new Object[2];
+        Object[] state_fields = new Object[2];
 
         Message m_toServer = new Message(44, params, 0, state_fields, 0, null);
         Message m_fromServer;
@@ -233,8 +233,8 @@ public class GeneralReposStub {
     public void setNextCourse() {
 
         CommunicationChannel com = new CommunicationChannel (serverHostName, serverPortNumb);
-        Object[] params = new Object[0];
-        Object[] state_fields = new Object[0];
+        Object[] params = new Object[2];
+        Object[] state_fields = new Object[2];
 
         Message m_toServer = new Message(FunctionsIds.SETNCOURSE, params, 1, state_fields, 0, null);
         Message m_fromServer;

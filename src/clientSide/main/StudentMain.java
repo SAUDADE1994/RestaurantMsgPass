@@ -12,7 +12,7 @@ public class StudentMain {
 
         TableStub table;
 
-        table = new TableStub("sd209@l04010-ws01.ua.pt", 22380);
+        table = new TableStub(SimulPar.table_ssh, SimulPar.table_port);
 
         for(int i = 0; i < SimulPar.TOTAL_STUDENTS; i++) {
             students[i] = new Student(i, table);

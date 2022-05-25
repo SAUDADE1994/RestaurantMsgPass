@@ -23,8 +23,8 @@ public class TableStub implements ITable_Student, ITable_Waiter {
     public void enter() {
         Student s = (Student) Thread.currentThread();
         CommunicationChannel com = new CommunicationChannel(serverHostName, serverPortNumb);
-        Object[] params = new Object[0];
-        Object[] state_fields = new Object[1];
+        Object[] params = new Object[1];
+        Object[] state_fields = new Object[2];
         state_fields[0] = s.getStudentId();
         state_fields[1] = s.getStudentState();
 
@@ -54,8 +54,8 @@ public class TableStub implements ITable_Student, ITable_Waiter {
     public void readTheMenu() {
         Student s = (Student) Thread.currentThread();
         CommunicationChannel com = new CommunicationChannel(serverHostName, serverPortNumb);
-        Object[] params = new Object[0];
-        Object[] state_fields = new Object[1];
+        Object[] params = new Object[1];
+        Object[] state_fields = new Object[2];
         state_fields[0] = s.getStudentId();
         state_fields[1] = s.getStudentState();
 
@@ -85,8 +85,8 @@ public class TableStub implements ITable_Student, ITable_Waiter {
     public void prepareTheOrder() {
         Student s = (Student) Thread.currentThread();
         CommunicationChannel com = new CommunicationChannel(serverHostName, serverPortNumb);
-        Object[] params = new Object[0];
-        Object[] state_fields = new Object[1];
+        Object[] params = new Object[1];
+        Object[] state_fields = new Object[2];
         state_fields[0] = s.getStudentId();
         state_fields[1] = s.getStudentState();
 
@@ -116,8 +116,8 @@ public class TableStub implements ITable_Student, ITable_Waiter {
     public void addUpOnesChoices(int studentID) {
         Student s = (Student) Thread.currentThread();
         CommunicationChannel com = new CommunicationChannel(serverHostName, serverPortNumb);
-        Object[] params = new Object[0];
-        Object[] state_fields = new Object[1];
+        Object[] params = new Object[1];
+        Object[] state_fields = new Object[2];
         state_fields[0] = s.getStudentId();
         state_fields[1] = s.getStudentState();
 
@@ -148,8 +148,8 @@ public class TableStub implements ITable_Student, ITable_Waiter {
 
         Student s = (Student) Thread.currentThread();
         CommunicationChannel com = new CommunicationChannel(serverHostName, serverPortNumb);
-        Object[] params = new Object[0];
-        Object[] state_fields = new Object[1];
+        Object[] params = new Object[1];
+        Object[] state_fields = new Object[2];
         state_fields[0] = s.getStudentId();
         state_fields[1] = s.getStudentState();
 
@@ -179,8 +179,8 @@ public class TableStub implements ITable_Student, ITable_Waiter {
     public void callTheWaiter() {
         Student s = (Student) Thread.currentThread();
         CommunicationChannel com = new CommunicationChannel(serverHostName, serverPortNumb);
-        Object[] params = new Object[0];
-        Object[] state_fields = new Object[1];
+        Object[] params = new Object[1];
+        Object[] state_fields = new Object[2];
         state_fields[0] = s.getStudentId();
         state_fields[1] = s.getStudentState();
 
@@ -210,8 +210,8 @@ public class TableStub implements ITable_Student, ITable_Waiter {
     public void describeTheOrder() {
         Student s = (Student) Thread.currentThread();
         CommunicationChannel com = new CommunicationChannel(serverHostName, serverPortNumb);
-        Object[] params = new Object[0];
-        Object[] state_fields = new Object[1];
+        Object[] params = new Object[1];
+        Object[] state_fields = new Object[2];
         state_fields[0] = s.getStudentId();
         state_fields[1] = s.getStudentState();
 
@@ -240,8 +240,8 @@ public class TableStub implements ITable_Student, ITable_Waiter {
     public void joinTheTalk() {
         Student s = (Student) Thread.currentThread();
         CommunicationChannel com = new CommunicationChannel(serverHostName, serverPortNumb);
-        Object[] params = new Object[0];
-        Object[] state_fields = new Object[1];
+        Object[] params = new Object[1];
+        Object[] state_fields = new Object[2];
         state_fields[0] = s.getStudentId();
         state_fields[1] = s.getStudentState();
 
@@ -271,8 +271,8 @@ public class TableStub implements ITable_Student, ITable_Waiter {
     public void informCompanion() {
         Student s = (Student) Thread.currentThread();
         CommunicationChannel com = new CommunicationChannel(serverHostName, serverPortNumb);
-        Object[] params = new Object[0];
-        Object[] state_fields = new Object[1];
+        Object[] params = new Object[1];
+        Object[] state_fields = new Object[2];
         state_fields[0] = s.getStudentId();
         state_fields[1] = s.getStudentState();
 
@@ -303,8 +303,8 @@ public class TableStub implements ITable_Student, ITable_Waiter {
 
         Student s = (Student) Thread.currentThread();
         CommunicationChannel com = new CommunicationChannel(serverHostName, serverPortNumb);
-        Object[] params = new Object[0];
-        Object[] state_fields = new Object[1];
+        Object[] params = new Object[1];
+        Object[] state_fields = new Object[2];
         state_fields[0] = s.getStudentId();
         state_fields[1] = s.getStudentState();
 
@@ -334,8 +334,8 @@ public class TableStub implements ITable_Student, ITable_Waiter {
     public void startEating(int courseNo) {
         Student s = (Student) Thread.currentThread();
         CommunicationChannel com = new CommunicationChannel(serverHostName, serverPortNumb);
-        Object[] params = new Object[0];
-        Object[] state_fields = new Object[1];
+        Object[] params = new Object[1];
+        Object[] state_fields = new Object[2];
         state_fields[0] = s.getStudentId();
         state_fields[1] = s.getStudentState();
 
@@ -364,8 +364,8 @@ public class TableStub implements ITable_Student, ITable_Waiter {
     public void shouldHaveArrivedEarlier() {
         Student s = (Student) Thread.currentThread();
         CommunicationChannel com = new CommunicationChannel(serverHostName, serverPortNumb);
-        Object[] params = new Object[0];
-        Object[] state_fields = new Object[1];
+        Object[] params = new Object[1];
+        Object[] state_fields = new Object[2];
         state_fields[0] = s.getStudentId();
         state_fields[1] = s.getStudentState();
 
@@ -395,8 +395,8 @@ public class TableStub implements ITable_Student, ITable_Waiter {
     public void honorTheBill() {
         Student s = (Student) Thread.currentThread();
         CommunicationChannel com = new CommunicationChannel(serverHostName, serverPortNumb);
-        Object[] params = new Object[0];
-        Object[] state_fields = new Object[1];
+        Object[] params = new Object[1];
+        Object[] state_fields = new Object[2];
         state_fields[0] = s.getStudentId();
         state_fields[1] = s.getStudentState();
 
@@ -425,8 +425,8 @@ public class TableStub implements ITable_Student, ITable_Waiter {
     public void exit() {
         Student s = (Student) Thread.currentThread();
         CommunicationChannel com = new CommunicationChannel(serverHostName, serverPortNumb);
-        Object[] params = new Object[0];
-        Object[] state_fields = new Object[1];
+        Object[] params = new Object[1];
+        Object[] state_fields = new Object[2];
         state_fields[0] = s.getStudentId();
         state_fields[1] = s.getStudentState();
 
@@ -456,8 +456,8 @@ public class TableStub implements ITable_Student, ITable_Waiter {
 
         Student s = (Student) Thread.currentThread();
         CommunicationChannel com = new CommunicationChannel(serverHostName, serverPortNumb);
-        Object[] params = new Object[0];
-        Object[] state_fields = new Object[1];
+        Object[] params = new Object[1];
+        Object[] state_fields = new Object[2];
         state_fields[0] = s.getStudentId();
         state_fields[1] = s.getStudentState();
 
@@ -487,8 +487,8 @@ public class TableStub implements ITable_Student, ITable_Waiter {
     public void signalTheWaiter() {
         Student s = (Student) Thread.currentThread();
         CommunicationChannel com = new CommunicationChannel(serverHostName, serverPortNumb);
-        Object[] params = new Object[0];
-        Object[] state_fields = new Object[1];
+        Object[] params = new Object[1];
+        Object[] state_fields = new Object[2];
         state_fields[0] = s.getStudentId();
         state_fields[1] = s.getStudentState();
 
@@ -518,8 +518,8 @@ public class TableStub implements ITable_Student, ITable_Waiter {
     public void saluteTheClient() {
         Waiter waiter = (Waiter) Thread.currentThread();
         CommunicationChannel com = new CommunicationChannel(serverHostName, serverPortNumb);
-        Object[] params = new Object[0];
-        Object[] state_fields = new Object[1];
+        Object[] params = new Object[1];
+        Object[] state_fields = new Object[2];
         state_fields[0] =waiter.getWaiterId();
         state_fields[1] = waiter.getWaiterState();
 
@@ -549,8 +549,8 @@ public class TableStub implements ITable_Student, ITable_Waiter {
     public void getThePad() {
         Waiter waiter = (Waiter) Thread.currentThread();
         CommunicationChannel com = new CommunicationChannel(serverHostName, serverPortNumb);
-        Object[] params = new Object[0];
-        Object[] state_fields = new Object[1];
+        Object[] params = new Object[1];
+        Object[] state_fields = new Object[2];
         state_fields[0] =waiter.getWaiterId();
         state_fields[1] = waiter.getWaiterState();
 
@@ -580,7 +580,7 @@ public class TableStub implements ITable_Student, ITable_Waiter {
     public void deliverPortion(int portionsServed) {
         Waiter waiter = (Waiter) Thread.currentThread();
         CommunicationChannel com = new CommunicationChannel(serverHostName, serverPortNumb);
-        Object[] params = new Object[1];
+        Object[] params = new Object[2];
         params[0] = portionsServed;
         Object[] state_fields = new Object[2];
         state_fields[0] = waiter.getWaiterId();
@@ -613,8 +613,8 @@ public class TableStub implements ITable_Student, ITable_Waiter {
     public void presentTheBill() {
         Waiter waiter = (Waiter) Thread.currentThread();
         CommunicationChannel com = new CommunicationChannel(serverHostName, serverPortNumb);
-        Object[] params = new Object[0];
-        Object[] state_fields = new Object[1];
+        Object[] params = new Object[1];
+        Object[] state_fields = new Object[2];
         state_fields[0] =waiter.getWaiterId();
         state_fields[1] = waiter.getWaiterState();
 
@@ -644,8 +644,8 @@ public class TableStub implements ITable_Student, ITable_Waiter {
     public void lookAround() {
         Waiter waiter = (Waiter) Thread.currentThread();
         CommunicationChannel com = new CommunicationChannel(serverHostName, serverPortNumb);
-        Object[] params = new Object[0];
-        Object[] state_fields = new Object[1];
+        Object[] params = new Object[1];
+        Object[] state_fields = new Object[2];
         state_fields[0] =waiter.getWaiterId();
         state_fields[1] = waiter.getWaiterState();
 
@@ -674,8 +674,8 @@ public class TableStub implements ITable_Student, ITable_Waiter {
 
         Student s = (Student) Thread.currentThread();
         CommunicationChannel com = new CommunicationChannel(serverHostName, serverPortNumb);
-        Object[] params = new Object[0];
-        Object[] state_fields = new Object[1];
+        Object[] params = new Object[1];
+        Object[] state_fields = new Object[2];
         state_fields[0] = s.getStudentId();
         state_fields[1] = s.getStudentState();
 
@@ -710,8 +710,8 @@ public class TableStub implements ITable_Student, ITable_Waiter {
 
     public void shutdown() {
         CommunicationChannel com = new CommunicationChannel (serverHostName, serverPortNumb);
-        Object[] params = new Object[0];
-        Object[] state_fields = new Object[0];
+        Object[] params = new Object[1];
+        Object[] state_fields = new Object[1];
 
         Message m_toServer = new Message(44, params, 0, state_fields, 0, null);
         Message m_fromServer;

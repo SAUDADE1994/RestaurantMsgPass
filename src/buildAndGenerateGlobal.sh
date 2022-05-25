@@ -43,7 +43,7 @@ mkdir -p dirStudents/clientSide/{main,entities,stubs} dirStudents/commInfra
 cp clientSide/main/{SimulPar,StudentMain}.class dirStudents/clientSide/main
 cp clientSide/entities/Student.class dirStudents/clientSide/entities
 cp clientSide/stubs/{TableStub,ITable_Student,ITable_Waiter}.class dirStudents/clientSide/stubs
-cp commInfra/CommunicationChannel.class dirStudents/commInfra
+cp commInfra/{CommunicationChannel,Message}.class dirStudents/commInfra
 cp genclass.jar dirStudents/
 echo "  Waiter"
 rm -rf dirWaiter
@@ -52,7 +52,7 @@ cp clientSide/main/{SimulPar,WaiterMain}.class dirWaiter/clientSide/main
 cp clientSide/entities/Waiter.class dirWaiter/clientSide/entities
 cp clientSide/stubs/{Bar,Kitchen,Table}Stub.class dirWaiter/clientSide/stubs
 cp clientSide/stubs/{ITable_{Waiter,Student},IKitchen_{Waiter,Chef},IBar_Waiter}.class dirWaiter/clientSide/stubs
-cp commInfra/CommunicationChannel.class dirWaiter/commInfra
+cp commInfra/{CommunicationChannel,Message}.class dirWaiter/commInfra
 cp genclass.jar dirWaiter/
 echo "  Chef"
 rm -rf dirChef
@@ -60,7 +60,7 @@ mkdir -p dirChef/clientSide/{main,entities,stubs} dirChef/commInfra
 cp clientSide/main/{SimulPar,ChefMain}.class dirChef/clientSide/main
 cp clientSide/entities/Chef.class dirChef/clientSide/entities
 cp clientSide/stubs/{{{Kitchen,Table}Stub,IKitchen_{Waiter,Chef}},ITable_{Waiter,Student}}.class dirChef/clientSide/stubs
-cp commInfra/CommunicationChannel.class dirChef/commInfra
+cp commInfra/{CommunicationChannel,Message}.class dirChef/commInfra
 cp genclass.jar dirChef/
 echo "Compressing execution environments"
 echo "  General Repository of Information"
