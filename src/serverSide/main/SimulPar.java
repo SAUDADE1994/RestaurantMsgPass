@@ -22,28 +22,28 @@ public class SimulPar {
      * Table ssh
      */
 
-    public static final String table_ssh = "sd209@l04010-ws01.ua.pt";
+    public static final String TABLE_HOSTNAME = "sd209@l040101-ws01.ua.pt";
     public static final int table_port = 22380;
 
     /**
      * Bar ssh
      */
 
-    public static final String bar_ssh = "sd209@l04010-ws02.ua.pt";
-    public static final int bar_port = 22381;
+    public static final String BAR_HOSTNAME = "sd209@l040101-ws02.ua.pt";
+    public static final int BAR_PORT = 22381;
 
     /**
      * Kitchen ssh
      */
 
-    public static final String kitchen_ssh = "sd209@l04010-ws03.ua.pt";
-    public static final int kitchen_port = 22382;
+    public static final String KITCHEN_HOSTNAME = "sd209@l040101-ws03.ua.pt";
+    public static final int KITCHEN_PORT = 22382;
 
 
     /**
      * GeneralRepos ssh
      */
-    public static final String generalrepos_ssh = "sd209@l04010-ws04.ua.pt";
-    public static final int generalrepos_port = 22383;
+    public static final String GENERALREPOS_HOSTNAME = "sd209@l040101-ws04.ua.pt";
+    public static final int GENERALREPOS_PORT = 22383;
     
 }

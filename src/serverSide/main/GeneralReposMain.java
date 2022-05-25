@@ -29,7 +29,7 @@ public class GeneralReposMain {
         /* service is established */
 
         ServerCom serverCom, sconi;                                        // communication channels
-        int portNumb = SimulPar.generalrepos_port;                                               // port nunber for listening to service requests
+        int portNumb = SimulPar.GENERALREPOS_PORT;                                               // port nunber for listening to service requests
 
         serverCom = new ServerCom (portNumb);
         serverCom.start ();                             // service is instantiated

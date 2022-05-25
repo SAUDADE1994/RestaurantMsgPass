@@ -29,7 +29,7 @@ public class TableMain {
         GenericIO.writelnString ("Service is established!");
         GenericIO.writelnString ("Server is listening for service requests.");
 
-        GeneralReposStub generalReposStub = new GeneralReposStub(SimulPar.generalrepos_ssh, SimulPar.generalrepos_port);
+        GeneralReposStub generalReposStub = new GeneralReposStub(SimulPar.GENERALREPOS_HOSTNAME, SimulPar.GENERALREPOS_PORT);
         Table table = new Table(generalReposStub);
         SharedRegionInterface sharedRegionInterface = new TableInterface(table);
 

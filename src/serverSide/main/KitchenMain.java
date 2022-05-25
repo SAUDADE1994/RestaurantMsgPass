@@ -23,7 +23,7 @@ public class KitchenMain {
         /* service is established */
 
         ServerCom serverCom, sconi;                                        // communication channels
-        int portNumb = SimulPar.kitchen_port;                                          // port nunber for listening to service requests
+        int portNumb = SimulPar.KITCHEN_PORT;                                          // port nunber for listening to service requests
 
         serverCom = new ServerCom (portNumb);
         serverCom.start ();                             // service is instantiated
@@ -31,7 +31,7 @@ public class KitchenMain {
         GenericIO.writelnString ("Service is established!");
         GenericIO.writelnString ("Server is listening for service requests.");
 
-        GeneralReposStub generalReposStub = new GeneralReposStub(SimulPar.generalrepos_ssh, SimulPar.generalrepos_port);
+        GeneralReposStub generalReposStub = new GeneralReposStub(SimulPar.GENERALREPOS_HOSTNAME, SimulPar.GENERALREPOS_PORT);
         Kitchen kitchen = new Kitchen(generalReposStub);
         SharedRegionInterface sharedRegionInterface = new KitchenInterface(kitchen);
 

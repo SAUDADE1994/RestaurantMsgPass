@@ -12,7 +12,7 @@ public class StudentMain {
 
         TableStub table;
 
-        table = new TableStub(SimulPar.table_ssh, SimulPar.table_port);
+        table = new TableStub(SimulPar.TABLE_NODE_NAME, SimulPar.TABLE_PORT);
 
         for(int i = 0; i < SimulPar.TOTAL_STUDENTS; i++) {
             students[i] = new Student(i, table);
