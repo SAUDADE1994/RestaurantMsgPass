@@ -31,7 +31,7 @@ public class KitchenInterface implements  SharedRegionInterface{
                 chef = (Chef) Thread.currentThread();
                 chef.setChefId((int) message.getStateFields()[0]);
                 chef.setChefState((int) message.getStateFields()[1]);
-                GenericIO.writelnString("Waiter -> SAYGOODBY");
+                GenericIO.writelnString("Waiter -> WATCHTHENEWS");
                 state = new Object[]{chef.getChefId(), chef.getChefState()};
                 break;
 
@@ -39,56 +39,56 @@ public class KitchenInterface implements  SharedRegionInterface{
                 chef = (Chef) Thread.currentThread();
                 chef.setChefId((int) message.getStateFields()[0]);
                 chef.setChefState((int) message.getStateFields()[1]);
-                GenericIO.writelnString("Waiter -> SAYGOODBY");
+                GenericIO.writelnString("Waiter -> STARTPREPARING");
                 state = new Object[]{chef.getChefId(), chef.getChefState()};
                 break;
             case FunctionsIds.ALERTWAITER:
                 chef = (Chef) Thread.currentThread();
                 chef.setChefId((int) message.getStateFields()[0]);
                 chef.setChefState((int) message.getStateFields()[1]);
-                GenericIO.writelnString("Waiter -> SAYGOODBY");
+                GenericIO.writelnString("Waiter -> ALERTWAITER");
                 state = new Object[]{chef.getChefId(), chef.getChefState()};
                 break;
             case FunctionsIds.PROCEEDTOPRESENTATION:
                 chef = (Chef) Thread.currentThread();
                 chef.setChefId((int) message.getStateFields()[0]);
                 chef.setChefState((int) message.getStateFields()[1]);
-                GenericIO.writelnString("Waiter -> SAYGOODBY");
+                GenericIO.writelnString("Waiter -> PROCEEDTOPRESENTATION");
                 state = new Object[]{chef.getChefId(), chef.getChefState()};
                 break;
             case FunctionsIds.HAVENEXTPORTIONREADY:
                 chef = (Chef) Thread.currentThread();
                 chef.setChefId((int) message.getStateFields()[0]);
                 chef.setChefState((int) message.getStateFields()[1]);
-                GenericIO.writelnString("Waiter -> SAYGOODBY");
+                GenericIO.writelnString("Waiter -> HAVENEXTPORTIONREADY");
                 state = new Object[]{chef.getChefId(), chef.getChefState()};
                 break;
             case FunctionsIds.CONTINUEPREPARATION:
                 chef = (Chef) Thread.currentThread();
                 chef.setChefId((int) message.getStateFields()[0]);
                 chef.setChefState((int) message.getStateFields()[1]);
-                GenericIO.writelnString("Waiter -> SAYGOODBY");
+                GenericIO.writelnString("Waiter -> CONTINUEPREPARATION");
                 state = new Object[]{chef.getChefId(), chef.getChefState()};
                 break;
             case FunctionsIds.HAVEALLPORTIONSBEENDELIVERED:
                 chef = (Chef) Thread.currentThread();
                 chef.setChefId((int) message.getStateFields()[0]);
                 chef.setChefState((int) message.getStateFields()[1]);
-                GenericIO.writelnString("Waiter -> SAYGOODBY");
+                GenericIO.writelnString("Waiter -> HAVEALLPORTIONSBEENDELIVERED");
                 state = new Object[]{chef.getChefId(), chef.getChefState()};
                 break;
             case FunctionsIds.HASTHEORDERBEENCOMPLETED:
                 chef = (Chef) Thread.currentThread();
                 chef.setChefId((int) message.getStateFields()[0]);
                 chef.setChefState((int) message.getStateFields()[1]);
-                GenericIO.writelnString("Waiter -> SAYGOODBY");
+                GenericIO.writelnString("Waiter -> HASTHEORDERBEENCOMPLETED");
                 state = new Object[]{chef.getChefId(), chef.getChefState()};
                 break;
             case FunctionsIds.CLEANUP:
                 chef = (Chef) Thread.currentThread();
                 chef.setChefId((int) message.getStateFields()[0]);
                 chef.setChefState((int) message.getStateFields()[1]);
-                GenericIO.writelnString("Waiter -> SAYGOODBY");
+                GenericIO.writelnString("Waiter -> CLEANUP");
                 state = new Object[]{chef.getChefId(), chef.getChefState()};
                 break;
             case FunctionsIds.SAYGOODBY:
@@ -102,21 +102,21 @@ public class KitchenInterface implements  SharedRegionInterface{
                 waiter = (Waiter) Thread.currentThread();
                 waiter.setWaiterId((int) message.getStateFields()[0]);
                 waiter.setWaiterState((int) message.getStateFields()[1]);
-                GenericIO.writelnString("Waiter -> SAYGOODBY");
+                GenericIO.writelnString("Waiter -> HANDTHENOTETOTHECHEF");
                 state = new Object[]{waiter.getWaiterId(), waiter.getWaiterState()};
                 break;
             case FunctionsIds.HAVEALLPORTIONSBEENCOLECTED:
                 waiter = (Waiter) Thread.currentThread();
                 waiter.setWaiterId((int) message.getStateFields()[0]);
                 waiter.setWaiterState((int) message.getStateFields()[1]);
-                GenericIO.writelnString("Waiter -> SAYGOODBY");
+                GenericIO.writelnString("Waiter -> HAVEALLPORTIONSBEENCOLECTED");
                 state = new Object[]{waiter.getWaiterId(), waiter.getWaiterState()};
                 break;
             case FunctionsIds.LOOKAROUND_KITCHEN:
                 waiter = (Waiter) Thread.currentThread();
                 waiter.setWaiterId((int) message.getStateFields()[0]);
                 waiter.setWaiterState((int) message.getStateFields()[1]);
-                GenericIO.writelnString("Waiter -> SAYGOODBY");
+                GenericIO.writelnString("Waiter -> LOOKAROUND_KITCHEN");
                 state = new Object[]{waiter.getWaiterId(), waiter.getWaiterState()};
                 break;
             case FunctionsIds.SHUTDOWN:
