@@ -14,17 +14,17 @@ echo "  Table"
 rm -rf dirTable
 mkdir -p dirTable/serverSide/{main,entities,sharedRegions,stubs} dirTable/commInfra
 cp serverSide/main/{TableMain,SimulPar,FunctionsIds}.class dirTable/serverSide/main
-cp serverSide/entities/{ServiceProviderAgent,Student}.class dirTable/serverSide/entities
+cp serverSide/entities/{ServiceProviderAgent,Student,Chef,Waiter}.class dirTable/serverSide/entities
 cp serverSide/sharedRegions/{Table,TableInterface,SharedRegionInterface,ITable_Student,ITable_Waiter}.class dirTable/serverSide/sharedRegions
 cp serverSide/stubs/GeneralReposStub.class dirTable/serverSide/stubs
-cp commInfra/{ServerCom,MemException,MemFIFO,MemObject}.class dirTable/commInfra
+cp commInfra/{ServerCom,MemException,MemFIFO,MemObject,Message}.class dirTable/commInfra
 cp genclass.jar dirTable/
 echo "  Bar"
 rm -rf dirBar
 mkdir -p dirBar/serverSide/{main,sharedRegions,entities,stubs} dirBar/commInfra
 cp serverSide/main/{BarMain,SimulPar,FunctionsIds}.class dirBar/serverSide/main
 cp serverSide/sharedRegions/{Bar,BarInterface,SharedRegionInterface,IBar_Waiter}.class dirBar/serverSide/sharedRegions
-cp serverSide/entities/ServiceProviderAgent.class dirBar/serverSide/entities
+cp serverSide/entities/{ServiceProviderAgent,Student,Chef,Waiter}.class dirBar/serverSide/entities
 cp serverSide/stubs/GeneralReposStub.class dirBar/serverSide/stubs
 cp commInfra/ServerCom.class dirBar/commInfra
 cp genclass.jar dirBar/
@@ -34,8 +34,8 @@ mkdir -p dirKitchen/serverSide/{sharedRegions,stubs,entities,main} dirKitchen/co
 cp serverSide/main/{KitchenMain,SimulPar,FunctionsIds}.class dirKitchen/serverSide/main
 cp serverSide/sharedRegions/{Kitchen,KitchenInterface,SharedRegionInterface,IKitchen_Chef,IKitchen_Waiter}.class dirKitchen/serverSide/sharedRegions
 cp serverSide/stubs/GeneralReposStub.class dirKitchen/serverSide/stubs
-cp serverSide/entities/ServiceProviderAgent.class dirKitchen/serverSide/entities
-cp commInfra/ServerCom.class dirKitchen/commInfra
+cp serverSide/entities/{ServiceProviderAgent,Student,Chef,Waiter}.class dirKitchen/serverSide/entities
+cp commInfra/{ServerCom,Message}.class dirKitchen/commInfra
 cp genclass.jar dirKitchen/
 echo "  Students"
 rm -rf dirStudents
