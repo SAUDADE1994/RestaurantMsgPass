@@ -20,8 +20,8 @@ public class BarStub implements IBar_Waiter {
     public void sayGoodbye() {
         Waiter waiter = (Waiter) Thread.currentThread();
         CommunicationChannel com = new CommunicationChannel(serverHostName, serverPortNumb);
-        Object[] params = new Object[0];
-        Object[] state_fields = new Object[1];
+        Object[] params = new Object[1];
+        Object[] state_fields = new Object[2];
         state_fields[0] =waiter.getWaiterId();
         state_fields[1] = waiter.getWaiterState();
 
@@ -50,8 +50,8 @@ public class BarStub implements IBar_Waiter {
     public void prepareTheBill() {
         Waiter waiter = (Waiter) Thread.currentThread();
         CommunicationChannel com = new CommunicationChannel(serverHostName, serverPortNumb);
-        Object[] params = new Object[0];
-        Object[] state_fields = new Object[1];
+        Object[] params = new Object[1];
+        Object[] state_fields = new Object[2];
         state_fields[0] =waiter.getWaiterId();
         state_fields[1] = waiter.getWaiterState();
 
@@ -84,8 +84,8 @@ public class BarStub implements IBar_Waiter {
 
     public void shutdown() {
         CommunicationChannel com = new CommunicationChannel (serverHostName, serverPortNumb);
-        Object[] params = new Object[0];
-        Object[] state_fields = new Object[0];
+        Object[] params = new Object[1];
+        Object[] state_fields = new Object[1];
 
         Message m_toServer = new Message(44, params, 0, state_fields, 0, null);
         Message m_fromServer;
