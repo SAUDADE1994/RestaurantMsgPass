@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 source ./buildAndGenerateGlobal.sh
 echo "Deploying and decompressing execution environments."
 mkdir -p "$HOME"/test/RestaurantMsgPass

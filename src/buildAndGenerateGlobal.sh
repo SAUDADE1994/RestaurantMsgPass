@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 echo "Compiling source code."
 javac -cp genclass.jar ./**/*.java
 echo "Distributing intermediate code to the different execution environments."
