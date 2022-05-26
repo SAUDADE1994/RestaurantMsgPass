@@ -16,5 +16,34 @@ public class SimulPar {
      * File name of the General Repository when created
      */
     public static final String FILE_NAME = "";
+
+
+    /**
+     * Table ssh
+     */
+
+    public static final String TABLE_HOSTNAME = "sd209@l040101-ws01.ua.pt";
+    public static final int table_port = 22380;
+
+    /**
+     * Bar ssh
+     */
+
+    public static final String BAR_HOSTNAME = "sd209@l040101-ws02.ua.pt";
+    public static final int BAR_PORT = 22381;
+
+    /**
+     * Kitchen ssh
+     */
+
+    public static final String KITCHEN_HOSTNAME = "sd209@l040101-ws03.ua.pt";
+    public static final int KITCHEN_PORT = 22382;
+
+
+    /**
+     * GeneralRepos ssh
+     */
+    public static final String GENERALREPOS_HOSTNAME = "sd209@l040101-ws04.ua.pt";
+    public static final int GENERALREPOS_PORT = 22383;
     
 }

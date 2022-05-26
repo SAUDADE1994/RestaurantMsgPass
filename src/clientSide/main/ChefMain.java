@@ -11,8 +11,8 @@ public class ChefMain {
 
         KitchenStub kitchen;
         TableStub table;
-        kitchen = new KitchenStub("sd209@l04010-ws03.ua.pt", 22380);
-        table = new TableStub("sd209@l04010-ws01.ua.pt", 22381);
+        kitchen = new KitchenStub(SimulPar.KITCHEN_HOSTNAME, SimulPar.KITCHEN_PORT);
+        table = new TableStub(SimulPar.TABLE_NODE_NAME, SimulPar.TABLE_PORT);
 
         chef = new Chef(0, kitchen, table);
 

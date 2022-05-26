@@ -30,7 +30,7 @@ public class BarMain {
         /* service is established */
 
         ServerCom serverCom, sconi;                                        // communication channels
-        int portNumb = 22381;                                          // port nunber for listening to service requests
+        int portNumb = SimulPar.BAR_PORT;                                          // port nunber for listening to service requests
 
         serverCom = new ServerCom (portNumb);
         serverCom.start ();                             // service is instantiated
@@ -38,7 +38,7 @@ public class BarMain {
         GenericIO.writelnString ("Service is established!");
         GenericIO.writelnString ("Server is listening for service requests.");
 
-        GeneralReposStub generalReposStub = new GeneralReposStub("sd209@l040101-ws04.ua.pt", 22153);
+        GeneralReposStub generalReposStub = new GeneralReposStub(SimulPar.GENERALREPOS_HOSTNAME, SimulPar.GENERALREPOS_PORT);
         Bar bar = new Bar(generalReposStub);
         SharedRegionInterface sharedRegionInterface = new BarInterface(bar);
 
