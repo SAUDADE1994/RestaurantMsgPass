@@ -1,7 +1,5 @@
 package clientSide.stubs;
 
-
-import clientSide.entities.Chef;
 import clientSide.entities.Student;
 import clientSide.entities.Waiter;
 import commInfra.CommunicationChannel;
@@ -43,8 +41,8 @@ public class TableStub implements ITable_Student, ITable_Waiter {
 
         m_fromServer = (Message) com.readObject();
 
-        s.setStudentState((Integer) m_fromServer.getStateFields()[1]);
-        //boolean result = (Boolean) m_fromServer.getReturnValue();
+        s.setStudentState((int) m_fromServer.getStateFields()[1]);
+        //boolean result = (boolean) m_fromServer.getReturnValue();
 
         com.close ();
 
@@ -74,8 +72,8 @@ public class TableStub implements ITable_Student, ITable_Waiter {
 
         m_fromServer = (Message) com.readObject();
 
-        s.setStudentState((Integer) m_fromServer.getStateFields()[1]);
-        //boolean result = (Boolean) m_fromServer.getReturnValue();
+        s.setStudentState((int) m_fromServer.getStateFields()[1]);
+        //boolean result = (boolean) m_fromServer.getReturnValue();
 
         com.close ();
 
@@ -105,8 +103,8 @@ public class TableStub implements ITable_Student, ITable_Waiter {
 
         m_fromServer = (Message) com.readObject();
 
-        s.setStudentState((Integer) m_fromServer.getStateFields()[1]);
-        //boolean result = (Boolean) m_fromServer.getReturnValue();
+        s.setStudentState((int) m_fromServer.getStateFields()[1]);
+        //boolean result = (boolean) m_fromServer.getReturnValue();
 
         com.close ();
 
@@ -120,6 +118,8 @@ public class TableStub implements ITable_Student, ITable_Waiter {
         Object[] state_fields = new Object[2];
         state_fields[0] = s.getStudentId();
         state_fields[1] = s.getStudentState();
+
+        params[0] = studentID;
 
         /* operation number to be defined */
         Message m_toServer = new Message(19, params, 0, state_fields, 2, null);
@@ -136,8 +136,8 @@ public class TableStub implements ITable_Student, ITable_Waiter {
 
         m_fromServer = (Message) com.readObject();
 
-        s.setStudentState((Integer) m_fromServer.getStateFields()[1]);
-        //boolean result = (Boolean) m_fromServer.getReturnValue();
+        s.setStudentState((int) m_fromServer.getStateFields()[1]);
+        //boolean result = (boolean) m_fromServer.getReturnValue();
 
         com.close ();
 
@@ -168,8 +168,8 @@ public class TableStub implements ITable_Student, ITable_Waiter {
 
         m_fromServer = (Message) com.readObject();
 
-        s.setStudentState((Integer) m_fromServer.getStateFields()[1]);
-        boolean result = (Boolean) m_fromServer.getReturnValue();
+        s.setStudentState((int) m_fromServer.getStateFields()[1]);
+        boolean result = (boolean) m_fromServer.getReturnValue();
 
         com.close ();
         return result;
@@ -199,8 +199,8 @@ public class TableStub implements ITable_Student, ITable_Waiter {
 
         m_fromServer = (Message) com.readObject();
 
-        s.setStudentState((Integer) m_fromServer.getStateFields()[1]);
-        //boolean result = (Boolean) m_fromServer.getReturnValue();
+        s.setStudentState((int) m_fromServer.getStateFields()[1]);
+        //boolean result = (boolean) m_fromServer.getReturnValue();
 
         com.close ();
 
@@ -230,8 +230,8 @@ public class TableStub implements ITable_Student, ITable_Waiter {
 
         m_fromServer = (Message) com.readObject();
 
-        s.setStudentState((Integer) m_fromServer.getStateFields()[1]);
-        //boolean result = (Boolean) m_fromServer.getReturnValue();
+        s.setStudentState((int) m_fromServer.getStateFields()[1]);
+        //boolean result = (boolean) m_fromServer.getReturnValue();
 
         com.close ();
     }
@@ -260,8 +260,8 @@ public class TableStub implements ITable_Student, ITable_Waiter {
 
         m_fromServer = (Message) com.readObject();
 
-        s.setStudentState((Integer) m_fromServer.getStateFields()[1]);
-        //boolean result = (Boolean) m_fromServer.getReturnValue();
+        s.setStudentState((int) m_fromServer.getStateFields()[1]);
+        //boolean result = (boolean) m_fromServer.getReturnValue();
 
         com.close ();
 
@@ -291,8 +291,8 @@ public class TableStub implements ITable_Student, ITable_Waiter {
 
         m_fromServer = (Message) com.readObject();
 
-        s.setStudentState((Integer) m_fromServer.getStateFields()[1]);
-        //boolean result = (Boolean) m_fromServer.getReturnValue();
+        s.setStudentState((int) m_fromServer.getStateFields()[1]);
+        //boolean result = (boolean) m_fromServer.getReturnValue();
 
         com.close ();
 
@@ -323,8 +323,8 @@ public class TableStub implements ITable_Student, ITable_Waiter {
 
         m_fromServer = (Message) com.readObject();
 
-        s.setStudentState((Integer) m_fromServer.getStateFields()[1]);
-        boolean result = (Boolean) m_fromServer.getReturnValue();
+        s.setStudentState((int) m_fromServer.getStateFields()[1]);
+        boolean result = (boolean) m_fromServer.getReturnValue();
 
         com.close ();
         return result;
@@ -355,8 +355,8 @@ public class TableStub implements ITable_Student, ITable_Waiter {
 
         m_fromServer = (Message) com.readObject();
 
-        s.setStudentState((Integer) m_fromServer.getStateFields()[1]);
-        //boolean result = (Boolean) m_fromServer.getReturnValue();
+        s.setStudentState((int) m_fromServer.getStateFields()[1]);
+        //boolean result = (boolean) m_fromServer.getReturnValue();
 
         com.close ();
     }
@@ -385,8 +385,8 @@ public class TableStub implements ITable_Student, ITable_Waiter {
 
         m_fromServer = (Message) com.readObject();
 
-        s.setStudentState((Integer) m_fromServer.getStateFields()[1]);
-        //boolean result = (Boolean) m_fromServer.getReturnValue();
+        s.setStudentState((int) m_fromServer.getStateFields()[1]);
+        //boolean result = (boolean) m_fromServer.getReturnValue();
 
         com.close ();
 
@@ -416,8 +416,8 @@ public class TableStub implements ITable_Student, ITable_Waiter {
 
         m_fromServer = (Message) com.readObject();
 
-        s.setStudentState((Integer) m_fromServer.getStateFields()[1]);
-        //boolean result = (Boolean) m_fromServer.getReturnValue();
+        s.setStudentState((int) m_fromServer.getStateFields()[1]);
+        //boolean result = (boolean) m_fromServer.getReturnValue();
 
         com.close ();
     }
@@ -446,8 +446,8 @@ public class TableStub implements ITable_Student, ITable_Waiter {
 
         m_fromServer = (Message) com.readObject();
 
-        s.setStudentState((Integer) m_fromServer.getStateFields()[1]);
-        //boolean result = (Boolean) m_fromServer.getReturnValue();
+        s.setStudentState((int) m_fromServer.getStateFields()[1]);
+        //boolean result = (boolean) m_fromServer.getReturnValue();
 
         com.close ();
     }
@@ -477,8 +477,8 @@ public class TableStub implements ITable_Student, ITable_Waiter {
 
         m_fromServer = (Message) com.readObject();
 
-        s.setStudentState((Integer) m_fromServer.getStateFields()[1]);
-        boolean result = (Boolean) m_fromServer.getReturnValue();
+        s.setStudentState((int) m_fromServer.getStateFields()[1]);
+        boolean result = (boolean) m_fromServer.getReturnValue();
 
         com.close ();
         return result;
@@ -508,8 +508,8 @@ public class TableStub implements ITable_Student, ITable_Waiter {
 
         m_fromServer = (Message) com.readObject();
 
-        s.setStudentState((Integer) m_fromServer.getStateFields()[1]);
-        //boolean result = (Boolean) m_fromServer.getReturnValue();
+        s.setStudentState((int) m_fromServer.getStateFields()[1]);
+        //boolean result = (boolean) m_fromServer.getReturnValue();
 
         com.close ();
 
@@ -539,8 +539,8 @@ public class TableStub implements ITable_Student, ITable_Waiter {
 
         m_fromServer = (Message) com.readObject();
 
-        waiter.setWaiterState((Integer) m_fromServer.getStateFields()[1]);
-        //boolean result = (Boolean) m_fromServer.getReturnValue();
+        waiter.setWaiterState((int) m_fromServer.getStateFields()[1]);
+        //boolean result = (boolean) m_fromServer.getReturnValue();
 
         com.close ();
 
@@ -570,8 +570,8 @@ public class TableStub implements ITable_Student, ITable_Waiter {
 
         m_fromServer = (Message) com.readObject();
 
-        waiter.setWaiterState((Integer) m_fromServer.getStateFields()[1]);
-        //boolean result = (Boolean) m_fromServer.getReturnValue();
+        waiter.setWaiterState((int) m_fromServer.getStateFields()[1]);
+        //boolean result = (boolean) m_fromServer.getReturnValue();
 
         com.close ();
 
@@ -603,8 +603,8 @@ public class TableStub implements ITable_Student, ITable_Waiter {
 
         m_fromServer = (Message) com.readObject();
 
-        waiter.setWaiterState((Integer) m_fromServer.getStateFields()[1]);
-        //boolean result = (Boolean) m_fromServer.getReturnValue();
+        waiter.setWaiterState((int) m_fromServer.getStateFields()[1]);
+        //boolean result = (boolean) m_fromServer.getReturnValue();
 
         com.close ();
 
@@ -634,8 +634,8 @@ public class TableStub implements ITable_Student, ITable_Waiter {
 
         m_fromServer = (Message) com.readObject();
 
-        waiter.setWaiterState((Integer) m_fromServer.getStateFields()[1]);
-        //boolean result = (Boolean) m_fromServer.getReturnValue();
+        waiter.setWaiterState((int) m_fromServer.getStateFields()[1]);
+        //boolean result = (boolean) m_fromServer.getReturnValue();
 
         com.close ();
 
@@ -665,13 +665,13 @@ public class TableStub implements ITable_Student, ITable_Waiter {
 
         m_fromServer = (Message) com.readObject();
 
-        waiter.setWaiterState((Integer) m_fromServer.getStateFields()[1]);
-        //boolean result = (Boolean) m_fromServer.getReturnValue();
+        waiter.setWaiterState((int) m_fromServer.getStateFields()[1]);
+        //boolean result = (boolean) m_fromServer.getReturnValue();
 
         com.close ();
     }
 
-    public Integer[] askForReadyOrders() {
+    public int[] askForReadyOrders() {
 
         Student s = (Student) Thread.currentThread();
         CommunicationChannel com = new CommunicationChannel(serverHostName, serverPortNumb);
@@ -695,8 +695,8 @@ public class TableStub implements ITable_Student, ITable_Waiter {
 
         m_fromServer = (Message) com.readObject();
 
-        s.setStudentState((Integer) m_fromServer.getStateFields()[1]);
-        Integer[] result = (Integer[]) m_fromServer.getReturnValue();
+        s.setStudentState((int) m_fromServer.getStateFields()[1]);
+        int[] result = (int[]) m_fromServer.getReturnValue();
 
         com.close ();
         return result;

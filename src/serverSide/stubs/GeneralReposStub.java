@@ -67,8 +67,8 @@ public class GeneralReposStub {
     public void setWaiterState(int state) {
         CommunicationChannel com = new CommunicationChannel (serverHostName, serverPortNumb);
         Object[] params = new Object[1];
-        Object[] state_fields = new Object[2];
-        params[1] = state;
+        Object[] state_fields = new Object[1];
+        params[0] = state;
 
         Message m_toServer = new Message(39, params, 1, state_fields, 0, null);
         Message m_fromServer;
