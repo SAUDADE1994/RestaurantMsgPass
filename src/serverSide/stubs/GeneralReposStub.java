@@ -147,35 +147,6 @@ public class GeneralReposStub {
     }
 
     /**
-     * Set the number of the Course
-     *
-     * @param nCourse
-     */
-    public void setnCourse(int nCourse) {
-
-        CommunicationChannel com = new CommunicationChannel (serverHostName, serverPortNumb);
-        Object[] params = new Object[1];
-        Object[] state_fields = new Object[2];
-        params[0] = nCourse;
-
-        Message m_toServer = new Message(42, params, 1, state_fields, 0, null);
-        Message m_fromServer;
-
-        while (!com.open ())
-        { try
-        { Thread.currentThread ().sleep ((long) (10));
-        }
-        catch (InterruptedException e) {}
-        }
-
-        com.writeObject (m_toServer);
-
-        m_fromServer = (Message) com.readObject();
-
-        com.close ();
-    }
-
-    /**
      * Set the number of portion delivered
      *
      * @param nPortion
@@ -184,7 +155,8 @@ public class GeneralReposStub {
 
         CommunicationChannel com = new CommunicationChannel (serverHostName, serverPortNumb);
         Object[] params = new Object[1];
-        Object[] state_fields = new Object[2];
+        Object[] state_fields = new Object[1];
+        state_fields[0] = nPortion;
         params[0] = nPortion;
 
         Message m_toServer = new Message(43, params, 1, state_fields, 0, null);
@@ -228,6 +200,7 @@ public class GeneralReposStub {
 
         com.close ();
     }
+
 
 
     public void setNextCourse() {

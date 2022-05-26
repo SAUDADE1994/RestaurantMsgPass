@@ -338,6 +338,7 @@ public class TableStub implements ITable_Student, ITable_Waiter {
         Object[] state_fields = new Object[2];
         state_fields[0] = s.getStudentId();
         state_fields[1] = s.getStudentState();
+        params[0] = courseNo;
 
         /* operation number to be defined */
         Message m_toServer = new Message(26, params, 0, state_fields, 2, null);
@@ -580,7 +581,7 @@ public class TableStub implements ITable_Student, ITable_Waiter {
     public void deliverPortion(int portionsServed) {
         Waiter waiter = (Waiter) Thread.currentThread();
         CommunicationChannel com = new CommunicationChannel(serverHostName, serverPortNumb);
-        Object[] params = new Object[2];
+        Object[] params = new Object[1];
         params[0] = portionsServed;
         Object[] state_fields = new Object[2];
         state_fields[0] = waiter.getWaiterId();
