@@ -1,5 +1,6 @@
 package clientSide.stubs;
 
+
 import clientSide.entities.Student;
 import clientSide.entities.Waiter;
 import commInfra.CommunicationChannel;
@@ -21,30 +22,16 @@ public class TableStub implements ITable_Student, ITable_Waiter {
     public void enter() {
         Student s = (Student) Thread.currentThread();
         CommunicationChannel com = new CommunicationChannel(serverHostName, serverPortNumb);
-        Object[] params = new Object[1];
-        Object[] state_fields = new Object[2];
-        state_fields[0] = s.getStudentId();
-        state_fields[1] = s.getStudentState();
+        Object[] params = new Object[0];
+        Object[] state_fields = new Object[]{
+                s.getStudentId(),
+                s.getStudentState()
+        };
 
         /* operation number to be defined */
-        Message m_toServer = new Message(16, params, 0, state_fields, 2, null);
-        Message m_fromServer;
+        Message m_toServer = new Message(FunctionsIds.ENTER, params, state_fields, null);
 
-        while (!com.open ())
-        { try
-        { Thread.currentThread ().sleep ((long) (10));
-        }
-        catch (InterruptedException e) {}
-        }
-
-        com.writeObject (m_toServer);
-
-        m_fromServer = (Message) com.readObject();
-
-        s.setStudentState((int) m_fromServer.getStateFields()[1]);
-        //boolean result = (boolean) m_fromServer.getReturnValue();
-
-        com.close ();
+        vStudentCallFunctionMsg(s, com, m_toServer);
 
     }
 
@@ -52,30 +39,15 @@ public class TableStub implements ITable_Student, ITable_Waiter {
     public void readTheMenu() {
         Student s = (Student) Thread.currentThread();
         CommunicationChannel com = new CommunicationChannel(serverHostName, serverPortNumb);
-        Object[] params = new Object[1];
-        Object[] state_fields = new Object[2];
-        state_fields[0] = s.getStudentId();
-        state_fields[1] = s.getStudentState();
+        Object[] params = new Object[0];
+        Object[] state_fields = new Object[]{
+                s.getStudentId(),
+                s.getStudentState()
+        };
 
         /* operation number to be defined */
-        Message m_toServer = new Message(17, params, 0, state_fields, 2, null);
-        Message m_fromServer;
-
-        while (!com.open ())
-        { try
-        { Thread.currentThread ().sleep ((long) (10));
-        }
-        catch (InterruptedException e) {}
-        }
-
-        com.writeObject (m_toServer);
-
-        m_fromServer = (Message) com.readObject();
-
-        s.setStudentState((int) m_fromServer.getStateFields()[1]);
-        //boolean result = (boolean) m_fromServer.getReturnValue();
-
-        com.close ();
+        Message m_toServer = new Message(FunctionsIds.READ_THE_MENU, params, state_fields, null);
+        vStudentCallFunctionMsg(s, com, m_toServer);
 
     }
 
@@ -83,30 +55,15 @@ public class TableStub implements ITable_Student, ITable_Waiter {
     public void prepareTheOrder() {
         Student s = (Student) Thread.currentThread();
         CommunicationChannel com = new CommunicationChannel(serverHostName, serverPortNumb);
-        Object[] params = new Object[1];
-        Object[] state_fields = new Object[2];
-        state_fields[0] = s.getStudentId();
-        state_fields[1] = s.getStudentState();
+        Object[] params = new Object[0];
+        Object[] state_fields = new Object[]{
+                s.getStudentId(),
+                s.getStudentState()
+        };
 
         /* operation number to be defined */
-        Message m_toServer = new Message(18, params, 0, state_fields, 2, null);
-        Message m_fromServer;
-
-        while (!com.open ())
-        { try
-        { Thread.currentThread ().sleep ((long) (10));
-        }
-        catch (InterruptedException e) {}
-        }
-
-        com.writeObject (m_toServer);
-
-        m_fromServer = (Message) com.readObject();
-
-        s.setStudentState((int) m_fromServer.getStateFields()[1]);
-        //boolean result = (boolean) m_fromServer.getReturnValue();
-
-        com.close ();
+        Message m_toServer = new Message(FunctionsIds.PREPARE_THE_ORDER, params, state_fields, null);
+        vStudentCallFunctionMsg(s, com, m_toServer);
 
     }
 
@@ -114,32 +71,17 @@ public class TableStub implements ITable_Student, ITable_Waiter {
     public void addUpOnesChoices(int studentID) {
         Student s = (Student) Thread.currentThread();
         CommunicationChannel com = new CommunicationChannel(serverHostName, serverPortNumb);
-        Object[] params = new Object[1];
-        Object[] state_fields = new Object[2];
-        state_fields[0] = s.getStudentId();
-        state_fields[1] = s.getStudentState();
-
-        params[0] = studentID;
+        Object[] params = new Object[]{
+                studentID
+        };
+        Object[] state_fields = new Object[]{
+                s.getStudentId(),
+                s.getStudentState()
+        };
 
         /* operation number to be defined */
-        Message m_toServer = new Message(19, params, 0, state_fields, 2, null);
-        Message m_fromServer;
-
-        while (!com.open ())
-        { try
-        { Thread.currentThread ().sleep ((long) (10));
-        }
-        catch (InterruptedException e) {}
-        }
-
-        com.writeObject (m_toServer);
-
-        m_fromServer = (Message) com.readObject();
-
-        s.setStudentState((int) m_fromServer.getStateFields()[1]);
-        //boolean result = (boolean) m_fromServer.getReturnValue();
-
-        com.close ();
+        Message m_toServer = new Message(FunctionsIds.ADD_UP_ONES_CHOICES, params, state_fields, null);
+        vStudentCallFunctionMsg(s, com, m_toServer);
 
     }
 
@@ -148,61 +90,30 @@ public class TableStub implements ITable_Student, ITable_Waiter {
 
         Student s = (Student) Thread.currentThread();
         CommunicationChannel com = new CommunicationChannel(serverHostName, serverPortNumb);
-        Object[] params = new Object[1];
-        Object[] state_fields = new Object[2];
-        state_fields[0] = s.getStudentId();
-        state_fields[1] = s.getStudentState();
+        Object[] params = new Object[0];
+        Object[] state_fields = new Object[]{
+                s.getStudentId(),
+                s.getStudentState()
+        };
 
         /* operation number to be defined */
-        Message m_toServer = new Message(20, params, 0, state_fields, 2, null);
-        Message m_fromServer;
-
-        while (!com.open ())
-        { try
-        { Thread.currentThread ().sleep ((long) (10));
-        }
-        catch (InterruptedException e) {}
-        }
-
-        com.writeObject (m_toServer);
-
-        m_fromServer = (Message) com.readObject();
-
-        s.setStudentState((int) m_fromServer.getStateFields()[1]);
-        boolean result = (boolean) m_fromServer.getReturnValue();
-
-        com.close ();
-        return result;
+        Message m_toServer = new Message(FunctionsIds.HAS_EVERYBODY_CHOSEN, params, state_fields, null);
+        return (boolean) studentCallFunctionMsg(s, com, m_toServer);
     }
 
     @Override
     public void callTheWaiter() {
         Student s = (Student) Thread.currentThread();
         CommunicationChannel com = new CommunicationChannel(serverHostName, serverPortNumb);
-        Object[] params = new Object[1];
-        Object[] state_fields = new Object[2];
-        state_fields[0] = s.getStudentId();
-        state_fields[1] = s.getStudentState();
+        Object[] params = new Object[0];
+        Object[] state_fields = new Object[]{
+                s.getStudentId(),
+                s.getStudentState()
+        };
 
         /* operation number to be defined */
-        Message m_toServer = new Message(21, params, 0, state_fields, 2, null);
-        Message m_fromServer;
-
-        while (!com.open ())
-        { try
-        { Thread.currentThread ().sleep ((long) (10));
-        }
-        catch (InterruptedException e) {}
-        }
-
-        com.writeObject (m_toServer);
-
-        m_fromServer = (Message) com.readObject();
-
-        s.setStudentState((int) m_fromServer.getStateFields()[1]);
-        //boolean result = (boolean) m_fromServer.getReturnValue();
-
-        com.close ();
+        Message m_toServer = new Message(FunctionsIds.CALL_THE_WAITER, params, state_fields, null);
+        vStudentCallFunctionMsg(s, com, m_toServer);
 
     }
 
@@ -210,60 +121,30 @@ public class TableStub implements ITable_Student, ITable_Waiter {
     public void describeTheOrder() {
         Student s = (Student) Thread.currentThread();
         CommunicationChannel com = new CommunicationChannel(serverHostName, serverPortNumb);
-        Object[] params = new Object[1];
-        Object[] state_fields = new Object[2];
-        state_fields[0] = s.getStudentId();
-        state_fields[1] = s.getStudentState();
+        Object[] params = new Object[0];
+        Object[] state_fields = new Object[]{
+                s.getStudentId(),
+                s.getStudentState()
+        };
 
         /* operation number to be defined */
-        Message m_toServer = new Message(22, params, 0, state_fields, 2, null);
-        Message m_fromServer;
-
-        while (!com.open ())
-        { try
-        { Thread.currentThread ().sleep ((long) (10));
-        }
-        catch (InterruptedException e) {}
-        }
-
-        com.writeObject (m_toServer);
-
-        m_fromServer = (Message) com.readObject();
-
-        s.setStudentState((int) m_fromServer.getStateFields()[1]);
-        //boolean result = (boolean) m_fromServer.getReturnValue();
-
-        com.close ();
+        Message m_toServer = new Message(FunctionsIds.DESCRIBE_THE_ORDER, params, state_fields, null);
+        vStudentCallFunctionMsg(s, com, m_toServer);
     }
 
     @Override
     public void joinTheTalk() {
         Student s = (Student) Thread.currentThread();
         CommunicationChannel com = new CommunicationChannel(serverHostName, serverPortNumb);
-        Object[] params = new Object[1];
-        Object[] state_fields = new Object[2];
-        state_fields[0] = s.getStudentId();
-        state_fields[1] = s.getStudentState();
+        Object[] params = new Object[0];
+        Object[] state_fields = new Object[]{
+                s.getStudentId(),
+                s.getStudentState()
+        };
 
         /* operation number to be defined */
-        Message m_toServer = new Message(23, params, 0, state_fields, 2, null);
-        Message m_fromServer;
-
-        while (!com.open ())
-        { try
-        { Thread.currentThread ().sleep ((long) (10));
-        }
-        catch (InterruptedException e) {}
-        }
-
-        com.writeObject (m_toServer);
-
-        m_fromServer = (Message) com.readObject();
-
-        s.setStudentState((int) m_fromServer.getStateFields()[1]);
-        //boolean result = (boolean) m_fromServer.getReturnValue();
-
-        com.close ();
+        Message m_toServer = new Message(FunctionsIds.JOIN_THE_TALK, params, state_fields, null);
+        vStudentCallFunctionMsg(s, com, m_toServer);
 
     }
 
@@ -271,30 +152,15 @@ public class TableStub implements ITable_Student, ITable_Waiter {
     public void informCompanion() {
         Student s = (Student) Thread.currentThread();
         CommunicationChannel com = new CommunicationChannel(serverHostName, serverPortNumb);
-        Object[] params = new Object[1];
-        Object[] state_fields = new Object[2];
-        state_fields[0] = s.getStudentId();
-        state_fields[1] = s.getStudentState();
+        Object[] params = new Object[0];
+        Object[] state_fields = new Object[]{
+                s.getStudentId(),
+                s.getStudentState()
+        };
 
         /* operation number to be defined */
-        Message m_toServer = new Message(24, params, 0, state_fields, 2, null);
-        Message m_fromServer;
-
-        while (!com.open ())
-        { try
-        { Thread.currentThread ().sleep ((long) (10));
-        }
-        catch (InterruptedException e) {}
-        }
-
-        com.writeObject (m_toServer);
-
-        m_fromServer = (Message) com.readObject();
-
-        s.setStudentState((int) m_fromServer.getStateFields()[1]);
-        //boolean result = (boolean) m_fromServer.getReturnValue();
-
-        com.close ();
+        Message m_toServer = new Message(FunctionsIds.INFORM_COMPANION, params, state_fields, null);
+        vStudentCallFunctionMsg(s, com, m_toServer);
 
     }
 
@@ -303,92 +169,44 @@ public class TableStub implements ITable_Student, ITable_Waiter {
 
         Student s = (Student) Thread.currentThread();
         CommunicationChannel com = new CommunicationChannel(serverHostName, serverPortNumb);
-        Object[] params = new Object[1];
-        Object[] state_fields = new Object[2];
-        state_fields[0] = s.getStudentId();
-        state_fields[1] = s.getStudentState();
+        Object[] params = new Object[0];
+        Object[] state_fields = new Object[]{
+                s.getStudentId(),
+                s.getStudentState()
+        };
 
         /* operation number to be defined */
-        Message m_toServer = new Message(25, params, 0, state_fields, 2, null);
-        Message m_fromServer;
-
-        while (!com.open ())
-        { try
-        { Thread.currentThread ().sleep ((long) (10));
-        }
-        catch (InterruptedException e) {}
-        }
-
-        com.writeObject (m_toServer);
-
-        m_fromServer = (Message) com.readObject();
-
-        s.setStudentState((int) m_fromServer.getStateFields()[1]);
-        boolean result = (boolean) m_fromServer.getReturnValue();
-
-        com.close ();
-        return result;
+        Message m_toServer = new Message(FunctionsIds.HAS_EVERYBODY_FINISHED, params, state_fields, null);
+        return (boolean) studentCallFunctionMsg(s, com, m_toServer);
     }
 
     @Override
     public void startEating(int courseNo) {
         Student s = (Student) Thread.currentThread();
         CommunicationChannel com = new CommunicationChannel(serverHostName, serverPortNumb);
-        Object[] params = new Object[1];
-        Object[] state_fields = new Object[2];
-        state_fields[0] = s.getStudentId();
-        state_fields[1] = s.getStudentState();
-        params[0] = courseNo;
-
+        Object[] params = new Object[0];
+        Object[] state_fields = new Object[]{
+                s.getStudentId(),
+                s.getStudentState()
+        };
         /* operation number to be defined */
-        Message m_toServer = new Message(26, params, 0, state_fields, 2, null);
-        Message m_fromServer;
-
-        while (!com.open ())
-        { try
-        { Thread.currentThread ().sleep ((long) (10));
-        }
-        catch (InterruptedException e) {}
-        }
-
-        com.writeObject (m_toServer);
-
-        m_fromServer = (Message) com.readObject();
-
-        s.setStudentState((int) m_fromServer.getStateFields()[1]);
-        //boolean result = (boolean) m_fromServer.getReturnValue();
-
-        com.close ();
+        Message m_toServer = new Message(FunctionsIds.START_EATING, params, state_fields, null);
+        vStudentCallFunctionMsg(s, com, m_toServer);
     }
 
     @Override
     public void shouldHaveArrivedEarlier() {
         Student s = (Student) Thread.currentThread();
         CommunicationChannel com = new CommunicationChannel(serverHostName, serverPortNumb);
-        Object[] params = new Object[1];
-        Object[] state_fields = new Object[2];
-        state_fields[0] = s.getStudentId();
-        state_fields[1] = s.getStudentState();
+        Object[] params = new Object[0];
+        Object[] state_fields = new Object[]{
+                s.getStudentId(),
+                s.getStudentState()
+        };
 
         /* operation number to be defined */
-        Message m_toServer = new Message(27, params, 0, state_fields, 2, null);
-        Message m_fromServer;
-
-        while (!com.open ())
-        { try
-        { Thread.currentThread ().sleep ((long) (10));
-        }
-        catch (InterruptedException e) {}
-        }
-
-        com.writeObject (m_toServer);
-
-        m_fromServer = (Message) com.readObject();
-
-        s.setStudentState((int) m_fromServer.getStateFields()[1]);
-        //boolean result = (boolean) m_fromServer.getReturnValue();
-
-        com.close ();
+        Message m_toServer = new Message(FunctionsIds.SHOULD_HAVE_ARRIVED_EARLIER, params, state_fields, null);
+        vStudentCallFunctionMsg(s, com, m_toServer);
 
     }
 
@@ -396,60 +214,30 @@ public class TableStub implements ITable_Student, ITable_Waiter {
     public void honorTheBill() {
         Student s = (Student) Thread.currentThread();
         CommunicationChannel com = new CommunicationChannel(serverHostName, serverPortNumb);
-        Object[] params = new Object[1];
-        Object[] state_fields = new Object[2];
-        state_fields[0] = s.getStudentId();
-        state_fields[1] = s.getStudentState();
+        Object[] params = new Object[0];
+        Object[] state_fields = new Object[]{
+                s.getStudentId(),
+                s.getStudentState()
+        };
 
         /* operation number to be defined */
-        Message m_toServer = new Message(28, params, 0, state_fields, 2, null);
-        Message m_fromServer;
-
-        while (!com.open ())
-        { try
-        { Thread.currentThread ().sleep ((long) (10));
-        }
-        catch (InterruptedException e) {}
-        }
-
-        com.writeObject (m_toServer);
-
-        m_fromServer = (Message) com.readObject();
-
-        s.setStudentState((int) m_fromServer.getStateFields()[1]);
-        //boolean result = (boolean) m_fromServer.getReturnValue();
-
-        com.close ();
+        Message m_toServer = new Message(FunctionsIds.HONOR_THE_BILL, params, state_fields, null);
+        vStudentCallFunctionMsg(s, com, m_toServer);
     }
 
     @Override
     public void exit() {
         Student s = (Student) Thread.currentThread();
         CommunicationChannel com = new CommunicationChannel(serverHostName, serverPortNumb);
-        Object[] params = new Object[1];
-        Object[] state_fields = new Object[2];
-        state_fields[0] = s.getStudentId();
-        state_fields[1] = s.getStudentState();
+        Object[] params = new Object[0];
+        Object[] state_fields = new Object[]{
+                s.getStudentId(),
+                s.getStudentState()
+        };
 
         /* operation number to be defined */
-        Message m_toServer = new Message(29, params, 0, state_fields, 2, null);
-        Message m_fromServer;
-
-        while (!com.open ())
-        { try
-        { Thread.currentThread ().sleep ((long) (10));
-        }
-        catch (InterruptedException e) {}
-        }
-
-        com.writeObject (m_toServer);
-
-        m_fromServer = (Message) com.readObject();
-
-        s.setStudentState((int) m_fromServer.getStateFields()[1]);
-        //boolean result = (boolean) m_fromServer.getReturnValue();
-
-        com.close ();
+        Message m_toServer = new Message(FunctionsIds.EXIT, params, state_fields, null);
+        vStudentCallFunctionMsg(s, com, m_toServer);
     }
 
     @Override
@@ -457,92 +245,50 @@ public class TableStub implements ITable_Student, ITable_Waiter {
 
         Student s = (Student) Thread.currentThread();
         CommunicationChannel com = new CommunicationChannel(serverHostName, serverPortNumb);
-        Object[] params = new Object[1];
-        Object[] state_fields = new Object[2];
-        state_fields[0] = s.getStudentId();
-        state_fields[1] = s.getStudentState();
+        Object[] params = new Object[0];
+        Object[] state_fields = new Object[]{
+                s.getStudentId(),
+                s.getStudentState()
+        };
 
         /* operation number to be defined */
-        Message m_toServer = new Message(30, params, 0, state_fields, 2, null);
-        Message m_fromServer;
-
-        while (!com.open ())
-        { try
-        { Thread.currentThread ().sleep ((long) (10));
-        }
-        catch (InterruptedException e) {}
-        }
-
-        com.writeObject (m_toServer);
-
-        m_fromServer = (Message) com.readObject();
-
-        s.setStudentState((int) m_fromServer.getStateFields()[1]);
-        boolean result = (boolean) m_fromServer.getReturnValue();
-
-        com.close ();
-        return result;
+        Message m_toServer = new Message(FunctionsIds.END_EATING, params, state_fields, null);
+        return (boolean) studentCallFunctionMsg(s, com, m_toServer);
     }
 
     @Override
     public void signalTheWaiter() {
         Student s = (Student) Thread.currentThread();
         CommunicationChannel com = new CommunicationChannel(serverHostName, serverPortNumb);
-        Object[] params = new Object[1];
-        Object[] state_fields = new Object[2];
-        state_fields[0] = s.getStudentId();
-        state_fields[1] = s.getStudentState();
+        Object[] params = new Object[0];
+        Object[] state_fields = new Object[]{
+                s.getStudentId(),
+                s.getStudentState()
+        };
 
         /* operation number to be defined */
-        Message m_toServer = new Message(31, params, 0, state_fields, 2, null);
-        Message m_fromServer;
+        Message m_toServer = new Message(FunctionsIds.SIGNAL_THE_WAITER, params, state_fields, null);
+        vStudentCallFunctionMsg(s, com, m_toServer);
 
-        while (!com.open ())
-        { try
-        { Thread.currentThread ().sleep ((long) (10));
-        }
-        catch (InterruptedException e) {}
-        }
+    }
 
-        com.writeObject (m_toServer);
-
-        m_fromServer = (Message) com.readObject();
-
-        s.setStudentState((int) m_fromServer.getStateFields()[1]);
-        //boolean result = (boolean) m_fromServer.getReturnValue();
-
-        com.close ();
-
+    private void vStudentCallFunctionMsg(Student s, CommunicationChannel com, Message m_toServer) {
+        studentCallFunctionMsg(s, com, m_toServer);
     }
 
     @Override
     public void saluteTheClient() {
         Waiter waiter = (Waiter) Thread.currentThread();
         CommunicationChannel com = new CommunicationChannel(serverHostName, serverPortNumb);
-        Object[] params = new Object[1];
-        Object[] state_fields = new Object[2];
-        state_fields[0] =waiter.getWaiterId();
-        state_fields[1] = waiter.getWaiterState();
+        Object[] params = new Object[0];
+        Object[] state_fields = new Object[]{
+                waiter.getWaiterId(),
+                waiter.getWaiterState()
+        };
 
         /* operation number to be defined */
-        Message m_toServer = new Message(32, params, 0, state_fields, 2, null);
-        Message m_fromServer;
-
-        while (!com.open ())
-        { try
-        { Thread.currentThread ().sleep ((long) (10));
-        }
-        catch (InterruptedException e) {}
-        }
-
-        com.writeObject (m_toServer);
-
-        m_fromServer = (Message) com.readObject();
-
-        waiter.setWaiterState((int) m_fromServer.getStateFields()[1]);
-        //boolean result = (boolean) m_fromServer.getReturnValue();
-
-        com.close ();
+        Message m_toServer = new Message(FunctionsIds.SALUTE_THE_CLIENT, params, state_fields, null);
+        waiterCallFunctionMsg(com, m_toServer, waiter);
 
     }
 
@@ -550,30 +296,15 @@ public class TableStub implements ITable_Student, ITable_Waiter {
     public void getThePad() {
         Waiter waiter = (Waiter) Thread.currentThread();
         CommunicationChannel com = new CommunicationChannel(serverHostName, serverPortNumb);
-        Object[] params = new Object[1];
-        Object[] state_fields = new Object[2];
-        state_fields[0] =waiter.getWaiterId();
-        state_fields[1] = waiter.getWaiterState();
+        Object[] params = new Object[0];
+        Object[] state_fields = new Object[]{
+                waiter.getWaiterId(),
+                waiter.getWaiterState()
+        };
 
         /* operation number to be defined */
-        Message m_toServer = new Message(33, params, 0, state_fields, 2, null);
-        Message m_fromServer;
-
-        while (!com.open ())
-        { try
-        { Thread.currentThread ().sleep ((long) (10));
-        }
-        catch (InterruptedException e) {}
-        }
-
-        com.writeObject (m_toServer);
-
-        m_fromServer = (Message) com.readObject();
-
-        waiter.setWaiterState((int) m_fromServer.getStateFields()[1]);
-        //boolean result = (boolean) m_fromServer.getReturnValue();
-
-        com.close ();
+        Message m_toServer = new Message(FunctionsIds.GET_THE_PAD, params, state_fields, null);
+        waiterCallFunctionMsg(com, m_toServer, waiter);
 
     }
 
@@ -581,22 +312,26 @@ public class TableStub implements ITable_Student, ITable_Waiter {
     public void deliverPortion(int portionsServed) {
         Waiter waiter = (Waiter) Thread.currentThread();
         CommunicationChannel com = new CommunicationChannel(serverHostName, serverPortNumb);
-        Object[] params = new Object[1];
-        params[0] = portionsServed;
-        Object[] state_fields = new Object[2];
-        state_fields[0] = waiter.getWaiterId();
-        state_fields[1] = waiter.getWaiterState();
+        Object[] params = new Object[] {portionsServed};
+        Object[] state_fields = new Object[]{
+                waiter.getWaiterId(),
+                waiter.getWaiterState()
+        };
 
         /* operation number to be defined */
-        Message m_toServer = new Message(FunctionsIds.DELIVERPORTION, params,
-                0, state_fields, 2, null);
+        Message m_toServer = new Message(FunctionsIds.DELIVER_PORTION, params,
+                state_fields, null);
+        waiterCallFunctionMsg(com, m_toServer, waiter);
+
+    }
+
+    private void waiterCallFunctionMsg(CommunicationChannel com, Message m_toServer, Waiter waiter) {
         Message m_fromServer;
 
-        while (!com.open ())
-        { try
-        { Thread.currentThread ().sleep ((long) (10));
-        }
-        catch (InterruptedException e) {}
+        while (!com.open ()) {
+            try {
+                Thread.currentThread ().sleep (10L);
+            } catch (InterruptedException ignored) {}
         }
 
         com.writeObject (m_toServer);
@@ -607,37 +342,21 @@ public class TableStub implements ITable_Student, ITable_Waiter {
         //boolean result = (boolean) m_fromServer.getReturnValue();
 
         com.close ();
-
     }
 
     @Override
     public void presentTheBill() {
         Waiter waiter = (Waiter) Thread.currentThread();
         CommunicationChannel com = new CommunicationChannel(serverHostName, serverPortNumb);
-        Object[] params = new Object[1];
-        Object[] state_fields = new Object[2];
-        state_fields[0] =waiter.getWaiterId();
-        state_fields[1] = waiter.getWaiterState();
+        Object[] params = new Object[0];
+        Object[] state_fields = new Object[]{
+                waiter.getWaiterId(),
+                waiter.getWaiterState()
+        };
 
         /* operation number to be defined */
-        Message m_toServer = new Message(35, params, 0, state_fields, 2, null);
-        Message m_fromServer;
-
-        while (!com.open ())
-        { try
-        { Thread.currentThread ().sleep ((long) (10));
-        }
-        catch (InterruptedException e) {}
-        }
-
-        com.writeObject (m_toServer);
-
-        m_fromServer = (Message) com.readObject();
-
-        waiter.setWaiterState((int) m_fromServer.getStateFields()[1]);
-        //boolean result = (boolean) m_fromServer.getReturnValue();
-
-        com.close ();
+        Message m_toServer = new Message(FunctionsIds.PRESENT_THE_BILL, params, state_fields, null);
+        waiterCallFunctionMsg(com, m_toServer, waiter);
 
     }
 
@@ -645,50 +364,40 @@ public class TableStub implements ITable_Student, ITable_Waiter {
     public void lookAround() {
         Waiter waiter = (Waiter) Thread.currentThread();
         CommunicationChannel com = new CommunicationChannel(serverHostName, serverPortNumb);
-        Object[] params = new Object[1];
-        Object[] state_fields = new Object[2];
-        state_fields[0] =waiter.getWaiterId();
-        state_fields[1] = waiter.getWaiterState();
+        Object[] params = new Object[0];
+        Object[] state_fields = new Object[]{
+                waiter.getWaiterId(),
+                waiter.getWaiterState()
+        };
 
         /* operation number to be defined */
-        Message m_toServer = new Message(36, params, 0, state_fields, 2, null);
-        Message m_fromServer;
-
-        while (!com.open ())
-        { try
-        { Thread.currentThread ().sleep ((long) (10));
-        }
-        catch (InterruptedException e) {}
-        }
-
-        com.writeObject (m_toServer);
-
-        m_fromServer = (Message) com.readObject();
-
-        waiter.setWaiterState((int) m_fromServer.getStateFields()[1]);
-        //boolean result = (boolean) m_fromServer.getReturnValue();
-
-        com.close ();
+        Message m_toServer = new Message(FunctionsIds.LOOK_AROUND_TABLE, params, state_fields, null);
+        waiterCallFunctionMsg(com, m_toServer, waiter);
     }
 
     public int[] askForReadyOrders() {
 
         Student s = (Student) Thread.currentThread();
         CommunicationChannel com = new CommunicationChannel(serverHostName, serverPortNumb);
-        Object[] params = new Object[1];
-        Object[] state_fields = new Object[2];
-        state_fields[0] = s.getStudentId();
-        state_fields[1] = s.getStudentState();
+        Object[] params = new Object[0];
+        Object[] state_fields = new Object[]{
+                s.getStudentId(),
+                s.getStudentState()
+        };
 
         /* operation number to be defined */
-        Message m_toServer = new Message(37, params, 0, state_fields, 2, null);
+        Message m_toServer = new Message(FunctionsIds.ASK_FOR_READY_ORDERS, params, state_fields, null);
+
+        return  (int[]) studentCallFunctionMsg(s, com, m_toServer);
+    }
+
+    private Object studentCallFunctionMsg(Student s, CommunicationChannel com, Message m_toServer) {
         Message m_fromServer;
 
-        while (!com.open ())
-        { try
-        { Thread.currentThread ().sleep ((long) (10));
-        }
-        catch (InterruptedException e) {}
+        while (!com.open ()) {
+            try {
+                Thread.currentThread ().sleep (10L);
+            } catch (InterruptedException ignored) {}
         }
 
         com.writeObject (m_toServer);
@@ -696,10 +405,12 @@ public class TableStub implements ITable_Student, ITable_Waiter {
         m_fromServer = (Message) com.readObject();
 
         s.setStudentState((int) m_fromServer.getStateFields()[1]);
-        int[] result = (int[]) m_fromServer.getReturnValue();
 
-        com.close ();
-        return result;
+        Object returnVal = m_fromServer.getReturnValue();
+
+        com.close();
+
+        return returnVal;
     }
 
 
@@ -711,17 +422,15 @@ public class TableStub implements ITable_Student, ITable_Waiter {
 
     public void shutdown() {
         CommunicationChannel com = new CommunicationChannel (serverHostName, serverPortNumb);
-        Object[] params = new Object[1];
-        Object[] state_fields = new Object[1];
+        Object[] params = new Object[0];
+        Object[] state_fields = new Object[0];
 
-        Message m_toServer = new Message(44, params, 0, state_fields, 0, null);
-        Message m_fromServer;
+        Message m_toServer = new Message(FunctionsIds.SHUTDOWN, params, state_fields, null);
 
-        while (!com.open ())
-        { try
-        { Thread.currentThread ().sleep ((long) (10));
-        }
-        catch (InterruptedException e) {}
+        while (!com.open ()) {
+            try {
+                Thread.currentThread ().sleep (10L);
+            } catch (InterruptedException ignored) {}
         }
 
         com.writeObject (m_toServer);

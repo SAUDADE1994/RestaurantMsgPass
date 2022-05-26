@@ -4,6 +4,7 @@ import clientSide.entities.Chef;
 import clientSide.entities.Waiter;
 import commInfra.CommunicationChannel;
 import commInfra.Message;
+import serverSide.main.FunctionsIds;
 
 public class KitchenStub implements IKitchen_Chef, IKitchen_Waiter {
 
@@ -18,23 +19,26 @@ public class KitchenStub implements IKitchen_Chef, IKitchen_Waiter {
 
     @Override
     public void watchTheNews() {
-
         Chef chef = (Chef) Thread.currentThread();
         CommunicationChannel com = new CommunicationChannel(serverHostName, serverPortNumb);
-        Object[] params = new Object[1];
-        Object[] state_fields = new Object[2];
-        state_fields[0] = chef.getChefId();
-        state_fields[1] = chef.getChefState();
+        Object[] state_fields = new Object[]{
+                chef.getChefId(), chef.getChefState()
+        };
+        Object[] params = new Object[0];
 
         /* operation number to be defined */
-        Message m_toServer = new Message(3, params, 0, state_fields, 2, null);
+        Message m_toServer = new Message(FunctionsIds.WATCH_THE_NEWS, params, state_fields, null);
+        chefCallFunctionMsg(chef, com, m_toServer);
+
+    }
+
+    private boolean chefCallFunctionMsg(Chef chef, CommunicationChannel com, Message m_toServer) {
         Message m_fromServer;
 
-        while (!com.open ())
-        { try
-        { Thread.currentThread ().sleep ((long) (10));
-        }
-        catch (InterruptedException e) {}
+        while (!com.open ()) {
+            try {
+                Thread.currentThread().sleep (10L);
+            } catch (InterruptedException ignored) {}
         }
 
         com.writeObject (m_toServer);
@@ -42,70 +46,40 @@ public class KitchenStub implements IKitchen_Chef, IKitchen_Waiter {
         m_fromServer = (Message) com.readObject();
 
         chef.setChefState((int) m_fromServer.getStateFields()[1]);
-        //boolean result = (boolean) m_fromServer.getReturnValue();
+        boolean result = (boolean) m_fromServer.getReturnValue();
 
         com.close ();
 
+        return result;
     }
 
     @Override
     public void startPreparing() {
         Chef chef = (Chef) Thread.currentThread();
         CommunicationChannel com = new CommunicationChannel(serverHostName, serverPortNumb);
-        Object[] params = new Object[1];
-        Object[] state_fields = new Object[2];
-        state_fields[0] = chef.getChefId();
-        state_fields[1] = chef.getChefState();
+        Object[] state_fields = new Object[]{
+                chef.getChefId(), chef.getChefState()
+        };
+        Object[] params = new Object[0];
 
         /* operation number to be defined */
-        Message m_toServer = new Message(4, params, 0, state_fields, 2, null);
-        Message m_fromServer;
-
-        while (!com.open ())
-        { try
-        { Thread.currentThread ().sleep ((long) (10));
-        }
-        catch (InterruptedException e) {}
-        }
-
-        com.writeObject (m_toServer);
-
-        m_fromServer = (Message) com.readObject();
-
-        chef.setChefState((int) m_fromServer.getStateFields()[1]);
-        //boolean result = (boolean) m_fromServer.getReturnValue();
-
-        com.close ();
+        Message m_toServer = new Message(4, params, state_fields, null);
+        chefCallFunctionMsg(chef, com, m_toServer);
     }
 
     @Override
     public void alertTheWaiter() {
         Chef chef = (Chef) Thread.currentThread();
         CommunicationChannel com = new CommunicationChannel(serverHostName, serverPortNumb);
-        Object[] params = new Object[1];
-        Object[] state_fields = new Object[2];
-        state_fields[0] = chef.getChefId();
-        state_fields[1] = chef.getChefState();
+        Object[] state_fields = new Object[]{
+                chef.getChefId(), chef.getChefState()
+        };
+        Object[] params = new Object[0];
 
         /* operation number to be defined */
-        Message m_toServer = new Message(5, params, 0, state_fields, 2, null);
-        Message m_fromServer;
+        Message m_toServer = new Message(5, params, state_fields, null);
 
-        while (!com.open ())
-        { try
-        { Thread.currentThread ().sleep ((long) (10));
-        }
-        catch (InterruptedException e) {}
-        }
-
-        com.writeObject (m_toServer);
-
-        m_fromServer = (Message) com.readObject();
-
-        chef.setChefState((int) m_fromServer.getStateFields()[1]);
-        //boolean result = (boolean) m_fromServer.getReturnValue();
-
-        com.close ();
+        chefCallFunctionMsg(chef, com, m_toServer);
 
     }
 
@@ -113,30 +87,14 @@ public class KitchenStub implements IKitchen_Chef, IKitchen_Waiter {
     public void proceedToPresentation() {
         Chef chef = (Chef) Thread.currentThread();
         CommunicationChannel com = new CommunicationChannel(serverHostName, serverPortNumb);
-        Object[] params = new Object[1];
-        Object[] state_fields = new Object[2];
-        state_fields[0] = chef.getChefId();
-        state_fields[1] = chef.getChefState();
+        Object[] state_fields = new Object[]{
+                chef.getChefId(), chef.getChefState()
+        };
+        Object[] params = new Object[0];
 
         /* operation number to be defined */
-        Message m_toServer = new Message(6, params, 0, state_fields, 2, null);
-        Message m_fromServer;
-
-        while (!com.open ())
-        { try
-        { Thread.currentThread ().sleep ((long) (10));
-        }
-        catch (InterruptedException e) {}
-        }
-
-        com.writeObject (m_toServer);
-
-        m_fromServer = (Message) com.readObject();
-
-        chef.setChefState((int) m_fromServer.getStateFields()[1]);
-        //boolean result = (boolean) m_fromServer.getReturnValue();
-
-        com.close ();
+        Message m_toServer = new Message(6, params, state_fields, null);
+        chefCallFunctionMsg(chef, com, m_toServer);
 
     }
 
@@ -144,30 +102,14 @@ public class KitchenStub implements IKitchen_Chef, IKitchen_Waiter {
     public void haveNextPortionReady() {
         Chef chef = (Chef) Thread.currentThread();
         CommunicationChannel com = new CommunicationChannel(serverHostName, serverPortNumb);
-        Object[] params = new Object[1];
-        Object[] state_fields = new Object[2];
-        state_fields[0] = chef.getChefId();
-        state_fields[1] = chef.getChefState();
+        Object[] state_fields = new Object[]{
+                chef.getChefId(), chef.getChefState()
+        };
+        Object[] params = new Object[0];
 
         /* operation number to be defined */
-        Message m_toServer = new Message(7, params, 0, state_fields, 2, null);
-        Message m_fromServer;
-
-        while (!com.open ())
-        { try
-        { Thread.currentThread ().sleep ((long) (10));
-        }
-        catch (InterruptedException e) {}
-        }
-
-        com.writeObject (m_toServer);
-
-        m_fromServer = (Message) com.readObject();
-
-        chef.setChefState((int) m_fromServer.getStateFields()[1]);
-        //boolean result = (boolean) m_fromServer.getReturnValue();
-
-        com.close ();
+        Message m_toServer = new Message(7, params, state_fields, null);
+        chefCallFunctionMsg(chef, com, m_toServer);
 
     }
 
@@ -175,62 +117,30 @@ public class KitchenStub implements IKitchen_Chef, IKitchen_Waiter {
     public void continuePreparation() {
         Chef chef = (Chef) Thread.currentThread();
         CommunicationChannel com = new CommunicationChannel(serverHostName, serverPortNumb);
-        Object[] params = new Object[1];
-        Object[] state_fields = new Object[2];
-        state_fields[0] = chef.getChefId();
-        state_fields[1] = chef.getChefState();
+        Object[] state_fields = new Object[]{
+                chef.getChefId(), chef.getChefState()
+        };
+        Object[] params = new Object[0];
 
         /* operation number to be defined */
-        Message m_toServer = new Message(8, params, 0, state_fields, 2, null);
-        Message m_fromServer;
+        Message m_toServer = new Message(FunctionsIds.CONTINUE_PREPARATION, params, state_fields, null);
 
-        while (!com.open ())
-        { try
-        { Thread.currentThread ().sleep ((long) (10));
-        }
-        catch (InterruptedException e) {}
-        }
-
-        com.writeObject (m_toServer);
-
-        m_fromServer = (Message) com.readObject();
-
-        chef.setChefState((int) m_fromServer.getStateFields()[1]);
-        //boolean result = (boolean) m_fromServer.getReturnValue();
-
-        com.close ();
+        chefCallFunctionMsg(chef, com, m_toServer);
     }
 
     @Override
     public boolean haveAllPortionsBeenDelivered() {
         Chef chef = (Chef) Thread.currentThread();
         CommunicationChannel com = new CommunicationChannel(serverHostName, serverPortNumb);
-        Object[] params = new Object[1];
-        Object[] state_fields = new Object[2];
-        state_fields[0] = chef.getChefId();
-        state_fields[1] = chef.getChefState();
+        Object[] state_fields = new Object[]{
+                chef.getChefId(), chef.getChefState()
+        };
+        Object[] params = new Object[0];
 
         /* operation number to be defined */
-        Message m_toServer = new Message(9, params, 0, state_fields, 2, null);
-        Message m_fromServer;
+        Message m_toServer = new Message(FunctionsIds.HAVE_ALL_PORTIONS_BEEN_DELIVERED, params, state_fields, null);
 
-        while (!com.open ())
-        { try
-        { Thread.currentThread ().sleep ((long) (10));
-        }
-        catch (InterruptedException e) {}
-        }
-
-        com.writeObject (m_toServer);
-
-        m_fromServer = (Message) com.readObject();
-
-        chef.setChefState((int) m_fromServer.getStateFields()[1]);
-        boolean result = (boolean) m_fromServer.getReturnValue();
-
-        com.close ();
-
-        return result;
+        return chefCallFunctionMsg(chef, com, m_toServer);
     }
 
     @Override
@@ -238,61 +148,30 @@ public class KitchenStub implements IKitchen_Chef, IKitchen_Waiter {
 
         Chef chef = (Chef) Thread.currentThread();
         CommunicationChannel com = new CommunicationChannel(serverHostName, serverPortNumb);
-        Object[] params = new Object[1];
-        Object[] state_fields = new Object[2];
-        state_fields[0] = chef.getChefId();
-        state_fields[1] = chef.getChefState();
+        Object[] state_fields = new Object[]{
+                chef.getChefId(), chef.getChefState()
+        };
+        Object[] params = new Object[0];
 
         /* operation number to be defined */
-        Message m_toServer = new Message(10, params, 0, state_fields, 2, null);
-        Message m_fromServer;
+        Message m_toServer = new Message(FunctionsIds.HAS_THE_ORDER_BEEN_COMPLETED, params, state_fields, null);
 
-        while (!com.open ())
-        { try
-        { Thread.currentThread ().sleep ((long) (10));
-        }
-        catch (InterruptedException e) {}
-        }
-
-        com.writeObject (m_toServer);
-
-        m_fromServer = (Message) com.readObject();
-
-        chef.setChefState((int) m_fromServer.getStateFields()[1]);
-        boolean result = (boolean) m_fromServer.getReturnValue();
-
-        com.close ();
-        return result;
+        return chefCallFunctionMsg(chef, com, m_toServer);
     }
 
     @Override
     public void cleanUp() {
         Chef chef = (Chef) Thread.currentThread();
         CommunicationChannel com = new CommunicationChannel(serverHostName, serverPortNumb);
-        Object[] params = new Object[1];
-        Object[] state_fields = new Object[2];
-        state_fields[0] = chef.getChefId();
-        state_fields[1] = chef.getChefState();
+        Object[] state_fields = new Object[]{
+                chef.getChefId(), chef.getChefState()
+        };
+        Object[] params = new Object[0];
 
         /* operation number to be defined */
-        Message m_toServer = new Message(11, params, 0, state_fields, 2, null);
-        Message m_fromServer;
+        Message m_toServer = new Message(FunctionsIds.CLEAN_UP, params, state_fields, null);
 
-        while (!com.open ())
-        { try
-        { Thread.currentThread ().sleep ((long) (10));
-        }
-        catch (InterruptedException e) {}
-        }
-
-        com.writeObject (m_toServer);
-
-        m_fromServer = (Message) com.readObject();
-
-        chef.setChefState((int) m_fromServer.getStateFields()[1]);
-        //boolean result = (boolean) m_fromServer.getReturnValue();
-
-        com.close ();
+        chefCallFunctionMsg(chef, com, m_toServer);
 
     }
 
@@ -300,30 +179,15 @@ public class KitchenStub implements IKitchen_Chef, IKitchen_Waiter {
     public void handTheNoteToTheChef() {
         Waiter waiter = (Waiter) Thread.currentThread();
         CommunicationChannel com = new CommunicationChannel(serverHostName, serverPortNumb);
-        Object[] params = new Object[1];
-        Object[] state_fields = new Object[2];
-        state_fields[0] =waiter.getWaiterId();
-        state_fields[1] = waiter.getWaiterState();
+        Object[] state_fields = new Object[] {
+                waiter.getWaiterId(), waiter.getWaiterState()
+        };
+        Object[] params = new Object[0];
 
         /* operation number to be defined */
-        Message m_toServer = new Message(12, params, 0, state_fields, 2, null);
-        Message m_fromServer;
+        Message m_toServer = new Message(FunctionsIds.HAND_THE_NOTE_TO_THE_CHEF, params, state_fields, null);
 
-        while (!com.open ())
-        { try
-        { Thread.currentThread ().sleep ((long) (10));
-        }
-        catch (InterruptedException e) {}
-        }
-
-        com.writeObject (m_toServer);
-
-        m_fromServer = (Message) com.readObject();
-
-        waiter.setWaiterState((int) m_fromServer.getStateFields()[1]);
-        //boolean result = (boolean) m_fromServer.getReturnValue();
-
-        com.close ();
+        waiterCallFunctionMsg(waiter, com, m_toServer);
 
     }
 
@@ -332,20 +196,23 @@ public class KitchenStub implements IKitchen_Chef, IKitchen_Waiter {
 
         Waiter waiter = (Waiter) Thread.currentThread();
         CommunicationChannel com = new CommunicationChannel(serverHostName, serverPortNumb);
-        Object[] params = new Object[1];
-        Object[] state_fields = new Object[2];
-        state_fields[0] =waiter.getWaiterId();
-        state_fields[1] = waiter.getWaiterState();
+        Object[] state_fields = new Object[] {
+                waiter.getWaiterId(), waiter.getWaiterState()
+        };
+        Object[] params = new Object[0];
 
         /* operation number to be defined */
-        Message m_toServer = new Message(13, params, 0, state_fields, 2, null);
+        Message m_toServer = new Message(FunctionsIds.HAVE_ALL_PORTIONS_BEEN_COLLECTED, params, state_fields, null);
+        return waiterCallFunctionMsg(waiter, com, m_toServer);
+    }
+
+    private boolean waiterCallFunctionMsg(Waiter waiter, CommunicationChannel com, Message m_toServer) {
         Message m_fromServer;
 
-        while (!com.open ())
-        { try
-        { Thread.currentThread ().sleep ((long) (10));
-        }
-        catch (InterruptedException e) {}
+        while (!com.open ()) {
+            try {
+                Thread.currentThread().sleep (10L);
+            } catch (InterruptedException ignored) {}
         }
 
         com.writeObject (m_toServer);
@@ -363,20 +230,19 @@ public class KitchenStub implements IKitchen_Chef, IKitchen_Waiter {
     public void collectPortion() {
         Waiter waiter = (Waiter) Thread.currentThread();
         CommunicationChannel com = new CommunicationChannel(serverHostName, serverPortNumb);
-        Object[] params = new Object[1];
-        Object[] state_fields = new Object[2];
-        state_fields[0] =waiter.getWaiterId();
-        state_fields[1] = waiter.getWaiterState();
+        Object[] state_fields = new Object[] {
+                waiter.getWaiterId(), waiter.getWaiterState()
+        };
+        Object[] params = new Object[0];
 
         /* operation number to be defined */
-        Message m_toServer = new Message(14, params, 0, state_fields, 2, null);
+        Message m_toServer = new Message(FunctionsIds.COLLECT_PORTION, params, state_fields, null);
         Message m_fromServer;
 
-        while (!com.open ())
-        { try
-        { Thread.currentThread ().sleep ((long) (10));
-        }
-        catch (InterruptedException e) {}
+        while (!com.open ()) {
+            try {
+                Thread.currentThread ().sleep (10L);
+            } catch (InterruptedException ignored) {}
         }
 
         com.writeObject (m_toServer);
@@ -393,30 +259,15 @@ public class KitchenStub implements IKitchen_Chef, IKitchen_Waiter {
     public void lookAround() {
         Waiter waiter = (Waiter) Thread.currentThread();
         CommunicationChannel com = new CommunicationChannel(serverHostName, serverPortNumb);
-        Object[] params = new Object[1];
-        Object[] state_fields = new Object[2];
-        state_fields[0] =waiter.getWaiterId();
-        state_fields[1] = waiter.getWaiterState();
+        Object[] state_fields = new Object[] {
+                waiter.getWaiterId(), waiter.getWaiterState()
+        };
+        Object[] params = new Object[0];
 
         /* operation number to be defined */
-        Message m_toServer = new Message(15, params, 0, state_fields, 2, null);
-        Message m_fromServer;
+        Message m_toServer = new Message(FunctionsIds.LOOK_AROUND_KITCHEN, params, state_fields, null);
 
-        while (!com.open ())
-        { try
-        { Thread.currentThread ().sleep ((long) (10));
-        }
-        catch (InterruptedException e) {}
-        }
-
-        com.writeObject (m_toServer);
-
-        m_fromServer = (Message) com.readObject();
-
-        waiter.setWaiterState((int) m_fromServer.getStateFields()[1]);
-        //boolean result = (boolean) m_fromServer.getReturnValue();
-
-        com.close ();
+        waiterCallFunctionMsg(waiter, com, m_toServer);
     }
 
     /**
@@ -427,17 +278,17 @@ public class KitchenStub implements IKitchen_Chef, IKitchen_Waiter {
 
     public void shutdown() {
         CommunicationChannel com = new CommunicationChannel (serverHostName, serverPortNumb);
-        Object[] params = new Object[1];
-        Object[] state_fields = new Object[1];
+        Object[] state_fields = new Object[0];
+        Object[] params = new Object[0];
 
-        Message m_toServer = new Message(44, params, 0, state_fields, 0, null);
+        Message m_toServer = new Message(FunctionsIds.SHUTDOWN, params, state_fields, null);
         Message m_fromServer;
 
         while (!com.open ())
         { try
-        { Thread.currentThread ().sleep ((long) (10));
+        { Thread.currentThread ().sleep (10L);
         }
-        catch (InterruptedException e) {}
+        catch (InterruptedException ignored) {}
         }
 
         com.writeObject (m_toServer);

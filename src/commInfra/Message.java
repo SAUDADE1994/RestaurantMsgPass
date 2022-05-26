@@ -57,22 +57,20 @@ public class Message implements Serializable {
     Object return_value;
     
     /**
-     *  Instantiation of a Message.
+     * Instantiation of a Message.
      *
-     *    @param operation field where the function called is coded
-     *    @param params array to store all the parameters needed for the correct execution of the operation
-     *    @param size_params number of parameters that are needed by the operation
-     *    @param state_fields array to store all the attributes related to the entity that calls the operation
-     *    @param size_state_fields numbers of attributes from the entity needed for the correct execution of the operation
-     *    @param return_value fields to store the result from the operation
+     * @param operation    field where the function called is coded
+     * @param params       array to store all the parameters needed for the correct execution of the operation
+     * @param state_fields array to store all the attributes related to the entity that calls the operation
+     * @param return_value fields to store the result from the operation
      */
     
-    public Message(int operation, Object[] params, int size_params, Object[] state_fields, int size_state_fields, Object return_value){
+    public Message(int operation, Object[] params, Object[] state_fields, Object return_value){
         this.operation = operation;
         this.params = params;
-        this.size_params = size_params;
+        this.size_params = params.length;
         this.state_fields = state_fields;
-        this.size_state_fields = size_state_fields;
+        this.size_state_fields = state_fields.length;
         this.return_value = return_value;
     }
     

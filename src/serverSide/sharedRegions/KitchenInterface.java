@@ -27,7 +27,7 @@ public class KitchenInterface implements  SharedRegionInterface{
         Object[] state;
 
         switch (message.getOperation()) {
-            case FunctionsIds.WATCHTHENEWS:
+            case FunctionsIds.WATCH_THE_NEWS:
                 chef = (Chef) Thread.currentThread();
                 chef.setChefId((int) message.getStateFields()[0]);
                 chef.setChefState((int) message.getStateFields()[1]);
@@ -36,7 +36,7 @@ public class KitchenInterface implements  SharedRegionInterface{
                 state = new Object[]{chef.getChefId(), chef.getChefState()};
                 break;
 
-            case FunctionsIds.STARTPREPARING:
+            case FunctionsIds.START_PREPARING:
                 chef = (Chef) Thread.currentThread();
                 chef.setChefId((int) message.getStateFields()[0]);
                 chef.setChefState((int) message.getStateFields()[1]);
@@ -44,7 +44,7 @@ public class KitchenInterface implements  SharedRegionInterface{
                 kitchen.startPreparing();
                 state = new Object[]{chef.getChefId(), chef.getChefState()};
                 break;
-            case FunctionsIds.ALERTWAITER:
+            case FunctionsIds.ALERT_WAITER:
                 chef = (Chef) Thread.currentThread();
                 chef.setChefId((int) message.getStateFields()[0]);
                 chef.setChefState((int) message.getStateFields()[1]);
@@ -52,7 +52,7 @@ public class KitchenInterface implements  SharedRegionInterface{
                 kitchen.alertTheWaiter();
                 state = new Object[]{chef.getChefId(), chef.getChefState()};
                 break;
-            case FunctionsIds.PROCEEDTOPRESENTATION:
+            case FunctionsIds.PROCEED_TO_PRESENTATION:
                 chef = (Chef) Thread.currentThread();
                 chef.setChefId((int) message.getStateFields()[0]);
                 chef.setChefState((int) message.getStateFields()[1]);
@@ -60,7 +60,7 @@ public class KitchenInterface implements  SharedRegionInterface{
                 kitchen.proceedToPresentation();
                 state = new Object[]{chef.getChefId(), chef.getChefState()};
                 break;
-            case FunctionsIds.HAVENEXTPORTIONREADY:
+            case FunctionsIds.HAVE_NEXT_PORTION_READY:
                 chef = (Chef) Thread.currentThread();
                 chef.setChefId((int) message.getStateFields()[0]);
                 chef.setChefState((int) message.getStateFields()[1]);
@@ -68,7 +68,7 @@ public class KitchenInterface implements  SharedRegionInterface{
                 kitchen.haveNextPortionReady();
                 state = new Object[]{chef.getChefId(), chef.getChefState()};
                 break;
-            case FunctionsIds.CONTINUEPREPARATION:
+            case FunctionsIds.CONTINUE_PREPARATION:
                 chef = (Chef) Thread.currentThread();
                 chef.setChefId((int) message.getStateFields()[0]);
                 chef.setChefState((int) message.getStateFields()[1]);
@@ -76,7 +76,7 @@ public class KitchenInterface implements  SharedRegionInterface{
                 kitchen.continuePreparation();
                 state = new Object[]{chef.getChefId(), chef.getChefState()};
                 break;
-            case FunctionsIds.HAVEALLPORTIONSBEENDELIVERED:
+            case FunctionsIds.HAVE_ALL_PORTIONS_BEEN_DELIVERED:
                 chef = (Chef) Thread.currentThread();
                 chef.setChefId((int) message.getStateFields()[0]);
                 chef.setChefState((int) message.getStateFields()[1]);
@@ -84,7 +84,7 @@ public class KitchenInterface implements  SharedRegionInterface{
                 res = kitchen.haveAllPortionsBeenDelivered();
                 state = new Object[]{chef.getChefId(), chef.getChefState()};
                 break;
-            case FunctionsIds.HASTHEORDERBEENCOMPLETED:
+            case FunctionsIds.HAS_THE_ORDER_BEEN_COMPLETED:
                 chef = (Chef) Thread.currentThread();
                 chef.setChefId((int) message.getStateFields()[0]);
                 chef.setChefState((int) message.getStateFields()[1]);
@@ -92,7 +92,7 @@ public class KitchenInterface implements  SharedRegionInterface{
                 res = kitchen.hasTheOrderBeenCompleted();
                 state = new Object[]{chef.getChefId(), chef.getChefState()};
                 break;
-            case FunctionsIds.CLEANUP:
+            case FunctionsIds.CLEAN_UP:
                 chef = (Chef) Thread.currentThread();
                 chef.setChefId((int) message.getStateFields()[0]);
                 chef.setChefState((int) message.getStateFields()[1]);
@@ -101,7 +101,7 @@ public class KitchenInterface implements  SharedRegionInterface{
                 state = new Object[]{chef.getChefId(), chef.getChefState()};
                 break;
 
-            case FunctionsIds.HANDTHENOTETOTHECHEF:
+            case FunctionsIds.HAND_THE_NOTE_TO_THE_CHEF:
                 waiter = (Waiter) Thread.currentThread();
                 waiter.setWaiterId((int) message.getStateFields()[0]);
                 waiter.setWaiterState((int) message.getStateFields()[1]);
@@ -109,7 +109,7 @@ public class KitchenInterface implements  SharedRegionInterface{
                 kitchen.handTheNoteToTheChef();
                 state = new Object[]{waiter.getWaiterId(), waiter.getWaiterState()};
                 break;
-            case FunctionsIds.HAVEALLPORTIONSBEENCOLECTED:
+            case FunctionsIds.HAVE_ALL_PORTIONS_BEEN_COLLECTED:
                 waiter = (Waiter) Thread.currentThread();
                 waiter.setWaiterId((int) message.getStateFields()[0]);
                 waiter.setWaiterState((int) message.getStateFields()[1]);
@@ -117,7 +117,7 @@ public class KitchenInterface implements  SharedRegionInterface{
                 res = kitchen.haveAllPortionsBeenCollected();
                 state = new Object[]{waiter.getWaiterId(), waiter.getWaiterState()};
                 break;
-            case FunctionsIds.LOOKAROUND_KITCHEN:
+            case FunctionsIds.LOOK_AROUND_KITCHEN:
                 waiter = (Waiter) Thread.currentThread();
                 waiter.setWaiterId((int) message.getStateFields()[0]);
                 waiter.setWaiterState((int) message.getStateFields()[1]);
