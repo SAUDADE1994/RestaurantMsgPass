@@ -86,7 +86,7 @@ public class Student extends Thread {
             table.prepareTheOrder();                    // prepares all the orders and signals waiter
             while (!table.hasEverybodyChosen()) {
                 // Get the id
-                Integer[] readyStudents = table.askForReadyOrders();
+                int[] readyStudents = table.askForReadyOrders();
                 if (readyStudents[0] != 0) {
                     for (int i = 1; i < readyStudents.length; i++) {
                         table.addUpOnesChoices(readyStudents[i]);

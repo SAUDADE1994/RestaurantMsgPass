@@ -32,6 +32,7 @@ public class TableInterface implements SharedRegionInterface {
                 student.setStudentId((int) message.getStateFields()[0]);
                 student.setStudentState((int) message.getStateFields()[1]);
                 GenericIO.writelnString("Student -> ENTER");
+                table.enter();
                 state = new Object[]{student.getStudentId(), student.getStudentState()};
                 break;
 
@@ -40,6 +41,7 @@ public class TableInterface implements SharedRegionInterface {
                 student.setStudentId((int) message.getStateFields()[0]);
                 student.setStudentState((int) message.getStateFields()[1]);
                 GenericIO.writelnString("Student -> READTHEMENY");
+                table.readTheMenu();
                 state = new Object[]{student.getStudentId(), student.getStudentState()};
                 break;
 
@@ -48,6 +50,7 @@ public class TableInterface implements SharedRegionInterface {
                 student.setStudentId((int) message.getStateFields()[0]);
                 student.setStudentState((int) message.getStateFields()[1]);
                 GenericIO.writelnString("Student -> PREPARETHEORDER");
+                table.prepareTheOrder();
                 state = new Object[]{student.getStudentId(), student.getStudentState()};
                 break;
 
@@ -56,6 +59,7 @@ public class TableInterface implements SharedRegionInterface {
                 student.setStudentId((int) message.getStateFields()[0]);
                 student.setStudentState((int) message.getStateFields()[1]);
                 GenericIO.writelnString("Student -> ADDONEUPSCHOICES");
+                table.addUpOnesChoices((int) message.getParams()[0]);
                 state = new Object[]{student.getStudentId(), student.getStudentState()};
                 break;
 
@@ -64,6 +68,7 @@ public class TableInterface implements SharedRegionInterface {
                 student.setStudentId((int) message.getStateFields()[0]);
                 student.setStudentState((int) message.getStateFields()[1]);
                 GenericIO.writelnString("Student -> HASEVERYBODYCHOSEN");
+                res = table.hasEverybodyChosen();
                 state = new Object[]{student.getStudentId(), student.getStudentState()};
                 break;
 
@@ -72,6 +77,7 @@ public class TableInterface implements SharedRegionInterface {
                 student.setStudentId((int) message.getStateFields()[0]);
                 student.setStudentState((int) message.getStateFields()[1]);
                 GenericIO.writelnString("Student -> CALLTHEWAITER");
+                table.callTheWaiter();
                 state = new Object[]{student.getStudentId(), student.getStudentState()};
                 break;
 
@@ -80,6 +86,7 @@ public class TableInterface implements SharedRegionInterface {
                 student.setStudentId((int) message.getStateFields()[0]);
                 student.setStudentState((int) message.getStateFields()[1]);
                 GenericIO.writelnString("Student -> DESCRIBETHEORDER");
+                table.describeTheOrder();
                 state = new Object[]{student.getStudentId(), student.getStudentState()};
                 break;
 
@@ -88,6 +95,7 @@ public class TableInterface implements SharedRegionInterface {
                 student.setStudentId((int) message.getStateFields()[0]);
                 student.setStudentState((int) message.getStateFields()[1]);
                 GenericIO.writelnString("Student -> JOINTHETALK");
+                table.joinTheTalk();
                 state = new Object[]{student.getStudentId(), student.getStudentState()};
                 break;
 
@@ -96,6 +104,7 @@ public class TableInterface implements SharedRegionInterface {
                 student.setStudentId((int) message.getStateFields()[0]);
                 student.setStudentState((int) message.getStateFields()[1]);
                 GenericIO.writelnString("Student -> INFORMCOMPANION");
+                table.informCompanion();
                 state = new Object[]{student.getStudentId(), student.getStudentState()};
                 break;
 
@@ -104,6 +113,7 @@ public class TableInterface implements SharedRegionInterface {
                 student.setStudentId((int) message.getStateFields()[0]);
                 student.setStudentState((int) message.getStateFields()[1]);
                 GenericIO.writelnString("Student -> HASEVERYBODYFINISHED");
+                res = table.hasEverybodyFinished();
                 state = new Object[]{student.getStudentId(), student.getStudentState()};
                 break;
 
@@ -112,6 +122,7 @@ public class TableInterface implements SharedRegionInterface {
                 student.setStudentId((int) message.getStateFields()[0]);
                 student.setStudentState((int) message.getStateFields()[1]);
                 GenericIO.writelnString("Student -> STARTEATING");
+                table.startEating((int) message.getParams()[0]);
                 state = new Object[]{student.getStudentId(), student.getStudentState()};
                 break;
 
@@ -120,6 +131,7 @@ public class TableInterface implements SharedRegionInterface {
                 student.setStudentId((int) message.getStateFields()[0]);
                 student.setStudentState((int) message.getStateFields()[1]);
                 GenericIO.writelnString("Student -> SHOUDLHAVEARRIVEDEARLIERER");
+                table.shouldHaveArrivedEarlier();
                 state = new Object[]{student.getStudentId(), student.getStudentState()};
                 break;
 
@@ -128,6 +140,7 @@ public class TableInterface implements SharedRegionInterface {
                 student.setStudentId((int) message.getStateFields()[0]);
                 student.setStudentState((int) message.getStateFields()[1]);
                 GenericIO.writelnString("Student -> HONORTHEBILL");
+                table.honorTheBill();
                 state = new Object[]{student.getStudentId(), student.getStudentState()};
                 break;
 
@@ -136,6 +149,7 @@ public class TableInterface implements SharedRegionInterface {
                 student.setStudentId((int) message.getStateFields()[0]);
                 student.setStudentState((int) message.getStateFields()[1]);
                 GenericIO.writelnString("Student -> EXIT");
+                table.exit();
                 state = new Object[]{student.getStudentId(), student.getStudentState()};
                 break;
 
@@ -144,6 +158,7 @@ public class TableInterface implements SharedRegionInterface {
                 student.setStudentId((int) message.getStateFields()[0]);
                 student.setStudentState((int) message.getStateFields()[1]);
                 GenericIO.writelnString("Student -> ENDEATING");
+                res = table.endEating();
                 state = new Object[]{student.getStudentId(), student.getStudentState()};
                 break;
 
@@ -152,6 +167,7 @@ public class TableInterface implements SharedRegionInterface {
                 student.setStudentId((int) message.getStateFields()[0]);
                 student.setStudentState((int) message.getStateFields()[1]);
                 GenericIO.writelnString("Student -> SIGNALTHEWAITER");
+                table.signalTheWaiter();
                 state = new Object[]{student.getStudentId(), student.getStudentState()};
                 break;
 
@@ -160,6 +176,7 @@ public class TableInterface implements SharedRegionInterface {
                 waiter.setWaiterId((int) message.getStateFields()[0]);
                 waiter.setWaiterState((int) message.getStateFields()[1]);
                 GenericIO.writelnString("Waiter -> SALUTETHECLIENT");
+                table.saluteTheClient();
                 state = new Object[]{waiter.getWaiterId(), waiter.getWaiterState()};
                 break;
 
@@ -168,6 +185,7 @@ public class TableInterface implements SharedRegionInterface {
                 waiter.setWaiterId((int) message.getStateFields()[0]);
                 waiter.setWaiterState((int) message.getStateFields()[1]);
                 GenericIO.writelnString("Waiter -> GETTHEPAD");
+                table.getThePad();
                 state = new Object[]{waiter.getWaiterId(), waiter.getWaiterState()};
                 break;
 
@@ -176,6 +194,7 @@ public class TableInterface implements SharedRegionInterface {
                 waiter.setWaiterId((int) message.getStateFields()[0]);
                 waiter.setWaiterState((int) message.getStateFields()[1]);
                 GenericIO.writelnString("Waiter -> DELIVERPORTION");
+                table.deliverPortion((int) message.getParams()[0]);
                 state = new Object[]{waiter.getWaiterId(), waiter.getWaiterState()};
                 break;
 
@@ -184,6 +203,7 @@ public class TableInterface implements SharedRegionInterface {
                 waiter.setWaiterId((int) message.getStateFields()[0]);
                 waiter.setWaiterState((int) message.getStateFields()[1]);
                 GenericIO.writelnString("Waiter -> PREPARETHEBILL");
+                table.presentTheBill();
                 state = new Object[]{waiter.getWaiterId(), waiter.getWaiterState()};
                 break;
 
@@ -192,6 +212,7 @@ public class TableInterface implements SharedRegionInterface {
                 waiter.setWaiterId((int) message.getStateFields()[0]);
                 waiter.setWaiterState((int) message.getStateFields()[1]);
                 GenericIO.writelnString("Waiter -> LOOKAROUND_TABLE");
+                table.lookAround();
                 state = new Object[]{waiter.getWaiterId(), waiter.getWaiterState()};
                 break;
 
@@ -200,6 +221,7 @@ public class TableInterface implements SharedRegionInterface {
                 student.setStudentId((int) message.getStateFields()[0]);
                 student.setStudentState((int) message.getStateFields()[1]);
                 GenericIO.writelnString("Student -> ASKFORREADYORDERS");
+                res = table.askForReadyOrders();
                 state = new Object[]{student.getStudentId(), student.getStudentState()};
                 break;
 

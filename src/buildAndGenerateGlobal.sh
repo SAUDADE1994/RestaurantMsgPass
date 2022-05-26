@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 echo "Compiling source code."
 javac -cp genclass.jar ./**/*.java
 echo "Distributing intermediate code to the different execution environments."
@@ -6,9 +6,9 @@ echo "  General Repository of Information"
 rm -rf dirGeneralRepos
 mkdir -p dirGeneralRepos/serverSide/{main,entities,sharedRegions} dirGeneralRepos/commInfra dirGeneralRepos/clientSide/entities
 cp serverSide/main/{SimulPar,GeneralReposMain}.class dirGeneralRepos/serverSide/main
-cp serverSide/entities/ServiceProviderAgent.class dirGeneralRepos/serverSide/entities
+cp serverSide/entities/{ServiceProviderAgent,Chef,Student,Waiter}.class dirGeneralRepos/serverSide/entities
 cp serverSide/sharedRegions/{GeneralRepos,SharedRegionInterface,GeneralReposInterface}.class dirGeneralRepos/serverSide/sharedRegions
-cp commInfra/ServerCom.class dirGeneralRepos/commInfra
+cp commInfra/{Message,ServerCom}.class dirGeneralRepos/commInfra
 cp genclass.jar dirGeneralRepos/
 echo "  Table"
 rm -rf dirTable
@@ -17,7 +17,7 @@ cp serverSide/main/{TableMain,SimulPar,FunctionsIds}.class dirTable/serverSide/m
 cp serverSide/entities/{ServiceProviderAgent,Student,Chef,Waiter}.class dirTable/serverSide/entities
 cp serverSide/sharedRegions/{Table,TableInterface,SharedRegionInterface,ITable_Student,ITable_Waiter}.class dirTable/serverSide/sharedRegions
 cp serverSide/stubs/GeneralReposStub.class dirTable/serverSide/stubs
-cp commInfra/{ServerCom,MemException,MemFIFO,MemObject,Message}.class dirTable/commInfra
+cp commInfra/{CommunicationChannel,ServerCom,MemException,MemFIFO,MemObject,Message}.class dirTable/commInfra
 cp genclass.jar dirTable/
 echo "  Bar"
 rm -rf dirBar
@@ -35,7 +35,7 @@ cp serverSide/main/{KitchenMain,SimulPar,FunctionsIds}.class dirKitchen/serverSi
 cp serverSide/sharedRegions/{Kitchen,KitchenInterface,SharedRegionInterface,IKitchen_Chef,IKitchen_Waiter}.class dirKitchen/serverSide/sharedRegions
 cp serverSide/stubs/GeneralReposStub.class dirKitchen/serverSide/stubs
 cp serverSide/entities/{ServiceProviderAgent,Student,Chef,Waiter}.class dirKitchen/serverSide/entities
-cp commInfra/{ServerCom,Message}.class dirKitchen/commInfra
+cp commInfra/{CommunicationChannel,ServerCom,Message}.class dirKitchen/commInfra
 cp genclass.jar dirKitchen/
 echo "  Students"
 rm -rf dirStudents

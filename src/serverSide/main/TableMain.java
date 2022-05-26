@@ -21,7 +21,7 @@ public class TableMain {
         /* service is established */
 
         ServerCom serverCom, sconi;                                        // communication channels
-        int portNumb = SimulPar.table_port;                                          // port nunber for listening to service requests
+        int portNumb = SimulPar.TABLE_PORT;                                          // port nunber for listening to service requests
 
         serverCom = new ServerCom (portNumb);
         serverCom.start ();                             // service is instantiated

@@ -10,6 +10,7 @@ import serverSide.main.SimulPar;
 import serverSide.stubs.GeneralReposStub;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import static java.lang.Thread.sleep;
 
@@ -658,7 +659,7 @@ public class Table implements ITable_Student, ITable_Waiter {
      *  The first element contains always the number N
      *  The following elements contain the student ID of the students who are ready
      */
-    public synchronized Integer[] askForReadyOrders() {
+    public synchronized int[] askForReadyOrders() {
 
         ArrayList<Integer> pendingOrders = new ArrayList<>();
 
@@ -676,6 +677,6 @@ public class Table implements ITable_Student, ITable_Waiter {
         pendingOrders.set(0, pendingOrders.size() - 1);
 
         // No one wants to order (yet)
-        return pendingOrders.toArray(new Integer[0]);
+        return Arrays.stream(pendingOrders.toArray(new Integer[0])).mapToInt(Integer::intValue).toArray();
     }
 }

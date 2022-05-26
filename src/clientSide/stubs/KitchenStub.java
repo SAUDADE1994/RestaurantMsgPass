@@ -45,8 +45,8 @@ public class KitchenStub implements IKitchen_Chef, IKitchen_Waiter {
 
         m_fromServer = (Message) com.readObject();
 
-        chef.setChefState((Integer) m_fromServer.getStateFields()[1]);
-        boolean result = (Boolean) m_fromServer.getReturnValue();
+        chef.setChefState((int) m_fromServer.getStateFields()[1]);
+        boolean result = (boolean) m_fromServer.getReturnValue();
 
         com.close ();
 
@@ -219,8 +219,8 @@ public class KitchenStub implements IKitchen_Chef, IKitchen_Waiter {
 
         m_fromServer = (Message) com.readObject();
 
-        waiter.setWaiterState((Integer) m_fromServer.getStateFields()[1]);
-        boolean result = (Boolean) m_fromServer.getReturnValue();
+        waiter.setWaiterState((int) m_fromServer.getStateFields()[1]);
+        boolean result = (boolean) m_fromServer.getReturnValue();
 
         com.close ();
         return result;
@@ -249,8 +249,8 @@ public class KitchenStub implements IKitchen_Chef, IKitchen_Waiter {
 
         m_fromServer = (Message) com.readObject();
 
-        waiter.setWaiterState((Integer) m_fromServer.getStateFields()[1]);
-        //boolean result = (Boolean) m_fromServer.getReturnValue();
+        waiter.setWaiterState((int) m_fromServer.getStateFields()[1]);
+        //boolean result = (boolean) m_fromServer.getReturnValue();
 
         com.close ();
     }

@@ -71,7 +71,9 @@ public class TableStub implements ITable_Student, ITable_Waiter {
     public void addUpOnesChoices(int studentID) {
         Student s = (Student) Thread.currentThread();
         CommunicationChannel com = new CommunicationChannel(serverHostName, serverPortNumb);
-        Object[] params = new Object[0];
+        Object[] params = new Object[]{
+                studentID
+        };
         Object[] state_fields = new Object[]{
                 s.getStudentId(),
                 s.getStudentState()
@@ -96,7 +98,7 @@ public class TableStub implements ITable_Student, ITable_Waiter {
 
         /* operation number to be defined */
         Message m_toServer = new Message(FunctionsIds.HAS_EVERYBODY_CHOSEN, params, state_fields, null);
-        return (Boolean) studentCallFunctionMsg(s, com, m_toServer);
+        return (boolean) studentCallFunctionMsg(s, com, m_toServer);
     }
 
     @Override
@@ -175,7 +177,7 @@ public class TableStub implements ITable_Student, ITable_Waiter {
 
         /* operation number to be defined */
         Message m_toServer = new Message(FunctionsIds.HAS_EVERYBODY_FINISHED, params, state_fields, null);
-        return (Boolean) studentCallFunctionMsg(s, com, m_toServer);
+        return (boolean) studentCallFunctionMsg(s, com, m_toServer);
     }
 
     @Override
@@ -251,7 +253,7 @@ public class TableStub implements ITable_Student, ITable_Waiter {
 
         /* operation number to be defined */
         Message m_toServer = new Message(FunctionsIds.END_EATING, params, state_fields, null);
-        return (Boolean) studentCallFunctionMsg(s, com, m_toServer);
+        return (boolean) studentCallFunctionMsg(s, com, m_toServer);
     }
 
     @Override
@@ -336,8 +338,8 @@ public class TableStub implements ITable_Student, ITable_Waiter {
 
         m_fromServer = (Message) com.readObject();
 
-        waiter.setWaiterState((Integer) m_fromServer.getStateFields()[1]);
-        //boolean result = (Boolean) m_fromServer.getReturnValue();
+        waiter.setWaiterState((int) m_fromServer.getStateFields()[1]);
+        //boolean result = (boolean) m_fromServer.getReturnValue();
 
         com.close ();
     }
@@ -373,7 +375,7 @@ public class TableStub implements ITable_Student, ITable_Waiter {
         waiterCallFunctionMsg(com, m_toServer, waiter);
     }
 
-    public Integer[] askForReadyOrders() {
+    public int[] askForReadyOrders() {
 
         Student s = (Student) Thread.currentThread();
         CommunicationChannel com = new CommunicationChannel(serverHostName, serverPortNumb);
@@ -386,7 +388,7 @@ public class TableStub implements ITable_Student, ITable_Waiter {
         /* operation number to be defined */
         Message m_toServer = new Message(FunctionsIds.ASK_FOR_READY_ORDERS, params, state_fields, null);
 
-        return  (Integer[]) studentCallFunctionMsg(s, com, m_toServer);
+        return  (int[]) studentCallFunctionMsg(s, com, m_toServer);
     }
 
     private Object studentCallFunctionMsg(Student s, CommunicationChannel com, Message m_toServer) {
@@ -402,7 +404,7 @@ public class TableStub implements ITable_Student, ITable_Waiter {
 
         m_fromServer = (Message) com.readObject();
 
-        s.setStudentState((Integer) m_fromServer.getStateFields()[1]);
+        s.setStudentState((int) m_fromServer.getStateFields()[1]);
 
         Object returnVal = m_fromServer.getReturnValue();
 

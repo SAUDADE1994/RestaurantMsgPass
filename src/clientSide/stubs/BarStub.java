@@ -40,8 +40,8 @@ public class BarStub implements IBar_Waiter {
 
         m_fromServer = (Message) com.readObject();
 
-        waiter.setWaiterState((Integer) m_fromServer.getStateFields()[1]);
-        //boolean result = (Boolean) m_fromServer.getReturnValue();
+        waiter.setWaiterState((int) m_fromServer.getStateFields()[1]);
+        //boolean result = (boolean) m_fromServer.getReturnValue();
 
         com.close ();
     }
@@ -70,8 +70,8 @@ public class BarStub implements IBar_Waiter {
 
         m_fromServer = (Message) com.readObject();
 
-        waiter.setWaiterState((Integer) m_fromServer.getStateFields()[1]);
-        //boolean result = (Boolean) m_fromServer.getReturnValue();
+        waiter.setWaiterState((int) m_fromServer.getStateFields()[1]);
+        //boolean result = (boolean) m_fromServer.getReturnValue();
 
         com.close ();
     }

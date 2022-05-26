@@ -34,6 +34,7 @@ public class BarInterface implements SharedRegionInterface {
             waiter.setWaiterId((int) message.getStateFields()[0]);
             waiter.setWaiterState((int) message.getStateFields()[1]);
             GenericIO.writelnString("Waiter -> SAYGOODBY");
+            bar.sayGoodbye();
             state = new Object[]{waiter.getWaiterId(), waiter.getWaiterState()};
             break;
 
@@ -42,6 +43,7 @@ public class BarInterface implements SharedRegionInterface {
             waiter.setWaiterId((int) message.getStateFields()[0]);
             waiter.setWaiterState((int) message.getStateFields()[1]);
             GenericIO.writelnString("Waiter -> PREPARETHEBILL");
+            bar.prepareTheBill();
             state = new Object[]{waiter.getWaiterId(), waiter.getWaiterState()};
             break;
 
