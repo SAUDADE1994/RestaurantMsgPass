@@ -27,32 +27,32 @@ public class GeneralReposInterface implements SharedRegionInterface {
         Object[] state = new Object[2];
         
         switch (message.getOperation()) {
-            case FunctionsIds.SETCHEFSTATE:
+            case FunctionsIds.SET_CHEF_STATE:
                 GenericIO.writelnString("SETCHEFSTATE");
                 rp.setChefState((int) message.getParams()[0]);
                 break;
 
-            case FunctionsIds.SETWAITERSTATE:
+            case FunctionsIds.SET_WAITER_STATE:
                 GenericIO.writelnString("SETWAITERSTATE");
                 rp.setWaiterState((int) message.getParams()[0]);
                 break;
             
-            case FunctionsIds.SETSTUDENTSTATE:
+            case FunctionsIds.SET_STUDENT_STATE:
                 GenericIO.writelnString("SETSTUDENTSTATE");
                 rp.setStudentState((int) message.getParams()[0], (int) message.getParams()[1]);
                 break;
 
-            case FunctionsIds.SETSTUDENTIDS:
+            case FunctionsIds.SET_STUDENT_IDS:
                 GenericIO.writelnString("SETSTUDENTIDS");
                 rp.setStudentIds((int) message.getParams()[0]);
                 break;
             
-            case FunctionsIds.SETNCOURSE:
+            case FunctionsIds.SET_N_COURSE:
                 GenericIO.writelnString("SETNCOURSE");
                 rp.setNextCourse();
                 break;
             
-            case FunctionsIds.SETNPORTION:
+            case FunctionsIds.SET_N_PORTION:
                 GenericIO.writelnString("SETNCOURSE");
                 rp.setnPortion((int) message.getParams()[0]);
                 break;
