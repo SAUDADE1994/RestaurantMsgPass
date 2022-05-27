@@ -62,7 +62,7 @@ public class KitchenStub implements IKitchen_Chef, IKitchen_Waiter {
         Object[] params = new Object[0];
 
         /* operation number to be defined */
-        Message m_toServer = new Message(4, params, state_fields, null);
+        Message m_toServer = new Message(FunctionsIds.START_PREPARING, params, state_fields, null);
         chefCallFunctionMsg(chef, com, m_toServer);
     }
 
@@ -76,7 +76,7 @@ public class KitchenStub implements IKitchen_Chef, IKitchen_Waiter {
         Object[] params = new Object[0];
 
         /* operation number to be defined */
-        Message m_toServer = new Message(5, params, state_fields, null);
+        Message m_toServer = new Message(FunctionsIds.ALERT_WAITER, params, state_fields, null);
 
         chefCallFunctionMsg(chef, com, m_toServer);
 
@@ -92,7 +92,7 @@ public class KitchenStub implements IKitchen_Chef, IKitchen_Waiter {
         Object[] params = new Object[0];
 
         /* operation number to be defined */
-        Message m_toServer = new Message(6, params, state_fields, null);
+        Message m_toServer = new Message(FunctionsIds.PROCEED_TO_PRESENTATION, params, state_fields, null);
         chefCallFunctionMsg(chef, com, m_toServer);
 
     }
@@ -107,7 +107,7 @@ public class KitchenStub implements IKitchen_Chef, IKitchen_Waiter {
         Object[] params = new Object[0];
 
         /* operation number to be defined */
-        Message m_toServer = new Message(7, params, state_fields, null);
+        Message m_toServer = new Message(FunctionsIds.HAVE_NEXT_PORTION_READY, params, state_fields, null);
         chefCallFunctionMsg(chef, com, m_toServer);
 
     }
@@ -281,7 +281,6 @@ public class KitchenStub implements IKitchen_Chef, IKitchen_Waiter {
         Object[] params = new Object[0];
 
         Message m_toServer = new Message(FunctionsIds.SHUTDOWN, params, state_fields, null);
-        Message m_fromServer;
 
         while (!com.open ())
         { try

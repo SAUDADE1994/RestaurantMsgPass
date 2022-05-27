@@ -3,6 +3,7 @@ package clientSide.stubs;
 import clientSide.entities.Waiter;
 import commInfra.CommunicationChannel;
 import commInfra.Message;
+import serverSide.main.FunctionsIds;
 
 public class BarStub implements IBar_Waiter {
 
@@ -26,14 +27,13 @@ public class BarStub implements IBar_Waiter {
         state_fields[1] = waiter.getWaiterState();
 
         /* operation number to be defined */
-        Message m_toServer = new Message(1, params, state_fields, null);
+        Message m_toServer = new Message(FunctionsIds.SAY_GOODBYE, params, state_fields, null);
         Message m_fromServer;
 
-        while (!com.open ())
-        { try
-        { Thread.currentThread ().sleep ((long) (10));
-        }
-        catch (InterruptedException e) {}
+        while (!com.open ()) {
+            try {
+                Thread.currentThread ().sleep (10L);
+            } catch (InterruptedException ignored) {}
         }
 
         com.writeObject (m_toServer);
@@ -56,14 +56,13 @@ public class BarStub implements IBar_Waiter {
         state_fields[1] = waiter.getWaiterState();
 
         /* operation number to be defined */
-        Message m_toServer = new Message(2, params, state_fields, null);
+        Message m_toServer = new Message(FunctionsIds.PREPARE_THE_BILL, params, state_fields, null);
         Message m_fromServer;
 
-        while (!com.open ())
-        { try
-        { Thread.currentThread ().sleep ((long) (10));
-        }
-        catch (InterruptedException e) {}
+        while (!com.open ()) {
+            try {
+                Thread.currentThread ().sleep (10L);
+            } catch (InterruptedException ignored) {}
         }
 
         com.writeObject (m_toServer);
@@ -87,14 +86,14 @@ public class BarStub implements IBar_Waiter {
         Object[] params = new Object[1];
         Object[] state_fields = new Object[1];
 
-        Message m_toServer = new Message(44, params, state_fields, null);
+        Message m_toServer = new Message(FunctionsIds.SHUTDOWN, params, state_fields, null);
         Message m_fromServer;
 
         while (!com.open ())
         { try
-        { Thread.currentThread ().sleep ((long) (10));
+        { Thread.currentThread ().sleep (10L);
         }
-        catch (InterruptedException e) {}
+        catch (InterruptedException ignored) {}
         }
 
         com.writeObject (m_toServer);
