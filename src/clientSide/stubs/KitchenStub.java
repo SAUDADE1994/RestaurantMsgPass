@@ -16,7 +16,6 @@ public class KitchenStub implements IKitchen_Chef, IKitchen_Waiter {
         serverHostName = serverName;
         serverPortNumb = port;
     }
-
     @Override
     public void watchTheNews() {
         Chef chef = (Chef) Thread.currentThread();
@@ -32,7 +31,7 @@ public class KitchenStub implements IKitchen_Chef, IKitchen_Waiter {
 
     }
 
-    private boolean chefCallFunctionMsg(Chef chef, CommunicationChannel com, Message m_toServer) {
+    private Object chefCallFunctionMsg(Chef chef, CommunicationChannel com, Message m_toServer) {
         Message m_fromServer;
 
         while (!com.open ()) {
@@ -46,7 +45,7 @@ public class KitchenStub implements IKitchen_Chef, IKitchen_Waiter {
         m_fromServer = (Message) com.readObject();
 
         chef.setChefState((int) m_fromServer.getStateFields()[1]);
-        boolean result = (boolean) m_fromServer.getReturnValue();
+        Object result = m_fromServer.getReturnValue();
 
         com.close ();
 
@@ -140,7 +139,7 @@ public class KitchenStub implements IKitchen_Chef, IKitchen_Waiter {
         /* operation number to be defined */
         Message m_toServer = new Message(FunctionsIds.HAVE_ALL_PORTIONS_BEEN_DELIVERED, params, state_fields, null);
 
-        return chefCallFunctionMsg(chef, com, m_toServer);
+        return (boolean) chefCallFunctionMsg(chef, com, m_toServer);
     }
 
     @Override
@@ -156,7 +155,7 @@ public class KitchenStub implements IKitchen_Chef, IKitchen_Waiter {
         /* operation number to be defined */
         Message m_toServer = new Message(FunctionsIds.HAS_THE_ORDER_BEEN_COMPLETED, params, state_fields, null);
 
-        return chefCallFunctionMsg(chef, com, m_toServer);
+        return (boolean) chefCallFunctionMsg(chef, com, m_toServer);
     }
 
     @Override
@@ -203,10 +202,10 @@ public class KitchenStub implements IKitchen_Chef, IKitchen_Waiter {
 
         /* operation number to be defined */
         Message m_toServer = new Message(FunctionsIds.HAVE_ALL_PORTIONS_BEEN_COLLECTED, params, state_fields, null);
-        return waiterCallFunctionMsg(waiter, com, m_toServer);
+        return (boolean) waiterCallFunctionMsg(waiter, com, m_toServer);
     }
 
-    private boolean waiterCallFunctionMsg(Waiter waiter, CommunicationChannel com, Message m_toServer) {
+    private Object waiterCallFunctionMsg(Waiter waiter, CommunicationChannel com, Message m_toServer) {
         Message m_fromServer;
 
         while (!com.open ()) {
@@ -220,7 +219,7 @@ public class KitchenStub implements IKitchen_Chef, IKitchen_Waiter {
         m_fromServer = (Message) com.readObject();
 
         waiter.setWaiterState((int) m_fromServer.getStateFields()[1]);
-        boolean result = (boolean) m_fromServer.getReturnValue();
+        Object result = (Object) m_fromServer.getReturnValue();
 
         com.close ();
         return result;

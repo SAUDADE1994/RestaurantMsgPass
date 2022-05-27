@@ -1,9 +1,8 @@
 package clientSide.entities;
 
 import clientSide.main.SimulPar;
-import clientSide.stubs.BarStub;
 import clientSide.stubs.TableStub;
-
+import genclass.GenericIO;
 
 
 /**
@@ -106,6 +105,7 @@ public class Student extends Thread {
 
             table.startEating(i+1);
             boolean lastOneToFinishEating = table.endEating();
+            GenericIO.writelnString(String.valueOf(lastOneToFinishEating));
 
             if (lastOneToFinishEating) {        // if its the last one eating signals waiter
                 table.signalTheWaiter();        // to prepare/serve the next course

@@ -23,9 +23,6 @@ public class GeneralReposInterface implements SharedRegionInterface {
 
     @Override
     public Message processAndReply(Message message) {
-        Object res = null;
-        Object[] state = new Object[2];
-        
         switch (message.getOperation()) {
             case FunctionsIds.SET_CHEF_STATE:
                 GenericIO.writelnString("SETCHEFSTATE");
@@ -60,13 +57,12 @@ public class GeneralReposInterface implements SharedRegionInterface {
             case FunctionsIds.SHUTDOWN:
                 shutdown = true;
                 message = null;
-                state = new Object[]{};
                 break;
 
             default:
                 throw new IllegalArgumentException();
         }
-        return message;
+        return null;
     }
 
     @Override

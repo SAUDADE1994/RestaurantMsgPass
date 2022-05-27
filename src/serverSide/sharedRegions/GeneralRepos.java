@@ -245,15 +245,6 @@ public class GeneralRepos {
 
     /**
      * Set the number of the Course
-     *
-     * @param nCourse
-     */
-    public synchronized void setnCourse(int nCourse) {
-        this.nCourse = nCourse;
-    }
-    
-    /**
-     * Set the number of the Course
      */
     public synchronized void setNextCourse() {
         this.nCourse++;

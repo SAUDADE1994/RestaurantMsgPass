@@ -184,7 +184,7 @@ public class TableStub implements ITable_Student, ITable_Waiter {
     public void startEating(int courseNo) {
         Student s = (Student) Thread.currentThread();
         CommunicationChannel com = new CommunicationChannel(serverHostName, serverPortNumb);
-        Object[] params = new Object[0];
+        Object[] params = new Object[] {courseNo};
         Object[] state_fields = new Object[]{
                 s.getStudentId(),
                 s.getStudentState()

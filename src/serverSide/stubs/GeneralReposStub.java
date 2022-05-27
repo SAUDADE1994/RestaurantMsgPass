@@ -85,6 +85,8 @@ public class GeneralReposStub {
      */
     public void setStudentState(int id, int state) {
         CommunicationChannel com = new CommunicationChannel (serverHostName, serverPortNumb);
+
+        //Object[] params = new Object[2];
         Object[] state_fields = new Object[2];
         Object[] params = new Object[] {id, state};
 
@@ -113,30 +115,6 @@ public class GeneralReposStub {
         Object[] state_fields = new Object[2];
 
         Message m_toServer = new Message(FunctionsIds.SET_STUDENT_IDS, params, state_fields, null);
-
-        while (!com.open ()) {
-            try {
-                Thread.currentThread ().sleep (10L);
-            } catch (InterruptedException ignored) {}
-        }
-
-        com.writeObject (m_toServer);
-
-        com.close ();
-    }
-
-    /**
-     * Set the number of the Course
-     *
-     * @param nCourse
-     */
-    public void setnCourse(int nCourse) {
-
-        CommunicationChannel com = new CommunicationChannel (serverHostName, serverPortNumb);
-        Object[] params = new Object[] {nCourse};
-        Object[] state_fields = new Object[2];
-
-        Message m_toServer = new Message(FunctionsIds.SET_N_COURSE, params, state_fields, null);
 
         while (!com.open ()) {
             try {

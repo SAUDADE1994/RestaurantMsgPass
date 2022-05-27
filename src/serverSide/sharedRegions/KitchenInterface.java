@@ -22,7 +22,6 @@ public class KitchenInterface implements  SharedRegionInterface{
     public Message processAndReply(Message message) {
         Waiter waiter;
         Chef chef;
-        Student student;
         Object res = null;
         Object[] state;
 
@@ -31,7 +30,7 @@ public class KitchenInterface implements  SharedRegionInterface{
                 chef = (Chef) Thread.currentThread();
                 chef.setChefId((int) message.getStateFields()[0]);
                 chef.setChefState((int) message.getStateFields()[1]);
-                GenericIO.writelnString("Waiter -> WATCHTHENEWS");
+                GenericIO.writelnString("chef -> WATCHTHENEWS");
                 kitchen.watchTheNews();
                 state = new Object[]{chef.getChefId(), chef.getChefState()};
                 break;
@@ -40,7 +39,7 @@ public class KitchenInterface implements  SharedRegionInterface{
                 chef = (Chef) Thread.currentThread();
                 chef.setChefId((int) message.getStateFields()[0]);
                 chef.setChefState((int) message.getStateFields()[1]);
-                GenericIO.writelnString("Waiter -> STARTPREPARING");
+                GenericIO.writelnString("chef -> STARTPREPARING");
                 kitchen.startPreparing();
                 state = new Object[]{chef.getChefId(), chef.getChefState()};
                 break;
@@ -48,7 +47,7 @@ public class KitchenInterface implements  SharedRegionInterface{
                 chef = (Chef) Thread.currentThread();
                 chef.setChefId((int) message.getStateFields()[0]);
                 chef.setChefState((int) message.getStateFields()[1]);
-                GenericIO.writelnString("Waiter -> ALERTWAITER");
+                GenericIO.writelnString("chef -> ALERTWAITER");
                 kitchen.alertTheWaiter();
                 state = new Object[]{chef.getChefId(), chef.getChefState()};
                 break;
@@ -56,7 +55,7 @@ public class KitchenInterface implements  SharedRegionInterface{
                 chef = (Chef) Thread.currentThread();
                 chef.setChefId((int) message.getStateFields()[0]);
                 chef.setChefState((int) message.getStateFields()[1]);
-                GenericIO.writelnString("Waiter -> PROCEEDTOPRESENTATION");
+                GenericIO.writelnString("chef -> PROCEEDTOPRESENTATION");
                 kitchen.proceedToPresentation();
                 state = new Object[]{chef.getChefId(), chef.getChefState()};
                 break;
@@ -64,7 +63,7 @@ public class KitchenInterface implements  SharedRegionInterface{
                 chef = (Chef) Thread.currentThread();
                 chef.setChefId((int) message.getStateFields()[0]);
                 chef.setChefState((int) message.getStateFields()[1]);
-                GenericIO.writelnString("Waiter -> HAVENEXTPORTIONREADY");
+                GenericIO.writelnString("chef -> HAVENEXTPORTIONREADY");
                 kitchen.haveNextPortionReady();
                 state = new Object[]{chef.getChefId(), chef.getChefState()};
                 break;
@@ -72,7 +71,7 @@ public class KitchenInterface implements  SharedRegionInterface{
                 chef = (Chef) Thread.currentThread();
                 chef.setChefId((int) message.getStateFields()[0]);
                 chef.setChefState((int) message.getStateFields()[1]);
-                GenericIO.writelnString("Waiter -> CONTINUEPREPARATION");
+                GenericIO.writelnString("chef -> CONTINUEPREPARATION");
                 kitchen.continuePreparation();
                 state = new Object[]{chef.getChefId(), chef.getChefState()};
                 break;
@@ -80,7 +79,7 @@ public class KitchenInterface implements  SharedRegionInterface{
                 chef = (Chef) Thread.currentThread();
                 chef.setChefId((int) message.getStateFields()[0]);
                 chef.setChefState((int) message.getStateFields()[1]);
-                GenericIO.writelnString("Waiter -> HAVEALLPORTIONSBEENDELIVERED");
+                GenericIO.writelnString("chef -> HAVEALLPORTIONSBEENDELIVERED");
                 res = kitchen.haveAllPortionsBeenDelivered();
                 state = new Object[]{chef.getChefId(), chef.getChefState()};
                 break;
@@ -88,7 +87,7 @@ public class KitchenInterface implements  SharedRegionInterface{
                 chef = (Chef) Thread.currentThread();
                 chef.setChefId((int) message.getStateFields()[0]);
                 chef.setChefState((int) message.getStateFields()[1]);
-                GenericIO.writelnString("Waiter -> HASTHEORDERBEENCOMPLETED");
+                GenericIO.writelnString("chef -> HASTHEORDERBEENCOMPLETED");
                 res = kitchen.hasTheOrderBeenCompleted();
                 state = new Object[]{chef.getChefId(), chef.getChefState()};
                 break;
@@ -96,7 +95,7 @@ public class KitchenInterface implements  SharedRegionInterface{
                 chef = (Chef) Thread.currentThread();
                 chef.setChefId((int) message.getStateFields()[0]);
                 chef.setChefState((int) message.getStateFields()[1]);
-                GenericIO.writelnString("Waiter -> CLEANUP");
+                GenericIO.writelnString("chef -> CLEANUP");
                 kitchen.cleanUp();
                 state = new Object[]{chef.getChefId(), chef.getChefState()};
                 break;
