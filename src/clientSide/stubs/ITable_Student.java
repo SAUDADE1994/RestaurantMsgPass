@@ -30,19 +30,16 @@ public interface ITable_Student {
      * Operation add up ones choices
      *
      * It is called by student while is waiting for all students to choose
-     *
-     * @param studentID id of the student who is having his/her order accounted for
      */
-    void addUpOnesChoices(int studentID);
+    void addUpOnesChoice();
 
     /**
      * Operation Has every body choosen
      *
      * It is called by student when every student as chosen the order
      *
-     * @return true if all students have decided on their order
      */
-    boolean hasEverybodyChosen();
+    void hasEverybodyChosen();
 
     /**
      * Operation call the waiter

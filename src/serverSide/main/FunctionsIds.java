@@ -46,7 +46,7 @@ public class FunctionsIds {
 
     public static final int PREPARE_THE_ORDER = 18;
 
-    public static final int ADD_UP_ONES_CHOICES = 19;
+    public static final int ADD_UP_ONES_CHOICE = 19;
 
     public static final int HAS_EVERYBODY_CHOSEN = 20;
 

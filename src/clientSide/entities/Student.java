@@ -83,21 +83,16 @@ public class Student extends Thread {
         // if it's the first student to arrive
         if(firstStudentToArrive) {
             table.prepareTheOrder();                    // prepares all the orders and signals waiter
-            while (!table.hasEverybodyChosen()) {
-                // Get the id
-                int[] readyStudents = table.askForReadyOrders();
-                if (readyStudents[0] != 0) {
-                    for (int i = 1; i < readyStudents.length; i++) {
-                        table.addUpOnesChoices(readyStudents[i]);
-                    }
-                }
-            }
+
+            table.hasEverybodyChosen();                 // wait while everyone is choosing
+            table.addUpOnesChoice();                    // attend to everyone's orders (first chosen, first served)
+
             table.callTheWaiter();
             table.describeTheOrder();
             table.joinTheTalk();
         } else
-            table.informCompanion();                // if it is not, informs the first student
-                                                    // to arrive of which order he wants
+            table.informCompanion();                    // if it is not, informs the first student
+                                                        // to arrive of which order he wants
 
 
         // starts eating de 0 upto M courses
@@ -107,7 +102,7 @@ public class Student extends Thread {
             boolean lastOneToFinishEating = table.endEating();
             GenericIO.writelnString(String.valueOf(lastOneToFinishEating));
 
-            if (lastOneToFinishEating) {        // if its the last one eating signals waiter
+            if (lastOneToFinishEating) {        // if it's the last one eating signals waiter
                 table.signalTheWaiter();        // to prepare/serve the next course
             }
 

@@ -54,12 +54,12 @@ public class TableInterface implements SharedRegionInterface {
                 state = new Object[]{student.getStudentId(), student.getStudentState()};
                 break;
 
-            case FunctionsIds.ADD_UP_ONES_CHOICES:
+            case FunctionsIds.ADD_UP_ONES_CHOICE:
                 student = (Student) Thread.currentThread();
                 student.setStudentId((int) message.getStateFields()[0]);
                 student.setStudentState((int) message.getStateFields()[1]);
                 GenericIO.writelnString("Student -> ADDONEUPSCHOICES");
-                table.addUpOnesChoices((int) message.getParams()[0]);
+                table.addUpOnesChoice();
                 state = new Object[]{student.getStudentId(), student.getStudentState()};
                 break;
 
@@ -68,7 +68,7 @@ public class TableInterface implements SharedRegionInterface {
                 student.setStudentId((int) message.getStateFields()[0]);
                 student.setStudentState((int) message.getStateFields()[1]);
                 GenericIO.writelnString("Student -> HASEVERYBODYCHOSEN");
-                res = table.hasEverybodyChosen();
+                table.hasEverybodyChosen();
                 state = new Object[]{student.getStudentId(), student.getStudentState()};
                 break;
 

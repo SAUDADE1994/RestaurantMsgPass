@@ -60,6 +60,11 @@ public class Table implements ITable_Student, ITable_Waiter {
     private MemFIFO<Integer> orders;
 
     /**
+     * FIFO Queue for placed orders of the students
+     */
+    private MemFIFO<Integer> pendingOrdersQueue;
+
+    /**
      * Flag for each student: is true only when the respective student
      * has decided what to order but the first student to arrive has not accounted for it yet
      */
@@ -134,6 +139,7 @@ public class Table implements ITable_Student, ITable_Waiter {
         try {
             orders = new MemFIFO<>(new Integer[SimulPar.TOTAL_STUDENTS]);
             checkInQueue = new MemFIFO<>(new Integer[SimulPar.TOTAL_STUDENTS]);
+            pendingOrdersQueue = new MemFIFO<>(new Integer[SimulPar.TOTAL_STUDENTS]);
         } catch (MemException e) {
             checkInQueue = null;
             orders = null;
@@ -217,29 +223,26 @@ public class Table implements ITable_Student, ITable_Waiter {
         System.out.printf("Student[%d] will be preparing the order\n", studentID);
 
         // Set the order for himself (student 1)
-        addUpOnesChoices(studentID);
+        try {
+            pendingOrdersQueue.write(studentID);
+            System.out.printf("Student[%d] (organizer) has chosen his own order\n", studentID);
+        } catch (MemException memException) {
+            System.out.printf("Student[%d] (organizer) has chosen his own order" +
+                    ", but someone tried to ask twice (fifo full)\n", studentID);
+            memException.printStackTrace();
+            System.exit(1);
+        }
     }
 
     @Override
-    public synchronized boolean hasEverybodyChosen() {
+    public synchronized void hasEverybodyChosen() {
 
         // When flag is true, it will never be reset
-        if (!orderIsChosen)
-            orderIsChosen = ordersNotYetChosen() == 0;
-
-        // If students have not yet finished choosing
-        if (!orderIsChosen) {
-            // Sleep until another student has chosen his order
+        while (!pendingOrdersQueue.full()) {  // wait while fifo is not full
             try {
                 wait();
-            } catch (InterruptedException ignored) {
-            }
-        } else {
-            System.out.println("All students have finished choosing! First student is ready to call the waiter");
+            } catch (InterruptedException ignored) {}
         }
-
-        // Return true if all students have chosen
-        return orderIsChosen;
 
     }
 
@@ -253,20 +256,17 @@ public class Table implements ITable_Student, ITable_Waiter {
 
 
     @Override
-    public synchronized void addUpOnesChoices(int studentID) {
+    public synchronized void addUpOnesChoice() {
 
-        // Set up the order
-        try {
-
-            orders.write(studentID);
-            peerWantsToOrder[studentID] = false;
-
-//            System.out.println("Student[%d]'s order has been accounted for: %d left", studentID);
-            System.out.printf("Student[%d]'s order has been accounted for\n", studentID);
-        } catch (MemException e) {
-            System.out.println("FIFO Memory is full!");
-            e.printStackTrace();
-            System.exit(1);
+        while (!pendingOrdersQueue.isEmpty()) {
+            try {
+                int attendedStudent = pendingOrdersQueue.read();
+                System.out.printf("Student[%d]'s order has been accounted for\n", attendedStudent);
+            } catch (MemException memException) {
+                System.out.println("Organizer is attending to orders, however none exist (FIFO empty)");
+                memException.printStackTrace();
+                System.exit(1);
+            }
         }
 
     }
@@ -283,7 +283,25 @@ public class Table implements ITable_Student, ITable_Waiter {
 
         System.out.printf("Student[%d] has chosen his order\n", studentID);
 
+        // Notify the organizer student
+        try {
+            pendingOrdersQueue.write(studentID);
+        } catch (MemException memException) {
+            pendingOrdersQueue = null;
+            System.out.printf("Student[%d] -> someone tried to ask twice" +
+                    " for his/her order (FIFO full)\n", studentID);
+            memException.printStackTrace();
+            System.exit(1);
+        }
+
         notifyAll();
+
+        // Wait while other students are calling the organizer
+        while (!pendingOrdersQueue.isEmpty()) {
+            try {
+                wait();
+            } catch (InterruptedException ignored) {}
+        }
 
     }
 
@@ -593,7 +611,8 @@ public class Table implements ITable_Student, ITable_Waiter {
         // Case 4: Look for when the last student is ready to pay
 
         while (!readyForPayment && !waiterWrapUpCourse
-                && checkInQueue.isEmpty() && (ordersNotYetChosen() != 0 || orderIsWritten)) {
+                && checkInQueue.isEmpty() && (ordersNotYetChosen() != 0 || orderIsWritten)
+                && !orderIsDescribed) {
             try {
                 wait();
             } catch (InterruptedException ignored) {

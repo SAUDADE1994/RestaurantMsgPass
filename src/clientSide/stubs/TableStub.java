@@ -68,25 +68,23 @@ public class TableStub implements ITable_Student, ITable_Waiter {
     }
 
     @Override
-    public void addUpOnesChoices(int studentID) {
+    public void addUpOnesChoice() {
         Student s = (Student) Thread.currentThread();
         CommunicationChannel com = new CommunicationChannel(serverHostName, serverPortNumb);
-        Object[] params = new Object[]{
-                studentID
-        };
+        Object[] params = new Object[]{};
         Object[] state_fields = new Object[]{
                 s.getStudentId(),
                 s.getStudentState()
         };
 
         /* operation number to be defined */
-        Message m_toServer = new Message(FunctionsIds.ADD_UP_ONES_CHOICES, params, state_fields, null);
+        Message m_toServer = new Message(FunctionsIds.ADD_UP_ONES_CHOICE, params, state_fields, null);
         vStudentCallFunctionMsg(s, com, m_toServer);
 
     }
 
     @Override
-    public boolean hasEverybodyChosen() {
+    public void hasEverybodyChosen() {
 
         Student s = (Student) Thread.currentThread();
         CommunicationChannel com = new CommunicationChannel(serverHostName, serverPortNumb);
@@ -98,7 +96,7 @@ public class TableStub implements ITable_Student, ITable_Waiter {
 
         /* operation number to be defined */
         Message m_toServer = new Message(FunctionsIds.HAS_EVERYBODY_CHOSEN, params, state_fields, null);
-        return (boolean) studentCallFunctionMsg(s, com, m_toServer);
+        vStudentCallFunctionMsg(s, com, m_toServer);
     }
 
     @Override
