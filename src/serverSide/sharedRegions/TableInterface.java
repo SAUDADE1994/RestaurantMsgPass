@@ -111,8 +111,8 @@ public class TableInterface implements SharedRegionInterface {
                 student = (Student) Thread.currentThread();
                 student.setStudentId((int) message.getStateFields()[0]);
                 student.setStudentState((int) message.getStateFields()[1]);
-                GenericIO.writelnString("Student -> START_EATING");
                 table.startEating((int) message.getParams()[0]);
+                GenericIO.writelnString("Student -> START_EATING");
                 state = new Object[]{student.getStudentId(), student.getStudentState()};
                 break;
 
@@ -138,8 +138,8 @@ public class TableInterface implements SharedRegionInterface {
                 student = (Student) Thread.currentThread();
                 student.setStudentId((int) message.getStateFields()[0]);
                 student.setStudentState((int) message.getStateFields()[1]);
-                GenericIO.writelnString("Student -> EXIT");
                 table.exit();
+                GenericIO.writelnString("Student -> EXIT");
                 state = new Object[]{student.getStudentId(), student.getStudentState()};
                 break;
 

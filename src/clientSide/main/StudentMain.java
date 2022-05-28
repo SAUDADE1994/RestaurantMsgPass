@@ -29,7 +29,7 @@ public class StudentMain {
         { students[i].join ();
         }
         catch (InterruptedException e) {}
-            System.out.println("The Passenger "+(i+1)+" just terminated");
+            System.out.printf("The Student %d just terminated\n", i+1);
         }
 
         System.out.println("End of the Simulation");
