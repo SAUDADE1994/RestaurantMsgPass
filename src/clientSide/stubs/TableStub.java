@@ -163,22 +163,6 @@ public class TableStub implements ITable_Student, ITable_Waiter {
     }
 
     @Override
-    public boolean hasEverybodyFinished() {
-
-        Student s = (Student) Thread.currentThread();
-        CommunicationChannel com = new CommunicationChannel(serverHostName, serverPortNumb);
-        Object[] params = new Object[0];
-        Object[] state_fields = new Object[]{
-                s.getStudentId(),
-                s.getStudentState()
-        };
-
-        /* operation number to be defined */
-        Message m_toServer = new Message(FunctionsIds.HAS_EVERYBODY_FINISHED, params, state_fields, null);
-        return (boolean) studentCallFunctionMsg(s, com, m_toServer);
-    }
-
-    @Override
     public void startEating(int courseNo) {
         Student s = (Student) Thread.currentThread();
         CommunicationChannel com = new CommunicationChannel(serverHostName, serverPortNumb);
@@ -239,11 +223,11 @@ public class TableStub implements ITable_Student, ITable_Waiter {
     }
 
     @Override
-    public boolean endEating() {
+    public boolean endEating(int courseNo) {
 
         Student s = (Student) Thread.currentThread();
         CommunicationChannel com = new CommunicationChannel(serverHostName, serverPortNumb);
-        Object[] params = new Object[0];
+        Object[] params = new Object[] {courseNo};
         Object[] state_fields = new Object[]{
                 s.getStudentId(),
                 s.getStudentState()

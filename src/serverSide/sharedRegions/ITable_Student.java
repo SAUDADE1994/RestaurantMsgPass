@@ -35,7 +35,7 @@ public interface ITable_Student {
     void addUpOnesChoice();
 
     /**
-     * Operation Has every body choosen
+     * Operation Has every body chosen
      *
      * It is called by student when every student as chosen the order
      *
@@ -71,13 +71,15 @@ public interface ITable_Student {
     void informCompanion();
 
     /**
-     * Operation has everybody chossen
+     * Operation has everybody chosen
      *
      * It is called by the first student to arrive
      *
+     * @param courseNo Number of the course at hand
+     *
      * @return true if everybody at the table has finished eating
      */
-    boolean hasEverybodyFinished();
+    boolean hasEverybodyFinished(int courseNo);
 
     /**
      * Operation start eating
@@ -89,7 +91,7 @@ public interface ITable_Student {
     void startEating(int courseNo);
 
     /**
-     * Operation should arrived earlier
+     * Operation should have arrived earlier
      *
      * It is called by the student when it's the last one to arrive
      */
@@ -113,8 +115,12 @@ public interface ITable_Student {
      * Operation end eating
      *
      * It is called by students while they eat
+     *
+     * @param courseNo Number of the course taking place at the time of the call
+     *
+     * @return true if the student thread was the last one to finish eating the course at hand
      */
-	boolean endEating();
+	boolean endEating(int courseNo);
 
     /**
      * Operation signal the waiter

@@ -72,12 +72,10 @@ public class Student extends Thread {
         // arrives at the restaurant and after saluted by waiter reads the menu
         walkABit();
         arrivalOrder = table.enter();
-        System.out.printf("DEBUG - Student[%d] arrival order -> %d\n", studentId, arrivalOrder);
         table.readTheMenu();
 
         // if it's the first student to arrive
         if(arrivalOrder == 1) {
-            System.out.printf("DEBUG - Student[%d], come on, let's prepare the orders\n", studentId);
             table.prepareTheOrder();                    // prepares all the orders and signals waiter
 
             table.hasEverybodyChosen();                 // wait while everyone is choosing
@@ -95,8 +93,7 @@ public class Student extends Thread {
         for (int i = 0; i < SimulPar.TOTAL_COURSES; i++) {
 
             table.startEating(i+1);
-            boolean lastOneToFinishEating = table.endEating();
-            GenericIO.writelnString(String.valueOf(lastOneToFinishEating));
+            boolean lastOneToFinishEating = table.endEating(i+1);
 
             if (lastOneToFinishEating) {        // if it's the last one eating signals waiter
                 table.signalTheWaiter();        // to prepare/serve the next course

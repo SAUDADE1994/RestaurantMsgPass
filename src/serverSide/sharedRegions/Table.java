@@ -9,9 +9,6 @@ import serverSide.entities.WaiterStates;
 import serverSide.main.SimulPar;
 import serverSide.stubs.GeneralReposStub;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-
 import static java.lang.Thread.sleep;
 
 /**
@@ -89,10 +86,10 @@ public class Table implements ITable_Student, ITable_Waiter {
     private boolean[] currentCoursePortionsServed;
 
     /**
-     * During the courses, this flag indicates, for each student,
-     * whether he has finished eating his portion
+     * During the courses, this counter indicates, for each student,
+     * how many portions he has eaten
      */
-    private boolean[] currentCoursePortionsEaten;
+    private int[] portionsEaten;
 
     /**
      * Flag is set true after the waiter has registered the student's orders
@@ -163,7 +160,7 @@ public class Table implements ITable_Student, ITable_Waiter {
         // Initialized false by default
         peerWantsToOrder = new boolean[SimulPar.TOTAL_STUDENTS];
         currentCoursePortionsServed = new boolean[SimulPar.TOTAL_STUDENTS];
-        currentCoursePortionsEaten = new boolean[SimulPar.TOTAL_STUDENTS];
+        portionsEaten = new int[SimulPar.TOTAL_STUDENTS];
     }
 
     @Override
@@ -349,10 +346,9 @@ public class Table implements ITable_Student, ITable_Waiter {
     }
 
     @Override
-    public synchronized boolean hasEverybodyFinished() {
-        for (boolean isPortionEaten :
-                currentCoursePortionsEaten) {
-            if (!isPortionEaten)
+    public synchronized boolean hasEverybodyFinished(int courseNo) {
+        for (int portionsEaten : portionsEaten) {
+            if (portionsEaten != courseNo)
                 return false;
         }
         return true;
@@ -362,9 +358,6 @@ public class Table implements ITable_Student, ITable_Waiter {
     public synchronized void startEating(int courseNo) {
 
         Student currentStudent = ((Student) Thread.currentThread());
-
-        // No portions are eaten since the students were not yet served
-        currentCoursePortionsEaten[currentStudent.getStudentId()] = false;
 
         // Wait for all portions to be served
         // Only then, proceed to eating
@@ -468,7 +461,7 @@ public class Table implements ITable_Student, ITable_Waiter {
     }
 
     @Override
-    public synchronized boolean endEating() {
+    public synchronized boolean endEating(int courseNo) {
         // Wait up to about 100ms (eating process)
         try {
             sleep((long) (1 + 100 * Math.random()));
@@ -483,7 +476,10 @@ public class Table implements ITable_Student, ITable_Waiter {
         repos.setStudentState(student.getStudentId(), StudentStates.CHATTING_WITH_COMPANIONS);
 
         // Mark his portion as eaten
-        currentCoursePortionsEaten[student.getStudentId()] = true;
+        portionsEaten[student.getStudentId()] += 1;
+        if (portionsEaten[student.getStudentId()] != courseNo) {
+            throw new IllegalStateException(String.format("Student[%d] is not on line with the courses!", student.getStudentId()));
+        }
 
         System.out.printf("Student[%d] has finished the current course\n", student.getStudentId());
 
@@ -491,7 +487,7 @@ public class Table implements ITable_Student, ITable_Waiter {
 
         // Last student to finish eating will never enter the while loop
         // The rest will wait for him to signal the waiter
-        while (!hasEverybodyFinished() && !areStudentsReadyForNextCourse) {
+        while (!hasEverybodyFinished(courseNo) && !areStudentsReadyForNextCourse) {
             lastStudentToFinishEating = false;
             try {
                 wait();

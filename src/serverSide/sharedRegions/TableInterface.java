@@ -107,15 +107,6 @@ public class TableInterface implements SharedRegionInterface {
                 state = new Object[]{student.getStudentId(), student.getStudentState()};
                 break;
 
-            case FunctionsIds.HAS_EVERYBODY_FINISHED:
-                student = (Student) Thread.currentThread();
-                student.setStudentId((int) message.getStateFields()[0]);
-                student.setStudentState((int) message.getStateFields()[1]);
-                GenericIO.writelnString("Student -> HAS_EVERYBODY_FINISHED");
-                res = table.hasEverybodyFinished();
-                state = new Object[]{student.getStudentId(), student.getStudentState()};
-                break;
-
             case FunctionsIds.START_EATING:
                 student = (Student) Thread.currentThread();
                 student.setStudentId((int) message.getStateFields()[0]);
@@ -156,8 +147,8 @@ public class TableInterface implements SharedRegionInterface {
                 student = (Student) Thread.currentThread();
                 student.setStudentId((int) message.getStateFields()[0]);
                 student.setStudentState((int) message.getStateFields()[1]);
-                GenericIO.writelnString("Student -> ENDEATING");
-                res = table.endEating();
+                GenericIO.writelnString("Student -> END_EATING");
+                res = table.endEating(((int) message.getParams()[0]));
                 state = new Object[]{student.getStudentId(), student.getStudentState()};
                 break;
 

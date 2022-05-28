@@ -8,7 +8,7 @@ mkdir -p dirGeneralRepos/serverSide/{main,entities,sharedRegions} dirGeneralRepo
 cp serverSide/main/{SimulPar,GeneralReposMain}.class dirGeneralRepos/serverSide/main
 cp serverSide/entities/{ServiceProviderAgent,Chef,Student,Waiter}.class dirGeneralRepos/serverSide/entities
 cp serverSide/sharedRegions/{GeneralRepos,SharedRegionInterface,GeneralReposInterface}.class dirGeneralRepos/serverSide/sharedRegions
-cp commInfra/{Message,ServerCom}.class dirGeneralRepos/commInfra
+cp commInfra/{Message,ServerCom,CommunicationChannel}.class dirGeneralRepos/commInfra
 cp genclass.jar dirGeneralRepos/
 echo "  Table"
 rm -rf dirTable
@@ -26,7 +26,7 @@ cp serverSide/main/{BarMain,SimulPar,FunctionsIds}.class dirBar/serverSide/main
 cp serverSide/sharedRegions/{Bar,BarInterface,SharedRegionInterface,IBar_Waiter}.class dirBar/serverSide/sharedRegions
 cp serverSide/entities/{ServiceProviderAgent,Student,Chef,Waiter}.class dirBar/serverSide/entities
 cp serverSide/stubs/GeneralReposStub.class dirBar/serverSide/stubs
-cp commInfra/ServerCom.class dirBar/commInfra
+cp commInfra/{ServerCom,Message}.class dirBar/commInfra
 cp genclass.jar dirBar/
 echo "  Kitchen"
 rm -rf dirKitchen

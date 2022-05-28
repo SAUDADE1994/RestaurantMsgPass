@@ -72,15 +72,6 @@ public interface ITable_Student {
     void informCompanion();
 
     /**
-     * Operation has everybody chossen
-     *
-     * It is called by the first student to arrive
-     *
-     * @return true if everybody at the table has finished eating
-     */
-    boolean hasEverybodyFinished();
-
-    /**
      * Operation start eating
      *
      * It is called by students when the portions of each course arrive
@@ -113,9 +104,11 @@ public interface ITable_Student {
     /**
      * Operation end eating
      *
+     * @param courseNo Number of the course which is currently being finished by students
+     *
      * It is called by students while they eat
      */
-	boolean endEating();
+	boolean endEating(int courseNo);
 
     /**
      * Operation signal the waiter
