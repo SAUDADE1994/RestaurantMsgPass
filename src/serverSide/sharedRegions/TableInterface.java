@@ -213,7 +213,7 @@ public class TableInterface implements SharedRegionInterface {
                 break;
 
             default:
-                throw new IllegalArgumentException();
+                throw new IllegalArgumentException(String.format("Function ID %d is not present!", message.getOperation()));
         }
         if (message != null) {
             message.setStateFields(state);

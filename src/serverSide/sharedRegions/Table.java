@@ -89,7 +89,7 @@ public class Table implements ITable_Student, ITable_Waiter {
      * During the courses, this counter indicates, for each student,
      * how many portions he has eaten
      */
-    private int[] portionsEaten;
+    private MemFIFO<Integer> portionsEaten;
 
     /**
      * Flag is set true after the waiter has registered the student's orders
@@ -115,11 +115,6 @@ public class Table implements ITable_Student, ITable_Waiter {
     private boolean areStudentsReadyForNextCourse;
 
     /**
-     * Singleton class instance
-     */
-    private static Table instance;
-
-    /**
      * Reference to the General Repository
      */
     private final GeneralReposStub repos;
@@ -137,6 +132,7 @@ public class Table implements ITable_Student, ITable_Waiter {
             orders = new MemFIFO<>(new Integer[SimulPar.TOTAL_STUDENTS]);
             checkInQueue = new MemFIFO<>(new Integer[SimulPar.TOTAL_STUDENTS]);
             pendingOrdersQueue = new MemFIFO<>(new Integer[SimulPar.TOTAL_STUDENTS]);
+            portionsEaten = new MemFIFO<>(new Integer[SimulPar.TOTAL_STUDENTS * SimulPar.TOTAL_COURSES]);
         } catch (MemException e) {
             checkInQueue = null;
             orders = null;
@@ -160,7 +156,6 @@ public class Table implements ITable_Student, ITable_Waiter {
         // Initialized false by default
         peerWantsToOrder = new boolean[SimulPar.TOTAL_STUDENTS];
         currentCoursePortionsServed = new boolean[SimulPar.TOTAL_STUDENTS];
-        portionsEaten = new int[SimulPar.TOTAL_STUDENTS];
     }
 
     @Override
@@ -347,11 +342,8 @@ public class Table implements ITable_Student, ITable_Waiter {
 
     @Override
     public synchronized boolean hasEverybodyFinished(int courseNo) {
-        for (int portionsEaten : portionsEaten) {
-            if (portionsEaten != courseNo)
-                return false;
-        }
-        return true;
+//        System.out.printf("DEBUG - Course %d -> Portions eaten %d\n", courseNo, portionsEaten.getN());
+        return portionsEaten.getN() == courseNo * SimulPar.TOTAL_STUDENTS;
     }
 
     @Override
@@ -468,7 +460,6 @@ public class Table implements ITable_Student, ITable_Waiter {
         } catch (InterruptedException ignored) {
         }
 
-
         Student student = ((Student) Thread.currentThread());
 
         // Set state to chatting with companions
@@ -476,9 +467,11 @@ public class Table implements ITable_Student, ITable_Waiter {
         repos.setStudentState(student.getStudentId(), StudentStates.CHATTING_WITH_COMPANIONS);
 
         // Mark his portion as eaten
-        portionsEaten[student.getStudentId()] += 1;
-        if (portionsEaten[student.getStudentId()] != courseNo) {
-            throw new IllegalStateException(String.format("Student[%d] is not on line with the courses!", student.getStudentId()));
+        try {
+            portionsEaten.write(student.getStudentId());
+        } catch (MemException e) {
+            e.printStackTrace();
+            System.exit(1);
         }
 
         System.out.printf("Student[%d] has finished the current course\n", student.getStudentId());
@@ -491,9 +484,11 @@ public class Table implements ITable_Student, ITable_Waiter {
             lastStudentToFinishEating = false;
             try {
                 wait();
-            } catch (InterruptedException ignored) {
-            }
+            } catch (InterruptedException ignored) {}
         }
+
+//        System.out.printf("DEBUG - Student[%d] is last to finish? %b\n",
+//                student.getStudentId(), lastStudentToFinishEating);
 
         notifyAll();
 

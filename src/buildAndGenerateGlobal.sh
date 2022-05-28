@@ -26,7 +26,7 @@ cp serverSide/main/{BarMain,SimulPar,FunctionsIds}.class dirBar/serverSide/main
 cp serverSide/sharedRegions/{Bar,BarInterface,SharedRegionInterface,IBar_Waiter}.class dirBar/serverSide/sharedRegions
 cp serverSide/entities/{ServiceProviderAgent,Student,Chef,Waiter}.class dirBar/serverSide/entities
 cp serverSide/stubs/GeneralReposStub.class dirBar/serverSide/stubs
-cp commInfra/{ServerCom,Message}.class dirBar/commInfra
+cp commInfra/{ServerCom,Message,CommunicationChannel}.class dirBar/commInfra
 cp genclass.jar dirBar/
 echo "  Kitchen"
 rm -rf dirKitchen
