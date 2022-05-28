@@ -69,22 +69,6 @@ public class ServiceProviderAgent extends Thread implements Chef, Student, Waite
 
 
     /**
-     * Flag is waiting for orders
-     */
-    private boolean isWaitingForOrders;
-
-    @Override
-    public boolean isWaitingForOrders() {
-        return isWaitingForOrders;
-    }
-
-    @Override
-    public void setWaitingForOrders(boolean b) {
-        this.isWaitingForOrders = b;
-    }
-
-
-    /**
      * Student ID
      */
     private int studentId;

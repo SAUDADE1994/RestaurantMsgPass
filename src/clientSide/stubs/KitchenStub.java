@@ -36,7 +36,7 @@ public class KitchenStub implements IKitchen_Chef, IKitchen_Waiter {
 
         while (!com.open ()) {
             try {
-                Thread.currentThread().sleep (10L);
+                Thread.sleep(10L);
             } catch (InterruptedException ignored) {}
         }
 

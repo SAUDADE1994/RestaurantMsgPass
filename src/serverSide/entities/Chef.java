@@ -10,7 +10,4 @@ public interface Chef {
 
     int getChefState();
 
-    boolean isWaitingForOrders();
-
-    void setWaitingForOrders(boolean b);
 }

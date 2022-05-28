@@ -55,6 +55,11 @@ public class Kitchen implements IKitchen_Chef, IKitchen_Waiter {
     private byte coursesDelivered;
 
     /**
+     * Chef is waiting for orders
+     */
+    private boolean waitingForOrders;
+
+    /**
      * Private constructor of Kitchen
      */
     public Kitchen(GeneralReposStub repos) {
@@ -63,6 +68,7 @@ public class Kitchen implements IKitchen_Chef, IKitchen_Waiter {
         chefStartWorking = false;
         oneMorePortionReady = false;
         isNextPortionReady = false;
+        waitingForOrders = true;
         coursesDelivered = 0;
         arePortionsCollected = new boolean[SimulPar.TOTAL_STUDENTS];
     }
@@ -71,7 +77,7 @@ public class Kitchen implements IKitchen_Chef, IKitchen_Waiter {
     @Override
     public synchronized void watchTheNews() {
         chef = (Chef) Thread.currentThread();
-        while(chef.isWaitingForOrders()) {
+        while(waitingForOrders) {
             try {
                 wait();
             } catch (InterruptedException e) {
@@ -216,7 +222,7 @@ public class Kitchen implements IKitchen_Chef, IKitchen_Waiter {
         ((Waiter) Thread.currentThread()).setWaiterState(WaiterStates.PLACING_THE_ORDER);
         repos.setWaiterState(WaiterStates.PLACING_THE_ORDER);
 
-        chef.setWaitingForOrders(false);
+        waitingForOrders = false;
         notifyAll();
 
         while (!chefStartWorking) {
