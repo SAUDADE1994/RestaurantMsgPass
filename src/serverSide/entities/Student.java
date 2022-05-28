@@ -6,17 +6,14 @@ public interface Student {
 
     int getStudentId();
 
+    int getArrivalOrder();
+
+    void setArrivalOrder(int arrivalOrder);
+
     void setStudentState(int state);
 
     int getStudentState();
 
-    void setFirstStudentToArrive(boolean b);
-
-    void setLastStudentToArrive(boolean b);
-
-    boolean getSelected();
-
     boolean isLastStudentToArrive();
 
-    void setSelected(boolean b);
 }

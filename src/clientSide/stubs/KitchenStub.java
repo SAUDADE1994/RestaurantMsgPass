@@ -219,7 +219,7 @@ public class KitchenStub implements IKitchen_Chef, IKitchen_Waiter {
         m_fromServer = (Message) com.readObject();
 
         waiter.setWaiterState((int) m_fromServer.getStateFields()[1]);
-        Object result = (Object) m_fromServer.getReturnValue();
+        Object result = m_fromServer.getReturnValue();
 
         com.close ();
         return result;

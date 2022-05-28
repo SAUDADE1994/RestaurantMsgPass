@@ -32,12 +32,7 @@ public class Student extends Thread {
     /**
      * Flag set True when is the first student to arrive
      */
-    private boolean firstStudentToArrive;
-
-    /**
-     * Flag set True when is the last student to arrive
-     */
-    private boolean lastStudentToArrive;
+    private int arrivalOrder;
 
     /**
      * Signals if current student is waiting for next portion
@@ -62,8 +57,7 @@ public class Student extends Thread {
         this.studentState = StudentStates.GOING_TO_THE_RESTAURANT;
         this.table = table;
         selected = false;
-        firstStudentToArrive = false;
-        lastStudentToArrive = false;
+        arrivalOrder = -1;
     }
 
     /**
@@ -77,11 +71,13 @@ public class Student extends Thread {
 
         // arrives at the restaurant and after saluted by waiter reads the menu
         walkABit();
-        table.enter();
+        arrivalOrder = table.enter();
+        System.out.printf("DEBUG - Student[%d] arrival order -> %d\n", studentId, arrivalOrder);
         table.readTheMenu();
 
         // if it's the first student to arrive
-        if(firstStudentToArrive) {
+        if(arrivalOrder == 1) {
+            System.out.printf("DEBUG - Student[%d], come on, let's prepare the orders\n", studentId);
             table.prepareTheOrder();                    // prepares all the orders and signals waiter
 
             table.hasEverybodyChosen();                 // wait while everyone is choosing
@@ -109,7 +105,7 @@ public class Student extends Thread {
         }
 
         // if is the last student to arrive he pays the bill
-        if (lastStudentToArrive) {
+        if (arrivalOrder == SimulPar.TOTAL_STUDENTS) {
             table.shouldHaveArrivedEarlier();
             table.honorTheBill();
         }
@@ -167,30 +163,12 @@ public class Student extends Thread {
     }
 
     /**
-     * Sets the first student to arrive
-     *
-     * @param firstStudentToArrive first student to arrive flag
-     */
-    public void setFirstStudentToArrive(boolean firstStudentToArrive) {
-        this.firstStudentToArrive = firstStudentToArrive;
-    }
-
-    /**
      * Verify if it's the last student to arrive
      *
      * @return last student to arrive flag
      */
     public boolean isLastStudentToArrive() {
-        return lastStudentToArrive;
-    }
-
-    /**
-     * Sets last student to arrive flag
-     *
-     * @param lastStudentToArrive last student to arrive flag
-     */
-    public void setLastStudentToArrive(boolean lastStudentToArrive) {
-        this.lastStudentToArrive = lastStudentToArrive;
+        return arrivalOrder == SimulPar.TOTAL_STUDENTS;
     }
 
     public int getStudentState() {

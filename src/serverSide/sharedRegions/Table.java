@@ -167,7 +167,7 @@ public class Table implements ITable_Student, ITable_Waiter {
     }
 
     @Override
-    public synchronized void enter() {
+    public synchronized int enter() {
         int studentId = ((Student) Thread.currentThread()).getStudentId();
         students[studentId] = (Student) Thread.currentThread();
         repos.setStudentIds(studentId);
@@ -182,16 +182,14 @@ public class Table implements ITable_Student, ITable_Waiter {
             e.printStackTrace();
         }
 
-        // sets true when is the first student to arrive
-        if (numberOfStudentsArrived == 0) {
-            students[studentId].setFirstStudentToArrive(true);
-        } else if (numberOfStudentsArrived == SimulPar.TOTAL_STUDENTS - 1) {
-            students[studentId].setLastStudentToArrive(true);
-        }
-
         numberOfStudentsArrived++;
         salute = true;
         notifyAll();
+
+        // For logging purposes
+        ((Student) Thread.currentThread()).setArrivalOrder(numberOfStudentsArrived);
+
+        return numberOfStudentsArrived;
     }
 
     @Override
@@ -200,7 +198,7 @@ public class Table implements ITable_Student, ITable_Waiter {
         students[studentId] = (Student) Thread.currentThread();
 
         /* Sleep while waiting for the waiter to salute and then reads the menu */
-        while (!(students[studentId].getSelected())) {
+        while (!checkInQueue.isEmpty()) {
             try {
                 wait();
             } catch (InterruptedException e) {
@@ -528,8 +526,7 @@ public class Table implements ITable_Student, ITable_Waiter {
     }
 
     @Override
-    public synchronized void saluteTheClient() {
-        ((Waiter) Thread.currentThread()).setNumberOfStudentsArrived(numberOfStudentsArrived);
+    public synchronized int saluteTheClient() {
 
         while (!salute) {
             try {
@@ -547,7 +544,6 @@ public class Table implements ITable_Student, ITable_Waiter {
             } catch (MemException e) {
                 e.printStackTrace();
             }
-            students[studentId].setSelected(true);
 
             System.out.printf("Waiter: presenting the menu to student[%d]\n", studentId);
             ((Waiter) Thread.currentThread()).setWaiterState(WaiterStates.PRESENTING_THE_MENU);
@@ -557,6 +553,8 @@ public class Table implements ITable_Student, ITable_Waiter {
 
         ((Waiter) Thread.currentThread()).setWaiterState(WaiterStates.APPRAISING_SITUATION);
         repos.setWaiterState(WaiterStates.APPRAISING_SITUATION);
+
+        return numberOfStudentsArrived;
     }
 
     @Override
@@ -671,31 +669,4 @@ public class Table implements ITable_Student, ITable_Waiter {
         return true;
     }
 
-    /**
-     * Operation ask if any student has chosen (internal function of the shared region Table)
-     *
-     * @return An array with N+1 elements, N being the number of students waiting for an order
-     *  The first element contains always the number N
-     *  The following elements contain the student ID of the students who are ready
-     */
-    public synchronized int[] askForReadyOrders() {
-
-        ArrayList<Integer> pendingOrders = new ArrayList<>();
-
-        // Initialize the first element (special)
-        pendingOrders.add(0);
-
-        // Search for first true elem in array
-        for (int i = 0; i < peerWantsToOrder.length; i++) {
-            if (peerWantsToOrder[i]) {
-                pendingOrders.add(i);
-            }
-        }
-
-        // Set the first element to the number of students
-        pendingOrders.set(0, pendingOrders.size() - 1);
-
-        // No one wants to order (yet)
-        return Arrays.stream(pendingOrders.toArray(new Integer[0])).mapToInt(Integer::intValue).toArray();
-    }
 }

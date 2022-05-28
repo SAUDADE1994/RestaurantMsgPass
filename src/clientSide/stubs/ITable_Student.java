@@ -9,8 +9,10 @@ public interface ITable_Student {
      * Operation enter the restaurant
      *
      * It is called by a student when he enters the restaurant
+     *
+     * @return order in which the student arrived (1 for the first, etc.)
      */
-    void enter();
+    int enter();
 
     /**
      * Operation read the menu

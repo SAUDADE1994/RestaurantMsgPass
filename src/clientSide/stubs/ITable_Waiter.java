@@ -10,7 +10,7 @@ public interface ITable_Waiter {
      *
      * It is called by the waiter when students arrive
      */
-    void saluteTheClient();
+    int saluteTheClient();
 
     /**
      * Operation get the pad

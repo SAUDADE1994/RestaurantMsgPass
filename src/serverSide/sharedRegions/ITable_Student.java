@@ -10,7 +10,7 @@ public interface ITable_Student {
      *
      * It is called by a student when he enters the restaurant
      */
-    void enter();
+    int enter();
 
     /**
      * Operation read the menu

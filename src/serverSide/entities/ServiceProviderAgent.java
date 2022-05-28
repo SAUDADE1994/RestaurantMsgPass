@@ -1,5 +1,6 @@
 package serverSide.entities;
 
+import clientSide.main.SimulPar;
 import commInfra.Message;
 import commInfra.ServerCom;
 import serverSide.sharedRegions.SharedRegionInterface;
@@ -88,6 +89,16 @@ public class ServiceProviderAgent extends Thread implements Chef, Student, Waite
     }
 
     @Override
+    public int getArrivalOrder() {
+        return arrivalOrder;
+    }
+
+    @Override
+    public void setArrivalOrder(int arrivalOrder) {
+        this.arrivalOrder = arrivalOrder;
+    }
+
+    @Override
     public void setStudentState(int state) {
         this.studentState = state;
     }
@@ -97,35 +108,11 @@ public class ServiceProviderAgent extends Thread implements Chef, Student, Waite
         return this.studentState;
     }
 
-    private boolean firstStudentToArrive;
-
-    private boolean lastStudentToArrive;
-
-    private boolean getSelected;
-
-    @Override
-    public void setFirstStudentToArrive(boolean b) {
-        this.firstStudentToArrive = b;
-    }
-
-    @Override
-    public void setLastStudentToArrive(boolean b) {
-        this.lastStudentToArrive = b;
-    }
-
-    @Override
-    public boolean getSelected() {
-        return this.getSelected;
-    }
+    private int arrivalOrder;
 
     @Override
     public boolean isLastStudentToArrive() {
-        return this.lastStudentToArrive;
-    }
-
-    @Override
-    public void setSelected(boolean b) {
-        this.getSelected = b;
+        return this.arrivalOrder == SimulPar.TOTAL_STUDENTS;
     }
 
     private int waiterId;

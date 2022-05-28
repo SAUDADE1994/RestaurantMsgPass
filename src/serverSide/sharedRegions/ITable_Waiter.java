@@ -9,8 +9,10 @@ public interface ITable_Waiter {
      * Operation salute the client
      *
      * It is called by the waiter when students arrive
+     *
+     * @return The number of students that are checked in
      */
-    void saluteTheClient();
+    int saluteTheClient();
 
     /**
      * Operation get the pad

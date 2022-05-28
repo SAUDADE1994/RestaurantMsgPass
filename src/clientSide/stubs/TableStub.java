@@ -19,7 +19,7 @@ public class TableStub implements ITable_Student, ITable_Waiter {
     }
 
     @Override
-    public void enter() {
+    public int enter() {
         Student s = (Student) Thread.currentThread();
         CommunicationChannel com = new CommunicationChannel(serverHostName, serverPortNumb);
         Object[] params = new Object[0];
@@ -31,7 +31,7 @@ public class TableStub implements ITable_Student, ITable_Waiter {
         /* operation number to be defined */
         Message m_toServer = new Message(FunctionsIds.ENTER, params, state_fields, null);
 
-        vStudentCallFunctionMsg(s, com, m_toServer);
+        return (int) studentCallFunctionMsg(s, com, m_toServer);
 
     }
 
@@ -275,7 +275,7 @@ public class TableStub implements ITable_Student, ITable_Waiter {
     }
 
     @Override
-    public void saluteTheClient() {
+    public int saluteTheClient() {
         Waiter waiter = (Waiter) Thread.currentThread();
         CommunicationChannel com = new CommunicationChannel(serverHostName, serverPortNumb);
         Object[] params = new Object[0];
@@ -286,7 +286,7 @@ public class TableStub implements ITable_Student, ITable_Waiter {
 
         /* operation number to be defined */
         Message m_toServer = new Message(FunctionsIds.SALUTE_THE_CLIENT, params, state_fields, null);
-        waiterCallFunctionMsg(com, m_toServer, waiter);
+        return (int) waiterCallFunctionMsg(com, m_toServer, waiter);
 
     }
 
@@ -302,7 +302,7 @@ public class TableStub implements ITable_Student, ITable_Waiter {
 
         /* operation number to be defined */
         Message m_toServer = new Message(FunctionsIds.GET_THE_PAD, params, state_fields, null);
-        waiterCallFunctionMsg(com, m_toServer, waiter);
+        vWaiterCallFunctionMsg(com, m_toServer, waiter);
 
     }
 
@@ -319,11 +319,11 @@ public class TableStub implements ITable_Student, ITable_Waiter {
         /* operation number to be defined */
         Message m_toServer = new Message(FunctionsIds.DELIVER_PORTION, params,
                 state_fields, null);
-        waiterCallFunctionMsg(com, m_toServer, waiter);
+        vWaiterCallFunctionMsg(com, m_toServer, waiter);
 
     }
 
-    private void waiterCallFunctionMsg(CommunicationChannel com, Message m_toServer, Waiter waiter) {
+    private Object waiterCallFunctionMsg(CommunicationChannel com, Message m_toServer, Waiter waiter) {
         Message m_fromServer;
 
         while (!com.open ()) {
@@ -337,9 +337,15 @@ public class TableStub implements ITable_Student, ITable_Waiter {
         m_fromServer = (Message) com.readObject();
 
         waiter.setWaiterState((int) m_fromServer.getStateFields()[1]);
-        //boolean result = (boolean) m_fromServer.getReturnValue();
+        Object result = m_fromServer.getReturnValue();
 
         com.close ();
+
+        return result;
+    }
+
+    private void vWaiterCallFunctionMsg(CommunicationChannel com, Message m_toServer, Waiter waiter) {
+        waiterCallFunctionMsg(com, m_toServer, waiter);
     }
 
     @Override
@@ -354,7 +360,7 @@ public class TableStub implements ITable_Student, ITable_Waiter {
 
         /* operation number to be defined */
         Message m_toServer = new Message(FunctionsIds.PRESENT_THE_BILL, params, state_fields, null);
-        waiterCallFunctionMsg(com, m_toServer, waiter);
+        vWaiterCallFunctionMsg(com, m_toServer, waiter);
 
     }
 
@@ -370,23 +376,7 @@ public class TableStub implements ITable_Student, ITable_Waiter {
 
         /* operation number to be defined */
         Message m_toServer = new Message(FunctionsIds.LOOK_AROUND_TABLE, params, state_fields, null);
-        waiterCallFunctionMsg(com, m_toServer, waiter);
-    }
-
-    public int[] askForReadyOrders() {
-
-        Student s = (Student) Thread.currentThread();
-        CommunicationChannel com = new CommunicationChannel(serverHostName, serverPortNumb);
-        Object[] params = new Object[0];
-        Object[] state_fields = new Object[]{
-                s.getStudentId(),
-                s.getStudentState()
-        };
-
-        /* operation number to be defined */
-        Message m_toServer = new Message(FunctionsIds.ASK_FOR_READY_ORDERS, params, state_fields, null);
-
-        return  (int[]) studentCallFunctionMsg(s, com, m_toServer);
+        vWaiterCallFunctionMsg(com, m_toServer, waiter);
     }
 
     private Object studentCallFunctionMsg(Student s, CommunicationChannel com, Message m_toServer) {

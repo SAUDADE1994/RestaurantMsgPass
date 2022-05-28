@@ -42,7 +42,7 @@ public class Waiter extends Thread {
     /**
      * Variable counting the number of students arriving
      */
-    private int numberOfStudentsArrived;
+    private int numberOfStudentsCheckedIn;
 
     /**
      * Variable counting the number of portions served
@@ -70,7 +70,7 @@ public class Waiter extends Thread {
         this.table = table;
 
         portionsServed = 0;
-        numberOfStudentsArrived = 0;
+        numberOfStudentsCheckedIn = 0;
         allOrdersChosen = false;
     }
 
@@ -99,8 +99,8 @@ public class Waiter extends Thread {
     public void run() {
         // Salutes all students upon arrival
         // First Cycle
-        while(getNumberOfStudentsArrived() != SimulPar.TOTAL_STUDENTS) {
-            table.saluteTheClient();
+        while(getNumberOfStudentsCheckedIn() != SimulPar.TOTAL_STUDENTS) {
+            numberOfStudentsCheckedIn = table.saluteTheClient();
             returnToTheBar("Table");
         }
 
@@ -167,15 +167,15 @@ public class Waiter extends Thread {
      * Gets the number of students that arrive
      * @return number of students arrived
      */
-    public int getNumberOfStudentsArrived() {
-        return numberOfStudentsArrived;
+    public int getNumberOfStudentsCheckedIn() {
+        return numberOfStudentsCheckedIn;
     }
 
     /**
      * Sets the number of students that arrive
-     * @param numberOfStudentsArrived number of students arrived
+     * @param numberOfStudentsCheckedIn number of students arrived
      */
-    public void setNumberOfStudentsArrived(int numberOfStudentsArrived) {
-        this.numberOfStudentsArrived = numberOfStudentsArrived;
+    public void setNumberOfStudentsCheckedIn(int numberOfStudentsCheckedIn) {
+        this.numberOfStudentsCheckedIn = numberOfStudentsCheckedIn;
     }
 }
