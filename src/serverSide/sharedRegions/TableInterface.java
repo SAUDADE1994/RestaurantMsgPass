@@ -188,6 +188,15 @@ public class TableInterface implements SharedRegionInterface {
                 state = new Object[]{waiter.getWaiterId(), waiter.getWaiterState()};
                 break;
 
+            case FunctionsIds.PRESENT_THE_BILL:
+                waiter = (Waiter) Thread.currentThread();
+                waiter.setWaiterId((int) message.getStateFields()[0]);
+                waiter.setWaiterState((int) message.getStateFields()[1]);
+                GenericIO.writelnString("Waiter -> PRESENT_THE_BILL");
+                table.presentTheBill();
+                state = new Object[]{waiter.getWaiterId(), waiter.getWaiterState()};
+                break;
+
             case FunctionsIds.PREPARE_THE_BILL:
                 waiter = (Waiter) Thread.currentThread();
                 waiter.setWaiterId((int) message.getStateFields()[0]);

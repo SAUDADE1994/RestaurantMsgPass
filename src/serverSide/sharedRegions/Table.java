@@ -115,6 +115,12 @@ public class Table implements ITable_Student, ITable_Waiter {
     private boolean areStudentsReadyForNextCourse;
 
     /**
+     * This flag is specifically used for making the non-last students to finish
+     *  a course wait for the signaling of the last student
+     */
+    private boolean lastStudentIsSignaling;
+
+    /**
      * Reference to the General Repository
      */
     private final GeneralReposStub repos;
@@ -139,7 +145,7 @@ public class Table implements ITable_Student, ITable_Waiter {
             System.exit(1);
         }
 
-        // Some flags to control de execution of the threads
+        // Some flags to control the execution of the threads
         salute = false;
         billPresented = false;
         isDinnerPaid = false;
@@ -149,6 +155,7 @@ public class Table implements ITable_Student, ITable_Waiter {
         orderIsDescribed = false;
         waiterWrapUpCourse = false;
         areStudentsReadyForNextCourse = false;
+        lastStudentIsSignaling = false;
 
         numberOfStudentsArrived = 0;
 
@@ -478,14 +485,19 @@ public class Table implements ITable_Student, ITable_Waiter {
 
         boolean lastStudentToFinishEating = true;
 
-        // Last student to finish eating will never enter the while loop
+        // Last student to finish eating will never enter the loop
         // The rest will wait for him to signal the waiter
-        while (!hasEverybodyFinished(courseNo) && !areStudentsReadyForNextCourse) {
+        while ((!hasEverybodyFinished(courseNo) || lastStudentIsSignaling)
+                && !areStudentsReadyForNextCourse) {
             lastStudentToFinishEating = false;
             try {
                 wait();
             } catch (InterruptedException ignored) {}
         }
+
+        // If it is the last student, he is signaling.
+        // Otherwise, the other students are ready for eating the next course
+        lastStudentIsSignaling = lastStudentToFinishEating;
 
 //        System.out.printf("DEBUG - Student[%d] is last to finish? %b\n",
 //                student.getStudentId(), lastStudentToFinishEating);
@@ -586,8 +598,7 @@ public class Table implements ITable_Student, ITable_Waiter {
         while (!isDinnerPaid) {
             try {
                 wait();
-            } catch (InterruptedException ignored) {
-            }
+            } catch (InterruptedException ignored) {}
         }
     }
 
