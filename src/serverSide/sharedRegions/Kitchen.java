@@ -1,5 +1,7 @@
 package serverSide.sharedRegions;
 
+import commInfra.MemException;
+import commInfra.MemFIFO;
 import serverSide.entities.ChefStates;
 import serverSide.entities.Waiter;
 import serverSide.entities.WaiterStates;
@@ -39,15 +41,10 @@ public class Kitchen implements IKitchen_Chef, IKitchen_Waiter {
     private boolean oneMorePortionReady;
 
     /**
-     * Flag is true when the chef is calling the waiter to collect the next portion
-     */
-    private boolean isNextPortionReady;
-
-    /**
      * Flag indicating, for each portion of the course at hand,
      *  whether it was collected by the waiter
      */
-    private boolean[] arePortionsCollected;
+    private MemFIFO<Boolean> portionsCollected;
 
     /**
      * Number of courses that have been fully delivered to the waiter
@@ -67,10 +64,16 @@ public class Kitchen implements IKitchen_Chef, IKitchen_Waiter {
         chef = null;
         chefStartWorking = false;
         oneMorePortionReady = false;
-        isNextPortionReady = false;
         waitingForOrders = true;
         coursesDelivered = 0;
-        arePortionsCollected = new boolean[SimulPar.TOTAL_STUDENTS];
+
+        // FIFO initializations
+        try {
+            portionsCollected = new MemFIFO<>(new Boolean[SimulPar.TOTAL_STUDENTS]);
+        } catch (MemException e) {
+            e.printStackTrace();
+            System.exit(1);
+        }
     }
 
 
@@ -119,9 +122,6 @@ public class Kitchen implements IKitchen_Chef, IKitchen_Waiter {
     @Override
     public synchronized void alertTheWaiter() {
 
-        if (!isNextPortionReady)
-            isNextPortionReady = true;
-
         // Set state to delivering the portions
         ((Chef) Thread.currentThread()).setChefState(ChefStates.DELIVERING_THE_PORTIONS);
         repos.setChefState(ChefStates.DELIVERING_THE_PORTIONS);
@@ -153,25 +153,20 @@ public class Kitchen implements IKitchen_Chef, IKitchen_Waiter {
     @Override
     public synchronized boolean haveAllPortionsBeenDelivered() {
 
-        boolean allPortionsDelivered = true;
         // Check if all portions were collected by the waiter
-        for (boolean portionWasCollected : arePortionsCollected) {
-            if (!portionWasCollected) {
-                allPortionsDelivered = false;
-                break;
-            }
-        }
-
-        if (allPortionsDelivered) {
+        if (portionsCollected.full()) {
             // Reset portions status (for next course)
-            arePortionsCollected = new boolean[SimulPar.TOTAL_STUDENTS];
+            try {
+                portionsCollected = new MemFIFO<>(new Boolean[SimulPar.TOTAL_STUDENTS]);
+            } catch (MemException e) {
+                e.printStackTrace();
+                System.exit(1);
+            }
             // Completed one more course
             coursesDelivered++;
             // Beginning next course - Naturally, it is not ready right away
-            isNextPortionReady = false;
             return true;
         }
-
         return false;
     }
 
@@ -193,13 +188,12 @@ public class Kitchen implements IKitchen_Chef, IKitchen_Waiter {
             } catch (InterruptedException ignored) {}
         }
 
-        // Collect one more portion (random selection from array, for now)
-        for (int i = 0; i < arePortionsCollected.length; i++) {
-            // If portion was not yet collected, collect it and break loop
-            if (!arePortionsCollected[i]) {
-                arePortionsCollected[i] = true;
-                break;
-            }
+        // Collect one more portion
+        try {
+            portionsCollected.write(true);
+        } catch (MemException e) {
+            e.printStackTrace();
+            System.exit(1);
         }
 
         // Collected portion, next portion is by default not ready
@@ -240,17 +234,12 @@ public class Kitchen implements IKitchen_Chef, IKitchen_Waiter {
     @Override
     public boolean haveAllPortionsBeenCollected() {
         // Check if all portions were collected by the waiter
-        for (boolean portionWasCollected : arePortionsCollected) {
-            if (!portionWasCollected) {
-                return false;
-            }
-        }
-        return true;
+        return portionsCollected.full();
     }
 
     @Override
     public synchronized void lookAround() {
-        while (!isNextPortionReady) {
+        while (!oneMorePortionReady) {
             try {
                 wait();
             } catch (InterruptedException ignored) {}

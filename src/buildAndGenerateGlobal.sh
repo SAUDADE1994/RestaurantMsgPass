@@ -35,7 +35,7 @@ cp serverSide/main/{KitchenMain,SimulPar,FunctionsIds}.class dirKitchen/serverSi
 cp serverSide/sharedRegions/{Kitchen,KitchenInterface,SharedRegionInterface,IKitchen_Chef,IKitchen_Waiter}.class dirKitchen/serverSide/sharedRegions
 cp serverSide/stubs/GeneralReposStub.class dirKitchen/serverSide/stubs
 cp serverSide/entities/{ServiceProviderAgent,Student,Chef,Waiter}.class dirKitchen/serverSide/entities
-cp commInfra/{CommunicationChannel,ServerCom,Message}.class dirKitchen/commInfra
+cp commInfra/{CommunicationChannel,ServerCom,Message,MemException,MemFIFO,MemObject}.class dirKitchen/commInfra
 cp genclass.jar dirKitchen/
 echo "  Students"
 rm -rf dirStudents
