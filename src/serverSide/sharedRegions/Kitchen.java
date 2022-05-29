@@ -2,11 +2,11 @@ package serverSide.sharedRegions;
 
 import commInfra.MemException;
 import commInfra.MemFIFO;
+import serverSide.entities.Chef;
 import serverSide.entities.ChefStates;
 import serverSide.entities.Waiter;
 import serverSide.entities.WaiterStates;
 import serverSide.main.SimulPar;
-import serverSide.entities.Chef;
 import serverSide.stubs.GeneralReposStub;
 
 import static java.lang.Thread.sleep;
@@ -18,15 +18,6 @@ import static java.lang.Thread.sleep;
  * Is implemented using as an implicit monitor
  */
 public class Kitchen implements IKitchen_Chef, IKitchen_Waiter {
-    /**
-     *   Reference to the General Repository.
-     */
-    private static Kitchen instance;
-
-    /**
-     * Reference to the chef of the kitchen
-     */
-    private Chef chef;
 
     private final GeneralReposStub repos;
 
@@ -57,15 +48,21 @@ public class Kitchen implements IKitchen_Chef, IKitchen_Waiter {
     private boolean waitingForOrders;
 
     /**
+     * Flag to signal that the waiter is ready for next course
+     * (enforces that the chef and waiter are in the same course cycle)
+     */
+    private boolean waiterWrapUpCourse;
+
+    /**
      * Private constructor of Kitchen
      */
     public Kitchen(GeneralReposStub repos) {
         this.repos = repos;
-        chef = null;
         chefStartWorking = false;
         oneMorePortionReady = false;
         waitingForOrders = true;
         coursesDelivered = 0;
+        waiterWrapUpCourse = false;
 
         // FIFO initializations
         try {
@@ -79,7 +76,6 @@ public class Kitchen implements IKitchen_Chef, IKitchen_Waiter {
 
     @Override
     public synchronized void watchTheNews() {
-        chef = (Chef) Thread.currentThread();
         while(waitingForOrders) {
             try {
                 wait();
@@ -148,26 +144,34 @@ public class Kitchen implements IKitchen_Chef, IKitchen_Waiter {
     public synchronized void continuePreparation() {
         ((Chef) Thread.currentThread()).setChefState(ChefStates.PREPARING_THE_COURSE);
         repos.setChefState(ChefStates.PREPARING_THE_COURSE);
+
+        while (!waiterWrapUpCourse) {
+            try {
+                wait();
+            } catch (InterruptedException ignored) {}
+        }
+
+        waiterWrapUpCourse = false;
     }
 
     @Override
     public synchronized boolean haveAllPortionsBeenDelivered() {
 
         // Check if all portions were collected by the waiter
-        if (portionsCollected.full()) {
-            // Reset portions status (for next course)
-            try {
-                portionsCollected = new MemFIFO<>(new Boolean[SimulPar.TOTAL_STUDENTS]);
-            } catch (MemException e) {
-                e.printStackTrace();
-                System.exit(1);
-            }
-            // Completed one more course
-            coursesDelivered++;
-            // Beginning next course - Naturally, it is not ready right away
-            return true;
+        if (!portionsCollected.full()) {
+            return false;
         }
-        return false;
+        // Reset portions status (for next course)
+        try {
+            portionsCollected = new MemFIFO<>(new Boolean[SimulPar.TOTAL_STUDENTS]);
+        } catch (MemException e) {
+            e.printStackTrace();
+            System.exit(1);
+        }
+        // Completed one more course
+        coursesDelivered++;
+        // Beginning next course - Naturally, it is not ready right away
+        return true;
     }
 
     @Override
@@ -234,11 +238,18 @@ public class Kitchen implements IKitchen_Chef, IKitchen_Waiter {
     @Override
     public boolean haveAllPortionsBeenCollected() {
         // Check if all portions were collected by the waiter
-        return portionsCollected.full();
+        if (!portionsCollected.full())
+            return false;
+        waiterWrapUpCourse = true;
+        return true;
+
     }
 
     @Override
     public synchronized void lookAround() {
+
+        notifyAll();
+
         while (!oneMorePortionReady) {
             try {
                 wait();
