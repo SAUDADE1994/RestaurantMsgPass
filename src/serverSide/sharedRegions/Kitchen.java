@@ -66,7 +66,7 @@ public class Kitchen implements IKitchen_Chef, IKitchen_Waiter {
 
         // FIFO initializations
         try {
-            portionsCollected = new MemFIFO<>(new Boolean[SimulPar.TOTAL_STUDENTS]);
+            portionsCollected = new MemFIFO<>(new Boolean[SimulPar.TOTAL_STUDENTS * SimulPar.TOTAL_COURSES]);
         } catch (MemException e) {
             e.printStackTrace();
             System.exit(1);
@@ -152,31 +152,29 @@ public class Kitchen implements IKitchen_Chef, IKitchen_Waiter {
         }
 
         waiterWrapUpCourse = false;
+
+        // Completed one more course
+        if (coursesDelivered < SimulPar.TOTAL_COURSES)
+            coursesDelivered++;
     }
 
     @Override
     public synchronized boolean haveAllPortionsBeenDelivered() {
 
+        int totalPortions = SimulPar.TOTAL_STUDENTS * (coursesDelivered + 1);
+
+        if (totalPortions < portionsCollected.getN())
+            throw new IllegalStateException(
+                    String.format("At the course %d, there were delivered %d portions?", coursesDelivered, portionsCollected.getN())
+            );
+
         // Check if all portions were collected by the waiter
-        if (!portionsCollected.full()) {
-            return false;
-        }
-        // Reset portions status (for next course)
-        try {
-            portionsCollected = new MemFIFO<>(new Boolean[SimulPar.TOTAL_STUDENTS]);
-        } catch (MemException e) {
-            e.printStackTrace();
-            System.exit(1);
-        }
-        // Completed one more course
-        coursesDelivered++;
-        // Beginning next course - Naturally, it is not ready right away
-        return true;
+        return portionsCollected.getN() == totalPortions;
     }
 
     @Override
     public synchronized boolean hasTheOrderBeenCompleted() {
-        return coursesDelivered == SimulPar.TOTAL_COURSES;
+        return portionsCollected.full();
     }
 
     @Override
@@ -236,11 +234,16 @@ public class Kitchen implements IKitchen_Chef, IKitchen_Waiter {
     }
 
     @Override
-    public boolean haveAllPortionsBeenCollected() {
+    public synchronized boolean haveAllPortionsBeenCollected() {
+
+        int totalPortions = SimulPar.TOTAL_STUDENTS * (coursesDelivered+1);
+
         // Check if all portions were collected by the waiter
-        if (!portionsCollected.full())
+        if (portionsCollected.getN() < totalPortions)
             return false;
+
         waiterWrapUpCourse = true;
+        notifyAll();
         return true;
 
     }

@@ -62,12 +62,6 @@ public class Table implements ITable_Student, ITable_Waiter {
     private MemFIFO<Integer> pendingOrdersQueue;
 
     /**
-     * Flag for each student: is true only when the respective student
-     * has decided what to order but the first student to arrive has not accounted for it yet
-     */
-    private final boolean[] peerWantsToOrder;
-
-    /**
      * Flag is true only after the first student to arrive has
      * accounted for orders from all his colleagues
      */
@@ -83,7 +77,7 @@ public class Table implements ITable_Student, ITable_Waiter {
      * During the courses, this flag indicated, for each student,
      * whether the waiter has served his portion to him
      */
-    private boolean[] currentCoursePortionsServed;
+    private MemFIFO<Boolean> currentCoursePortionsServed;
 
     /**
      * During the courses, this counter indicates, for each student,
@@ -139,6 +133,7 @@ public class Table implements ITable_Student, ITable_Waiter {
             checkInQueue = new MemFIFO<>(new Integer[SimulPar.TOTAL_STUDENTS]);
             pendingOrdersQueue = new MemFIFO<>(new Integer[SimulPar.TOTAL_STUDENTS]);
             portionsEaten = new MemFIFO<>(new Integer[SimulPar.TOTAL_STUDENTS * SimulPar.TOTAL_COURSES]);
+            currentCoursePortionsServed = new MemFIFO<>(new Boolean[SimulPar.TOTAL_STUDENTS]);
         } catch (MemException e) {
             checkInQueue = null;
             orders = null;
@@ -158,11 +153,6 @@ public class Table implements ITable_Student, ITable_Waiter {
         lastStudentIsSignaling = false;
 
         numberOfStudentsArrived = 0;
-
-
-        // Initialized false by default
-        peerWantsToOrder = new boolean[SimulPar.TOTAL_STUDENTS];
-        currentCoursePortionsServed = new boolean[SimulPar.TOTAL_STUDENTS];
     }
 
     @Override
@@ -274,9 +264,6 @@ public class Table implements ITable_Student, ITable_Waiter {
 
         students[studentID].setStudentState(StudentStates.CHATTING_WITH_COMPANIONS);
         repos.setStudentState(studentID, StudentStates.CHATTING_WITH_COMPANIONS);
-
-        // Flag true until first student adds up this one's choice
-        peerWantsToOrder[studentID] = true;
 
         System.out.printf("Student[%d] has chosen his order\n", studentID);
 
@@ -499,9 +486,6 @@ public class Table implements ITable_Student, ITable_Waiter {
         // Otherwise, the other students are ready for eating the next course
         lastStudentIsSignaling = lastStudentToFinishEating;
 
-//        System.out.printf("DEBUG - Student[%d] is last to finish? %b\n",
-//                student.getStudentId(), lastStudentToFinishEating);
-
         notifyAll();
 
         return lastStudentToFinishEating;
@@ -522,7 +506,11 @@ public class Table implements ITable_Student, ITable_Waiter {
         areStudentsReadyForNextCourse = true;
 
         // Next course: portions are by default not served
-        currentCoursePortionsServed = new boolean[SimulPar.TOTAL_STUDENTS];
+        try {
+            currentCoursePortionsServed = new MemFIFO<>(new Boolean[SimulPar.TOTAL_STUDENTS]);
+        } catch (MemException e) {
+            e.printStackTrace();
+        }
 
         notifyAll();
 
@@ -633,20 +621,22 @@ public class Table implements ITable_Student, ITable_Waiter {
         while (!areStudentsReadyForNextCourse) {
             try {
                 wait();
-            } catch (InterruptedException ignored) {
-            }
+            } catch (InterruptedException ignored) {}
         }
 
         // Deliver to the first un-served student
-        for (int i = 0; i < currentCoursePortionsServed.length; i++) {
-            if (!currentCoursePortionsServed[i]) {
-                System.out.printf("Waiter has served a portion to student [%d]\n", i);
-                // Student[i] has been served
-                currentCoursePortionsServed[i] = true;
-                // Notify student to start eating
-                notifyAll();
-                return;
+        if (!currentCoursePortionsServed.full()) {
+            System.out.println("Waiter has served a portion to student");
+            try {
+                currentCoursePortionsServed.write(true);
+                if (currentCoursePortionsServed.full())
+                    notifyAll();  // Notify students to start eating
+            } catch (MemException e) {
+                e.printStackTrace();
+                System.exit(1);
             }
+
+            return;
         }
 
         repos.setWaiterState(WaiterStates.APPRAISING_SITUATION);
@@ -664,11 +654,7 @@ public class Table implements ITable_Student, ITable_Waiter {
      * @return True if everyone is served for the course at hand
      */
     public boolean currentCourseIsServed() {
-        for (boolean studentCourseIsServed : currentCoursePortionsServed) {
-            if (!studentCourseIsServed)
-                return false;
-        }
-        return true;
+        return currentCoursePortionsServed.full();
     }
 
 }
